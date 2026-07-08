@@ -1,0 +1,54 @@
+{
+  "pages": [
+    {
+      "name": "page_home",
+      "file": "index.html",
+      "label": "Home",
+      "description": "Aggressive cyberpunk hero: pure black bg, massive green monospace headline 'TRADE THE FUTURE', live-market-style ticker strip showing BTC $67,432 ETH $3,891 SOL $178 (static); trading volume stat ($12.4B 24h volume); dual CTAs (Start Trading / View Markets) with neon glow; 4-column feature cards (Spot Trading, Derivatives, Staking, DeFi Bridge) with green wireframe icons; security section with 3 badges (Cold Storage, 2FA, Insurance Fund); partner exchange logos; leaderboard preview table (top 5 traders)"
+    },
+    {
+      "name": "page_markets",
+      "file": "markets.html",
+      "label": "Markets",
+      "description": "Markets dashboard: search bar; market tabs (Spot / Futures / Options); market table with 20 rows (Pair, Price, 24h Change %, 24h Volume, Market Cap, sparkline-placeholder, Trade button) \u2014 prices in green/red; gainers/losers mini tables (top 5 each); market overview stats"
+    },
+    {
+      "name": "page_security",
+      "file": "security.html",
+      "label": "Security",
+      "description": "Security center: trust hero with green shield icon (CSS); security architecture: 4 layered sections (Network, Application, Wallet, Audit) each with technical description; proof of reserves section with fake wallet balance display; bug bounty program section; compliance badges (SOC 2, ISO 27001, GDPR); security audit timeline"
+    },
+    {
+      "name": "page_fees",
+      "file": "fees.html",
+      "label": "Fees",
+      "description": "Fee schedule hero; tiered fee table: 6 VIP levels (VIP 0-5) \u00d7 4 columns (30d Volume, Maker Fee, Taker Fee, Withdrawal); spot vs futures fee comparison; deposit/withdrawal fee table for 15 assets; fee discount section (VaultX Token holders); referral program details with earnings calculator visual"
+    },
+    {
+      "name": "page_contact",
+      "file": "contact.html",
+      "label": "Support",
+      "description": "Support center: 3 support channels as cards (Live Chat 24/7, Email Support, Ticket System); FAQ section with 12 questions organized in categories (Account, Trading, Security, Withdrawals); API documentation link section; community channels (Telegram, Discord, Twitter); legal disclaimers and regulatory info"
+    }
+  ],
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800
+    }
+  },
+  "active_viewports": [
+    "desktop"
+  ],
+  "screenshot_fmt": "png",
+  "ssim_weight": 0.6,
+  "phash_weight": 0.4,
+  "dom_iou_weight": 0.0,
+  "scroll_heights": {
+    "page_home_desktop": 3755,
+    "page_markets_desktop": 2937,
+    "page_security_desktop": 4660,
+    "page_fees_desktop": 4088,
+    "page_contact_desktop": 4907
+  }
+}

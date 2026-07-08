@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VaultX — Security</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="brand">VAULT<span class="tld">X</span></a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="markets.html">Markets</a>
+        <a href="security.html" class="active">Security</a>
+        <a href="fees.html">Fees</a>
+        <a href="contact.html">Support</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="contact.html" class="btn btn-ghost btn-sm">Sign In</a>
+        <a href="markets.html" class="btn btn-primary btn-sm">Launch App</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container text-center">
+        <div class="shield">◈</div>
+        <span class="eyebrow">Security Center · SOC 2 Type II Verified</span>
+        <h1 class="text-green">FORTRESS PROTOCOL</h1>
+        <p class="tagline" style="margin: 24px auto;">Four defensive layers, three regional cold vaults, and a $412M standing insurance fund. Your keys, our engineering.</p>
+      </div>
+    </section>
+
+    <!-- ARCHITECTURE -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <span class="eyebrow">Architecture</span>
+            <h2>Four-layer defense stack</h2>
+          </div>
+          <p class="text-mid">Every request crosses four independent security domains before touching customer assets.</p>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="card">
+            <span class="card-tag">LAYER 01</span>
+            <div class="card-icon">◉</div>
+            <h3>Network Perimeter</h3>
+            <p>Cloudflare Enterprise WAF with DDoS mitigation up to 384 Tbps. Anycast BGP routing across 275 PoPs. Rate-limited at the IP and API-key layer with adaptive throttling. All traffic terminated at TLS 1.3 with certificate pinning.</p>
+          </div>
+          <div class="card">
+            <span class="card-tag">LAYER 02</span>
+            <div class="card-icon">⌘</div>
+            <h3>Application Isolation</h3>
+            <p>Zero-trust service mesh (Istio + SPIFFE). Every microservice authenticates with rotating mTLS certificates. Order routing runs in a hermetic enclave with attested boot. No production credentials on-disk anywhere.</p>
+          </div>
+          <div class="card">
+            <span class="card-tag">LAYER 03</span>
+            <div class="card-icon">❄</div>
+            <h3>Wallet Segmentation</h3>
+            <p>98.4% of assets in geographically distributed cold vaults with 4-of-7 multisig quorum. Hot wallets rebalanced every 15 minutes. Hardware security modules (FIPS 140-3 Level 4) for all signing keys.</p>
+          </div>
+          <div class="card">
+            <span class="card-tag">LAYER 04</span>
+            <div class="card-icon">◆</div>
+            <h3>Continuous Audit</h3>
+            <p>Merkle-tree proof of reserves published every 6 hours to Ethereum L1. Independent audits by Trail of Bits, OpenZeppelin, and Halborn. Real-time on-chain reconciliation with public dashboards.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROOF OF RESERVES -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <span class="eyebrow">Live · Snapshot 07-JUL-2026 · 14:00 UTC</span>
+            <h2>Proof of Reserves</h2>
+          </div>
+          <a href="markets.html" class="btn btn-secondary btn-sm">Verify Merkle Root</a>
+        </div>
+
+        <div class="wallet-list">
+          <div class="wallet-row">
+            <div class="header-cell">Asset</div>
+            <div class="header-cell" style="text-align:right;">Balance</div>
+            <div class="header-cell" style="text-align:right;">USD Value</div>
+          </div>
+          <div class="wallet-row">
+            <div class="asset"><span class="coin-dot">₿</span> Bitcoin (BTC)</div>
+            <div class="balance">184,244.881</div>
+            <div class="usd">$12,428,802,144</div>
+          </div>
+          <div class="wallet-row">
+            <div class="asset"><span class="coin-dot">Ξ</span> Ethereum (ETH)</div>
+            <div class="balance">1,842,014.221</div>
+            <div class="usd">$7,169,208,410</div>
+          </div>
+          <div class="wallet-row">
+            <div class="asset"><span class="coin-dot">◎</span> Solana (SOL)</div>
+            <div class="balance">18,442,881</div>
+            <div class="usd">$3,289,795,876</div>
+          </div>
+          <div class="wallet-row">
+            <div class="asset"><span class="coin-dot">$</span> USDT · Tether</div>
+            <div class="balance">2,884,201,412</div>
+            <div class="usd">$2,884,201,412</div>
+          </div>
+          <div class="wallet-row">
+            <div class="asset"><span class="coin-dot">$</span> USDC</div>
+            <div class="balance">1,412,880,244</div>
+            <div class="usd">$1,412,880,244</div>
+          </div>
+          <div class="wallet-row">
+            <div class="asset"><span class="coin-dot">V</span> VaultX (VLTX)</div>
+            <div class="balance">42,000,000</div>
+            <div class="usd">$179,760,000</div>
+          </div>
+        </div>
+
+        <div class="callout mt-6">
+          <h4>1:1 backing verified · Reserve ratio 104.2%</h4>
+          <p class="text-mid">All customer balances are cryptographically provable via the published Merkle root: <code class="text-green">0x4a8f2b91c4d7...9e02a</code>. Excess reserves held to cover slippage during large withdrawals.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUG BOUNTY -->
+    <section class="section">
+      <div class="container">
+        <div class="grid grid-2">
+          <div>
+            <span class="eyebrow">Immunefi · Ongoing</span>
+            <h2>Bug Bounty Program</h2>
+            <p class="text-mid mt-4">Up to <span class="text-green">$5,000,000 USDC</span> for critical vulnerabilities. VaultX runs one of the largest continuous bug bounty programs in the exchange sector, hosted on Immunefi with sponsored rewards paid within 72 hours of triage.</p>
+
+            <div class="grid grid-2 mt-6">
+              <div class="badge">
+                <h4>Critical</h4>
+                <p class="text-green" style="font-size: 20px; font-weight: 700; margin-top: 8px;">up to $5,000,000</p>
+              </div>
+              <div class="badge">
+                <h4>High</h4>
+                <p class="text-green" style="font-size: 20px; font-weight: 700; margin-top: 8px;">up to $250,000</p>
+              </div>
+              <div class="badge">
+                <h4>Medium</h4>
+                <p class="text-green" style="font-size: 20px; font-weight: 700; margin-top: 8px;">up to $25,000</p>
+              </div>
+              <div class="badge">
+                <h4>Low</h4>
+                <p class="text-green" style="font-size: 20px; font-weight: 700; margin-top: 8px;">up to $2,500</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="card">
+              <h3>Scope · in scope</h3>
+              <p class="mt-3">✔ vaultx.io production frontend<br>
+              ✔ api.vaultx.io &amp; ws.vaultx.io<br>
+              ✔ Signing services + custody API<br>
+              ✔ VaultX Wallet mobile (iOS &amp; Android)<br>
+              ✔ Smart contracts: bridge, staking, VLTX<br>
+              ✔ Order matching engine (whitebox)</p>
+              <hr>
+              <h3>Out of scope</h3>
+              <p>✗ Third-party integrations<br>
+              ✗ Rate-limit bypass without impact<br>
+              ✗ Self-XSS &amp; UI clickjacking<br>
+              ✗ Findings on staging/testnet</p>
+              <div class="mt-5">
+                <a href="contact.html" class="btn btn-primary">Submit Vulnerability</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPLIANCE BADGES -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <span class="eyebrow">Compliance</span>
+            <h2>Certifications &amp; regulatory posture</h2>
+          </div>
+        </div>
+
+        <div class="grid grid-4">
+          <div class="badge">
+            <div class="badge-icon">S2</div>
+            <h4>SOC 2 Type II</h4>
+            <p>Continuous audit by Ernst &amp; Young. Latest report 2026-Q2.</p>
+          </div>
+          <div class="badge">
+            <div class="badge-icon">ISO</div>
+            <h4>ISO/IEC 27001</h4>
+            <p>Certified information security management. Renewed 2026-05.</p>
+          </div>
+          <div class="badge">
+            <div class="badge-icon">EU</div>
+            <h4>GDPR Compliant</h4>
+            <p>Full DSAR pipeline, EU-hosted PII data with zero third-country transfers.</p>
+          </div>
+          <div class="badge">
+            <div class="badge-icon">§</div>
+            <h4>MiCA Registered</h4>
+            <p>Registered CASP under MiCA framework. License #EU-CASP-88214.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <span class="eyebrow">Audit Trail</span>
+            <h2>Security audit timeline</h2>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="date">2026 · JUN</div>
+            <h4>Trail of Bits · Full matching engine audit</h4>
+            <p>Zero critical, 2 informational. Full report published. Focus: order routing, margin calc, oracle handling.</p>
+          </div>
+          <div class="timeline-item">
+            <div class="date">2026 · MAR</div>
+            <h4>OpenZeppelin · Bridge contracts audit</h4>
+            <p>Zero critical, 1 high (remediated), 4 medium (remediated). Bridge upgrade shipped 2026-04-18.</p>
+          </div>
+          <div class="timeline-item">
+            <div class="date">2025 · DEC</div>
+            <h4>Halborn · Penetration test</h4>
+            <p>Adversarial red-team over 6 weeks. All findings remediated within SLA. Public executive summary available.</p>
+          </div>
+          <div class="timeline-item">
+            <div class="date">2025 · AUG</div>
+            <h4>Kraken Security Labs · Wallet review</h4>
+            <p>External review of HSM key ceremony and cold-vault procedures. Full attestation letter published.</p>
+          </div>
+          <div class="timeline-item">
+            <div class="date">2025 · FEB</div>
+            <h4>SOC 2 Type II · Ernst &amp; Young</h4>
+            <p>Initial SOC 2 Type II certification. Zero exceptions. Report available on request under NDA.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">VAULT<span class="tld">X</span></a>
+          <p>Trade the future, own the edge. Institutional-grade infrastructure for individual sovereigns. Licensed under BVI-FSA #221084.</p>
+        </div>
+        <div>
+          <h5>Product</h5>
+          <ul>
+            <li><a href="markets.html">Spot</a></li>
+            <li><a href="markets.html">Futures</a></li>
+            <li><a href="markets.html">Options</a></li>
+            <li><a href="markets.html">Staking</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Company</h5>
+          <ul>
+            <li><a href="security.html">Security</a></li>
+            <li><a href="fees.html">Fees</a></li>
+            <li><a href="contact.html">Careers</a></li>
+            <li><a href="contact.html">Press</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Developers</h5>
+          <ul>
+            <li><a href="contact.html">API Docs</a></li>
+            <li><a href="contact.html">Status</a></li>
+            <li><a href="contact.html">Webhooks</a></li>
+            <li><a href="contact.html">SDKs</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="contact.html">Terms</a></li>
+            <li><a href="contact.html">Privacy</a></li>
+            <li><a href="contact.html">Cookies</a></li>
+            <li><a href="contact.html">Disclosures</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 VaultX Global Holdings, PVT · All rights reserved · v4.11.7-mainnet</span>
+        <div class="footer-socials">
+          <a href="contact.html">TELEGRAM</a>
+          <a href="contact.html">DISCORD</a>
+          <a href="contact.html">X / TWITTER</a>
+          <a href="contact.html">GITHUB</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

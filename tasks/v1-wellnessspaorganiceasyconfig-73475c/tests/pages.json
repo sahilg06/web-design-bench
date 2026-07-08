@@ -1,0 +1,54 @@
+{
+  "pages": [
+    {
+      "name": "page_home",
+      "file": "index.html",
+      "label": "Home",
+      "description": "Serene hero with warm linen background, large serif headline 'Restore Your Inner Balance', soft green CTA 'Book a Treatment'; 3-column service highlights (Massage, Facial, Wellness) with leaf-like decorative elements; philosophy section with centered italic quote about natural healing; opening hours card with warm background; testimonial section with 2 client quotes"
+    },
+    {
+      "name": "page_treatments",
+      "file": "treatments.html",
+      "label": "Treatments",
+      "description": "Treatment menu: category sections (Massage Therapies, Skin Care, Body Treatments, Wellness Rituals) each with 3-4 treatments listed as name + duration + price + 1-line description; package deals section with 3 packages (Day Retreat $150, Half-Day $95, Express $55); booking reminder CTA at bottom"
+    },
+    {
+      "name": "page_about",
+      "file": "about.html",
+      "label": "About",
+      "description": "Our story section with warm image placeholder and founder bio text; values section (Natural Ingredients, Holistic Approach, Sustainable Practice) in 3 columns; our team: 4 therapist cards with circular placeholder, name, specialty, and certifications; spa environment section with description of facilities"
+    },
+    {
+      "name": "page_gallery",
+      "file": "gallery.html",
+      "label": "Gallery",
+      "description": "Simple photo gallery: 3-column grid of 9 image placeholders with warm-toned backgrounds; category labels (Spa Interior, Treatments, Products); Instagram follow CTA at bottom"
+    },
+    {
+      "name": "page_booking",
+      "file": "booking.html",
+      "label": "Book Now",
+      "description": "Booking form: service selection dropdown, preferred therapist, date, time slot, name, email, phone, special requests textarea, submit button; cancellation policy note; gift certificate section; contact info with phone, email, and address"
+    }
+  ],
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800
+    }
+  },
+  "active_viewports": [
+    "desktop"
+  ],
+  "screenshot_fmt": "png",
+  "ssim_weight": 0.6,
+  "phash_weight": 0.4,
+  "dom_iou_weight": 0.0,
+  "scroll_heights": {
+    "page_home_desktop": 3876,
+    "page_treatments_desktop": 5206,
+    "page_about_desktop": 3349,
+    "page_gallery_desktop": 2492,
+    "page_booking_desktop": 2956
+  }
+}

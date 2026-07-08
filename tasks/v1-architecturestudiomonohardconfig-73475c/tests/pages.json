@@ -1,0 +1,54 @@
+{
+  "pages": [
+    {
+      "name": "page_home",
+      "file": "index.html",
+      "label": "Home",
+      "description": "Dramatic monochrome hero: full-width image placeholder (architectural render), overlaid with large sans-serif headline 'WHERE STRUCTURE MEETS IMAGINATION' in tracking-wide uppercase; selected projects section: 4 projects in a 2\u00d72 asymmetric grid with varied image placeholder sizes, project name, location, year; studio philosophy: large centered statement in thin weight; project categories strip (Residential, Commercial, Cultural, Urban); awards ticker (AIA Honor Award, Dezeen Award, Pritzker Nominee); press mentions section"
+    },
+    {
+      "name": "page_projects",
+      "file": "projects.html",
+      "label": "Projects",
+      "description": "Projects archive: filter by typology (All / Residential / Commercial / Cultural / Urban / Interior); projects in alternating full-width and half-width layout (10 projects) each with large image placeholder, project name in uppercase, location, year, brief (1 line), and area (sqm); hover reveals 'View Project' overlay; project counter showing 'Showing 10 of 47 projects'"
+    },
+    {
+      "name": "page_approach",
+      "file": "approach.html",
+      "label": "Approach",
+      "description": "Design philosophy page: manifesto section with large justified text; 4-phase process (Research, Concept, Development, Realization) each as a full-width horizontal band with phase number, title, description, and methodology detail; sustainability section with 6 principles in 2\u00d73 grid; materials palette section showcasing 8 materials (name and description); technology section about BIM/parametric design"
+    },
+    {
+      "name": "page_studio",
+      "file": "studio.html",
+      "label": "Studio",
+      "description": "Studio page: large office photo placeholder; about text in two columns; team grid: 8 people (photo placeholder, name, role, joined year) in 4-column layout; timeline: founding 2008 to present (6 milestones); publications section (4 books/papers); internship and careers section; collaborators/consultants list"
+    },
+    {
+      "name": "page_contact",
+      "file": "contact.html",
+      "label": "Contact",
+      "description": "Minimal contact: large 'Get in Touch' in thin uppercase sans-serif; two-column: left has inquiry form (name, company, email, project type dropdown: Residential/Commercial/Competition/Consultation, project location, budget range, timeline, brief description); right has studio address, working hours, map placeholder, press contact, and career inquiries email; bottom: Instagram grid placeholder (6 squares)"
+    }
+  ],
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800
+    }
+  },
+  "active_viewports": [
+    "desktop"
+  ],
+  "screenshot_fmt": "png",
+  "ssim_weight": 0.6,
+  "phash_weight": 0.4,
+  "dom_iou_weight": 0.0,
+  "scroll_heights": {
+    "page_home_desktop": 5160,
+    "page_projects_desktop": 6784,
+    "page_approach_desktop": 6064,
+    "page_studio_desktop": 5762,
+    "page_contact_desktop": 2473
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "pages": [
+    {
+      "name": "page_home",
+      "file": "index.html",
+      "label": "Home",
+      "description": "Full-viewport hero with deep dark gradient bg, oversized headline 'Intelligence that scales with you' with neon purple glow text effect, dual CTAs (Get Started / See Demo); animated-look particle grid section (CSS dots/lines pattern); 3-column AI capability cards (NLP, Vision, Prediction) with icon placeholders and glowing borders; integration partners strip (8 tech company names); metrics bar (1M+ API calls/day, 99.99% uptime, 200ms avg latency, 500+ enterprise clients); testimonial carousel-like strip (3 quotes from CTOs); bottom CTA banner with gradient"
+    },
+    {
+      "name": "page_platform",
+      "file": "platform.html",
+      "label": "Platform",
+      "description": "Platform overview hero; 6-feature deep-dive alternating left/right layout (Model Training, Data Pipeline, Auto-Scaling, Monitoring, A/B Testing, Edge Deployment) each with diagram placeholder and 4-line description; architecture diagram section (CSS-only layered boxes showing data flow); SDK/API code snippet section with dark code blocks showing Python examples; benchmark comparison table (NexaAI vs AWS SageMaker vs Google Vertex)"
+    },
+    {
+      "name": "page_solutions",
+      "file": "solutions.html",
+      "label": "Solutions",
+      "description": "Industry solutions hero; 4 industry verticals as large cards (Healthcare, Finance, Retail, Manufacturing) each with neon-bordered icon placeholder, use-case description, and key metric; case study spotlight with large quote and company logo placeholder; ROI calculator section (static visual with labeled inputs and output display); partner ecosystem grid (12 logos as colored tiles)"
+    },
+    {
+      "name": "page_pricing",
+      "file": "pricing.html",
+      "label": "Pricing",
+      "description": "Pricing hero with toggle-like visual (Monthly/Annual); 3-tier pricing cards (Starter $99/mo, Scale $499/mo, Enterprise Custom) each with feature list of 8 items, middle card highlighted with purple glow; feature comparison matrix table (15 rows \u00d7 3 columns with checkmarks); FAQ accordion-style section (10 questions); volume discount table; enterprise contact CTA"
+    },
+    {
+      "name": "page_contact",
+      "file": "contact.html",
+      "label": "Contact",
+      "description": "Contact hero with gradient mesh background (CSS); two-column layout: left has multi-step-looking form (name, company, email, use case dropdown, monthly API calls, message, submit); right has sales team cards (3 reps with photo placeholder, name, region, email); office locations section (San Francisco, London, Singapore, Tokyo with addresses); status page link and community Discord CTA"
+    }
+  ],
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800
+    }
+  },
+  "active_viewports": [
+    "desktop"
+  ],
+  "screenshot_fmt": "png",
+  "ssim_weight": 0.6,
+  "phash_weight": 0.4,
+  "dom_iou_weight": 0.0,
+  "scroll_heights": {
+    "page_home_desktop": 3510,
+    "page_platform_desktop": 8486,
+    "page_solutions_desktop": 4945,
+    "page_pricing_desktop": 6679,
+    "page_contact_desktop": 2910
+  }
+}

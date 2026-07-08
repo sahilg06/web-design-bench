@@ -1,0 +1,27 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+
+# Evaluation outputs (large, not tracked)
+jobs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# UV lock file (optional — can be tracked for reproducibility)
+# uv.lock
+
+# Modal credentials
+.modal.toml

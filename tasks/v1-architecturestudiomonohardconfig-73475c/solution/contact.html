@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — Forma Studio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container-wide">
+        <a href="index.html" class="brand">Forma<span>Studio</span></a>
+        <nav class="site-nav" aria-label="Primary">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="approach.html">Approach</a></li>
+                <li><a href="studio.html">Studio</a></li>
+                <li><a href="contact.html" class="is-active">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+    <section>
+        <div class="container-wide">
+            <h1 class="contact-headline">Get in Touch</h1>
+        </div>
+    </section>
+
+    <!-- TWO-COLUMN: FORM + INFO -->
+    <section>
+        <div class="container-wide contact-columns">
+
+            <!-- FORM -->
+            <div>
+                <p class="eyebrow">Project Enquiry</p>
+                <h2 class="section-title" style="font-size:32px; margin-bottom:32px;">Tell us about the work</h2>
+
+                <form class="form-grid" action="mailto:studio@formastudio.eu" method="post">
+                    <div class="field">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your full name">
+                    </div>
+                    <div class="field">
+                        <label for="company">Company / Organisation</label>
+                        <input type="text" id="company" name="company" placeholder="Optional">
+                    </div>
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="you@example.com">
+                    </div>
+                    <div class="field">
+                        <label for="type">Project Type</label>
+                        <select id="type" name="type">
+                            <option>Residential</option>
+                            <option>Commercial</option>
+                            <option>Competition</option>
+                            <option>Consultation</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="location">Project Location</label>
+                        <input type="text" id="location" name="location" placeholder="City, country">
+                    </div>
+                    <div class="field">
+                        <label for="budget">Budget Range</label>
+                        <select id="budget" name="budget">
+                            <option>Under €500k</option>
+                            <option>€500k – €2m</option>
+                            <option>€2m – €10m</option>
+                            <option>€10m – €50m</option>
+                            <option>€50m +</option>
+                            <option>To be discussed</option>
+                        </select>
+                    </div>
+                    <div class="field form-full">
+                        <label for="timeline">Expected Timeline</label>
+                        <input type="text" id="timeline" name="timeline" placeholder="e.g. Site acquired Q3 2026, occupancy 2029">
+                    </div>
+                    <div class="field form-full">
+                        <label for="brief">Brief Description</label>
+                        <textarea id="brief" name="brief" placeholder="Tell us about the site, the programme, and the people the building is for."></textarea>
+                    </div>
+                    <div class="form-full">
+                        <button type="submit" class="btn btn-arrow">Send Enquiry</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- INFO -->
+            <aside class="contact-info">
+                <div class="info-block">
+                    <h4>Studio · Zurich (HQ)</h4>
+                    <address>
+                        Forma Studio Architektur GmbH<br>
+                        Ankerstrasse 24<br>
+                        8004 Zurich, Switzerland<br>
+                        <a href="contact.html">+41 44 202 18 40</a>
+                    </address>
+                </div>
+
+                <div class="info-block">
+                    <h4>Studio · Copenhagen</h4>
+                    <address>
+                        Refshalevej 153, Building D<br>
+                        1432 Copenhagen K, Denmark<br>
+                        <a href="contact.html">+45 32 96 44 12</a>
+                    </address>
+                </div>
+
+                <div class="info-block">
+                    <h4>Studio · Lisbon</h4>
+                    <address>
+                        Rua da Boavista 84, 2º<br>
+                        1200-070 Lisboa, Portugal<br>
+                        <a href="contact.html">+351 21 397 82 10</a>
+                    </address>
+                </div>
+
+                <div class="info-block">
+                    <h4>Working Hours</h4>
+                    <p>Monday – Thursday · 09:00 – 18:00<br>
+                       Friday · 09:00 – 16:00<br>
+                       Site visits by appointment.</p>
+                </div>
+
+                <div class="info-block">
+                    <h4>Location</h4>
+                    <div class="map-placeholder" aria-label="Map of Zurich studio location"></div>
+                </div>
+
+                <div class="info-block">
+                    <h4>Press &amp; Media</h4>
+                    <p>Ines Hollander, Communications<br>
+                       <a href="contact.html">press@formastudio.eu</a></p>
+                </div>
+
+                <div class="info-block">
+                    <h4>Careers &amp; Internships</h4>
+                    <p>Rui Marchetti, Studio Manager<br>
+                       <a href="contact.html">careers@formastudio.eu</a></p>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <!-- INSTAGRAM GRID -->
+    <section class="section-sm">
+        <div class="container-wide">
+            <div class="section-heading">
+                <h2>Studio Instagram</h2>
+                <a href="contact.html" class="link">@forma.studio</a>
+            </div>
+            <div class="instagram-grid">
+                <div class="placeholder ph-mid"></div>
+                <div class="placeholder ph-light"></div>
+                <div class="placeholder ph-dark"></div>
+                <div class="placeholder ph-mid"></div>
+                <div class="placeholder ph-light"></div>
+                <div class="placeholder ph-dark"></div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container-wide">
+        <span class="footer-copy">© 2026 Forma Studio · Architektur GmbH</span>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="approach.html">Approach</a>
+            <a href="studio.html">Studio</a>
+            <a href="contact.html">Instagram</a>
+            <a href="contact.html">Journal</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

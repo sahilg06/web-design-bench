@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing — NexaAI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-mark"></span>
+        NexaAI
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="platform.html">Platform</a></li>
+          <li><a href="solutions.html">Solutions</a></li>
+          <li><a href="pricing.html" class="active">Pricing</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="contact.html" class="nav-cta">Start Free Trial</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero hero-mini-hero">
+      <div class="container hero-inner">
+        <span class="eyebrow">Simple, predictable pricing</span>
+        <h1>Grow into the plan that fits</h1>
+        <p class="hero-subtitle">Every plan includes core inference, real-time monitoring, and unlimited team seats. Pay only for the compute you actually use.</p>
+      </div>
+    </section>
+
+    <!-- TOGGLE -->
+    <section style="padding-top: 0; padding-bottom: 0;">
+      <div class="container toggle-wrap">
+        <div class="pricing-toggle" role="tablist">
+          <span class="pricing-toggle-option">Monthly</span>
+          <span class="pricing-toggle-option active">Annual <span class="toggle-save">save 20%</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING CARDS -->
+    <section style="padding-top: var(--space-2xl);">
+      <div class="container">
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <div class="pricing-name">Starter</div>
+            <div class="pricing-price">
+              <span class="pricing-price-amount">$99</span>
+              <span class="pricing-price-period">/ month</span>
+            </div>
+            <p class="pricing-desc">Everything a small team needs to ship its first production AI feature.</p>
+            <a href="contact.html" class="btn btn-ghost">Start Free Trial</a>
+            <ul class="pricing-features">
+              <li>500,000 monthly inference calls</li>
+              <li>Access to 40+ managed foundation models</li>
+              <li>2 production endpoints</li>
+              <li>Community support with 24h response</li>
+              <li>Basic drift and latency monitoring</li>
+              <li>REST and Python SDK access</li>
+              <li>SSO with Google and GitHub</li>
+              <li>99.9% uptime SLA</li>
+            </ul>
+          </div>
+
+          <div class="pricing-card card-highlighted">
+            <div class="pricing-name">Scale</div>
+            <div class="pricing-price">
+              <span class="pricing-price-amount">$499</span>
+              <span class="pricing-price-period">/ month</span>
+            </div>
+            <p class="pricing-desc">For growing teams operating multiple models across regions with real customers depending on them.</p>
+            <a href="contact.html" class="btn btn-primary">Start Free Trial</a>
+            <ul class="pricing-features">
+              <li>10,000,000 monthly inference calls</li>
+              <li>Unlimited managed and custom models</li>
+              <li>Unlimited production endpoints</li>
+              <li>Priority support with 2h response</li>
+              <li>Full observability suite including drift RCA</li>
+              <li>A/B testing and canary deployments</li>
+              <li>SAML SSO and role-based access control</li>
+              <li>99.95% uptime SLA with credits</li>
+            </ul>
+          </div>
+
+          <div class="pricing-card">
+            <div class="pricing-name">Enterprise</div>
+            <div class="pricing-price">
+              <span class="pricing-price-amount">Custom</span>
+            </div>
+            <p class="pricing-desc">For regulated industries and organizations that need dedicated capacity, custom regions, and white-glove onboarding.</p>
+            <a href="contact.html" class="btn btn-secondary">Contact Sales</a>
+            <ul class="pricing-features">
+              <li>Unlimited inference calls</li>
+              <li>Dedicated GPU capacity and reserved regions</li>
+              <li>Bring-your-own-cloud deployments</li>
+              <li>24/7 support with 15min response</li>
+              <li>HIPAA, SOC 2 Type II, ISO 27001, FedRAMP</li>
+              <li>Custom contract terms and DPA</li>
+              <li>Named solutions architect</li>
+              <li>99.99% uptime SLA with financial credits</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPARISON MATRIX -->
+    <section class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Compare every plan</h2>
+        <p class="section-lead">Fifteen questions engineering teams ask us on every call, answered up front.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:40%;">Feature</th>
+                <th>Starter</th>
+                <th>Scale</th>
+                <th>Enterprise</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Monthly inference calls</td><td>500K</td><td>10M</td><td>Unlimited</td></tr>
+              <tr><td>Production endpoints</td><td>2</td><td>Unlimited</td><td>Unlimited</td></tr>
+              <tr><td>Custom model uploads</td><td class="table-check">Yes</td><td class="table-check">Yes</td><td class="table-check">Yes</td></tr>
+              <tr><td>Multi-region deployment</td><td class="table-x">Single region</td><td class="table-check">3 regions</td><td class="table-check">All regions</td></tr>
+              <tr><td>A/B testing engine</td><td class="table-x">—</td><td class="table-check">Yes</td><td class="table-check">Yes</td></tr>
+              <tr><td>Canary and shadow rollouts</td><td class="table-x">—</td><td class="table-check">Yes</td><td class="table-check">Yes</td></tr>
+              <tr><td>Drift and fairness monitoring</td><td>Basic</td><td>Advanced</td><td>Advanced + Custom</td></tr>
+              <tr><td>Edge deployment targets</td><td>2</td><td>All 6</td><td>All 6 + custom</td></tr>
+              <tr><td>SSO / SAML</td><td>Google, GitHub</td><td class="table-check">Yes</td><td class="table-check">Yes + SCIM</td></tr>
+              <tr><td>Role-based access control</td><td>3 roles</td><td>Custom roles</td><td>Custom + attribute-based</td></tr>
+              <tr><td>Audit logs</td><td>7 days</td><td>90 days</td><td>Unlimited + export</td></tr>
+              <tr><td>Support response time</td><td>24h community</td><td>2h priority</td><td>15min 24/7</td></tr>
+              <tr><td>Uptime SLA</td><td>99.9%</td><td>99.95%</td><td>99.99%</td></tr>
+              <tr><td>Compliance certifications</td><td>SOC 2</td><td>SOC 2, HIPAA</td><td>SOC 2, HIPAA, ISO, FedRAMP</td></tr>
+              <tr><td>Dedicated solutions architect</td><td class="table-x">—</td><td class="table-x">—</td><td class="table-check">Yes</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- VOLUME DISCOUNTS -->
+    <section>
+      <div class="container">
+        <h2 class="section-title">Volume discounts</h2>
+        <p class="section-lead">Committed usage tiers apply automatically once your rolling three-month average exceeds a threshold.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Monthly inference volume</th>
+                <th>Discount vs on-demand</th>
+                <th>Effective price / 1M inferences</th>
+                <th>Best for</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>10M – 50M</td><td>10%</td><td>$3.60</td><td>Early-stage production teams</td></tr>
+              <tr><td>50M – 250M</td><td>22%</td><td>$3.12</td><td>Product-scale AI features</td></tr>
+              <tr><td>250M – 1B</td><td>35%</td><td>$2.60</td><td>High-traffic consumer surfaces</td></tr>
+              <tr><td>1B – 5B</td><td>48%</td><td>$2.08</td><td>Realtime personalization at scale</td></tr>
+              <tr><td>5B+</td><td>Custom</td><td>Contact sales</td><td>Dedicated capacity contracts</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="volume-note">Discounts stack with annual billing. Pricing reflects standard 7B-class model inference; foundation and vision models priced separately.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Frequently asked questions</h2>
+        <p class="section-lead">If we haven't answered it below, our team is a click away — reach out any time.</p>
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-q">Do you have a free tier for hobbyists and prototypes?<span class="faq-toggle">+</span></div>
+            <p class="faq-a">Yes. Every new account gets 100,000 free inferences per month, forever. No credit card required, no cliff, no forced upgrade if you stay within the tier.</p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">Can I run NexaAI inside my own cloud account?<span class="faq-toggle">+</span></div>
+            <p class="faq-a">Enterprise customers can deploy the NexaAI control and data planes into their AWS, GCP, or Azure environments. Data, model weights, and telemetry never leave your VPC.</p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">Which foundation models are included out of the box?<span class="faq-toggle">+</span></div>
+            <p class="faq-a">Over 400 open models spanning text, vision, and multimodal — including Llama, Mistral, Qwen, Whisper, CLIP, and SDXL — plus a curated set of NexaAI-tuned models optimized for latency and cost.</p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">How does billing work when I exceed my included inferences?<span class="faq-toggle">+</span></div>
+            <p class="faq-a">Overage is billed at the on-demand rate for your model class at the end of the month. Set spend caps on individual endpoints and receive alerts at 50%, 75%, and 90% of your budget.</p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">Do you offer discounts for startups or academic research?<span class="faq-toggle">+</span></div>
+            <p class="faq-a">Yes. Our Ignite program provides $50,000 in credits over 12 months for seed and Series A startups, and academic labs receive 50% off Scale plan pricing.</p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">What compliance certifications do you hold?<span class="faq-toggle">+</span></div>
+            <p class="faq-a">SOC 2 Type II, ISO 27001, HIPAA (Enterprise plan), GDPR, and FedRAMP Moderate. Attestation letters are available under NDA before purchase.</p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">How do you keep my training data private?<span class="faq-toggle">+</span></div>
+            <p class="faq-a">Training data is encrypted at rest with your CMK, never used to improve shared models, and can be sequestered inside a private tenancy pool available on Scale and Enterprise plans.</p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">Can I bring my own model weights?<span class="faq-toggle">+</span></div>
+            <p class="faq-a">Absolutely. Upload PyTorch, JAX, ONNX, or SafeTensors artifacts through the CLI or push directly from a training job. NexaAI handles compilation, packaging, and rollout.</p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">What happens if I need to leave the platform?<span class="faq-toggle">+</span></div>
+            <p class="faq-a">Your models, features, and audit logs are yours. Export everything at any time via the CLI in standard open formats. No lock-in, no exit fees.</p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">Is there a way to test with a live human first?<span class="faq-toggle">+</span></div>
+            <p class="faq-a">Yes — every prospect gets a 30-minute architecture review with a solutions engineer, whether or not you buy. Book directly from the contact page.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ENTERPRISE CTA -->
+    <section class="cta-banner">
+      <div class="container">
+        <div class="cta-banner-inner">
+          <h2>Need something custom?</h2>
+          <p>Regulated data, custom regions, hybrid deployments, and multi-cloud architectures are our specialty. Let's design your rollout together.</p>
+          <a href="contact.html" class="btn btn-lg">Talk to Enterprise Sales</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">
+            <span class="brand-mark"></span>
+            NexaAI
+          </a>
+          <p>Production-grade AI infrastructure for teams that treat machine learning as core product surface, not a science project.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Product</h5>
+          <ul>
+            <li><a href="platform.html">Platform</a></li>
+            <li><a href="solutions.html">Solutions</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="platform.html">Documentation</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="index.html">About</a></li>
+            <li><a href="contact.html">Careers</a></li>
+            <li><a href="index.html">Press</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <ul>
+            <li><a href="platform.html">Blog</a></li>
+            <li><a href="platform.html">Changelog</a></li>
+            <li><a href="contact.html">Status</a></li>
+            <li><a href="contact.html">Community</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 NexaAI, Inc. Intelligence that scales with you.</div>
+        <div class="footer-social">
+          <a href="index.html" class="footer-social-link">Tw</a>
+          <a href="index.html" class="footer-social-link">Li</a>
+          <a href="index.html" class="footer-social-link">Gh</a>
+          <a href="index.html" class="footer-social-link">Dc</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

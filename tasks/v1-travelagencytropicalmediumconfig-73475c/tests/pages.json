@@ -1,0 +1,54 @@
+{
+  "pages": [
+    {
+      "name": "page_home",
+      "file": "index.html",
+      "label": "Home",
+      "description": "Bright hero with ocean-blue gradient top, large friendly headline 'Your Journey Begins Here', search-bar-style CTA (Destination input, Date, Travelers, Search button in amber); popular destinations: 4 cards (Bali, Santorini, Kyoto, Patagonia) with colored placeholders and price-from badge; travel types section: 3 columns (Adventure, Luxury, Cultural) with descriptions; customer reviews: 3 cards with star ratings; partner airlines strip; newsletter CTA"
+    },
+    {
+      "name": "page_destinations",
+      "file": "destinations.html",
+      "label": "Destinations",
+      "description": "Destinations page: search + filter bar (Region, Budget, Season, Activity); 3-column destination grid (9 cards) each with image placeholder, destination name, country flag emoji, rating, starting price, and 'Explore' button; featured destination spotlight with large image and itinerary preview; travel tips sidebar"
+    },
+    {
+      "name": "page_packages",
+      "file": "packages.html",
+      "label": "Packages",
+      "description": "Travel packages: 3 featured packages (Explorer 7-day $1,299, Premium 10-day $2,499, Ultimate 14-day $4,199) as large cards with inclusions list (flights, hotels, guides, meals); seasonal deals section; group travel section; custom package inquiry CTA"
+    },
+    {
+      "name": "page_about",
+      "file": "about.html",
+      "label": "About",
+      "description": "About page: founder story with image placeholder; company stats (15 years, 50K+ travelers, 80+ countries, 98% satisfaction); team section (4 travel experts with photo placeholders, names, specialties); sustainability commitment section; awards and certifications"
+    },
+    {
+      "name": "page_contact",
+      "file": "contact.html",
+      "label": "Contact",
+      "description": "Contact page: inquiry form (name, email, phone, destination interest, travel dates, group size, budget range, message); office locations (Sydney, London, New York); emergency travel support hotline section; social media links; FAQ section (6 common questions)"
+    }
+  ],
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800
+    }
+  },
+  "active_viewports": [
+    "desktop"
+  ],
+  "screenshot_fmt": "png",
+  "ssim_weight": 0.6,
+  "phash_weight": 0.4,
+  "dom_iou_weight": 0.0,
+  "scroll_heights": {
+    "page_home_desktop": 4355,
+    "page_destinations_desktop": 3860,
+    "page_packages_desktop": 4007,
+    "page_about_desktop": 4532,
+    "page_contact_desktop": 4728
+  }
+}

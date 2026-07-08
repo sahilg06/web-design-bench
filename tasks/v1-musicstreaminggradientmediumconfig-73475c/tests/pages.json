@@ -1,0 +1,54 @@
+{
+  "pages": [
+    {
+      "name": "page_home",
+      "file": "index.html",
+      "label": "Home",
+      "description": "Vibrant hero with purple-to-cyan gradient background, large headline 'Feel Every Frequency', 'Start Listening Free' CTA; featured playlists: 4 cards with gradient-colored placeholders (Chill Vibes, Workout Energy, Focus Flow, Late Night); trending section: 6 album/track cards with cover art placeholder, artist name, track title; genre clouds section (8 genre pills: Pop, Hip-Hop, Electronic, Rock, Jazz, Classical, Latin, K-Pop); stats strip (80M tracks, 4B playlists, 600M listeners)"
+    },
+    {
+      "name": "page_discover",
+      "file": "discover.html",
+      "label": "Discover",
+      "description": "Discover page: curated sections \u2014 'New Releases' (6 album cards), 'Charts' (3 chart cards: Global Top 50, Viral, Rising), 'Podcasts' (4 podcast cards); genre browser: 12 genre tiles in 4\u00d73 grid with gradient backgrounds and genre names; mood-based playlists section"
+    },
+    {
+      "name": "page_pricing",
+      "file": "pricing.html",
+      "label": "Premium",
+      "description": "Premium plans page: 3 tiers (Free $0, Premium $9.99/mo, Family $14.99/mo) as cards with feature lists; comparison table (8 features \u00d7 3 plans); student discount section; free trial CTA; FAQ (6 questions)"
+    },
+    {
+      "name": "page_artists",
+      "file": "artists.html",
+      "label": "Artists",
+      "description": "Artists hub: featured artist spotlight with large placeholder and bio; top artists grid (8 circular placeholders with names and genre); 'For Artists' section explaining SoundWave for Artists program; upload stats and earnings info; artist registration CTA"
+    },
+    {
+      "name": "page_contact",
+      "file": "contact.html",
+      "label": "Support",
+      "description": "Support page: 3 help categories (Account, Playback, Payments) with icon and description; search-bar-styled help lookup; community forum link; contact form (email, subject, category dropdown, description); social media links; app download links section"
+    }
+  ],
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800
+    }
+  },
+  "active_viewports": [
+    "desktop"
+  ],
+  "screenshot_fmt": "png",
+  "ssim_weight": 0.6,
+  "phash_weight": 0.4,
+  "dom_iou_weight": 0.0,
+  "scroll_heights": {
+    "page_home_desktop": 3280,
+    "page_discover_desktop": 3501,
+    "page_pricing_desktop": 3536,
+    "page_artists_desktop": 2654,
+    "page_contact_desktop": 2683
+  }
+}

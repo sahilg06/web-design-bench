@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinations — Wanderlust</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav">
+            <a href="index.html" class="brand"><span class="brand-mark"></span>Wanderlust</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="destinations.html" class="active">Destinations</a>
+                <a href="packages.html">Packages</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="contact.html" class="nav-cta">Book Now</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-mini">
+            <div class="container">
+                <span class="eyebrow" style="color: #fef3c7;">80+ countries. 400+ curated experiences.</span>
+                <h1>Where Will You Wander?</h1>
+                <p>From volcanic Iceland to the golden dunes of Morocco — explore our full library of expertly designed destinations.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <!-- FILTER BAR -->
+                <form class="filter-bar" action="#">
+                    <div class="filter-field">
+                        <label for="region">Region</label>
+                        <select id="region">
+                            <option>All Regions</option>
+                            <option>Asia &amp; Pacific</option>
+                            <option>Europe</option>
+                            <option>Americas</option>
+                            <option>Africa &amp; Middle East</option>
+                            <option>Polar Regions</option>
+                        </select>
+                    </div>
+                    <div class="filter-field">
+                        <label for="budget">Budget</label>
+                        <select id="budget">
+                            <option>Any Budget</option>
+                            <option>Under $1,500</option>
+                            <option>$1,500 – $3,000</option>
+                            <option>$3,000 – $5,000</option>
+                            <option>Luxury $5,000+</option>
+                        </select>
+                    </div>
+                    <div class="filter-field">
+                        <label for="season">Season</label>
+                        <select id="season">
+                            <option>Any Season</option>
+                            <option>Spring</option>
+                            <option>Summer</option>
+                            <option>Autumn</option>
+                            <option>Winter</option>
+                        </select>
+                    </div>
+                    <div class="filter-field">
+                        <label for="activity">Activity</label>
+                        <select id="activity">
+                            <option>All Activities</option>
+                            <option>Beach &amp; Snorkel</option>
+                            <option>Trekking</option>
+                            <option>Culture &amp; History</option>
+                            <option>Food &amp; Wine</option>
+                            <option>Wildlife Safari</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-accent">Filter</button>
+                </form>
+
+                <!-- 9 DESTINATION CARDS -->
+                <div class="grid grid-3">
+                    <article class="card">
+                        <div class="placeholder placeholder-bali">🌴</div>
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span>🇮🇩 Bali, Indonesia</span>
+                                <span class="rating">★ 4.9</span>
+                            </div>
+                            <h3 class="card-title">Ubud &amp; Uluwatu</h3>
+                            <p>Rice terraces, cliff-edge temples and warm tropical seas — Bali blends culture and calm.</p>
+                            <div class="card-footer">
+                                <span class="price-badge">From $899</span>
+                                <a href="#" class="btn btn-sm btn-primary">Explore</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <div class="placeholder placeholder-santorini">🏛️</div>
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span>🇬🇷 Santorini, Greece</span>
+                                <span class="rating">★ 4.8</span>
+                            </div>
+                            <h3 class="card-title">Aegean Caldera</h3>
+                            <p>Whitewashed cliffs, blue domes and the world's most photographed sunset.</p>
+                            <div class="card-footer">
+                                <span class="price-badge">From $1,299</span>
+                                <a href="#" class="btn btn-sm btn-primary">Explore</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <div class="placeholder placeholder-kyoto">🌸</div>
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span>🇯🇵 Kyoto, Japan</span>
+                                <span class="rating">★ 4.9</span>
+                            </div>
+                            <h3 class="card-title">Temples &amp; Tea</h3>
+                            <p>Cherry blossoms, geisha districts and centuries-old Zen gardens.</p>
+                            <div class="card-footer">
+                                <span class="price-badge">From $1,599</span>
+                                <a href="#" class="btn btn-sm btn-primary">Explore</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <div class="placeholder placeholder-patagonia">🏔️</div>
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span>🇦🇷 Patagonia</span>
+                                <span class="rating">★ 4.9</span>
+                            </div>
+                            <h3 class="card-title">Torres del Paine</h3>
+                            <p>Granite spires, turquoise lakes and roaming guanacos at the world's end.</p>
+                            <div class="card-footer">
+                                <span class="price-badge">From $2,199</span>
+                                <a href="#" class="btn btn-sm btn-primary">Explore</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <div class="placeholder placeholder-maldives">🐚</div>
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span>🇲🇻 Maldives</span>
+                                <span class="rating">★ 4.9</span>
+                            </div>
+                            <h3 class="card-title">Baa Atoll</h3>
+                            <p>Overwater villas, coral reefs and bioluminescent nights in a UNESCO reserve.</p>
+                            <div class="card-footer">
+                                <span class="price-badge">From $2,499</span>
+                                <a href="#" class="btn btn-sm btn-primary">Explore</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <div class="placeholder placeholder-morocco">🕌</div>
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span>🇲🇦 Morocco</span>
+                                <span class="rating">★ 4.7</span>
+                            </div>
+                            <h3 class="card-title">Marrakech &amp; the Sahara</h3>
+                            <p>Spice-scented souks, blue medinas and camel camps beneath desert stars.</p>
+                            <div class="card-footer">
+                                <span class="price-badge">From $1,499</span>
+                                <a href="#" class="btn btn-sm btn-primary">Explore</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <div class="placeholder placeholder-iceland">🌋</div>
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span>🇮🇸 Iceland</span>
+                                <span class="rating">★ 4.8</span>
+                            </div>
+                            <h3 class="card-title">Ring Road Circuit</h3>
+                            <p>Ice caves, black sand beaches and northern lights over volcanic plains.</p>
+                            <div class="card-footer">
+                                <span class="price-badge">From $1,899</span>
+                                <a href="#" class="btn btn-sm btn-primary">Explore</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <div class="placeholder placeholder-peru">🏔️</div>
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span>🇵🇪 Peru</span>
+                                <span class="rating">★ 4.8</span>
+                            </div>
+                            <h3 class="card-title">Cusco &amp; Machu Picchu</h3>
+                            <p>Sacred Valley trails, Andean weaving villages and lost cities in the mist.</p>
+                            <div class="card-footer">
+                                <span class="price-badge">From $1,749</span>
+                                <a href="#" class="btn btn-sm btn-primary">Explore</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <div class="placeholder placeholder-thailand">🐘</div>
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span>🇹🇭 Thailand</span>
+                                <span class="rating">★ 4.8</span>
+                            </div>
+                            <h3 class="card-title">Chiang Mai &amp; Krabi</h3>
+                            <p>Ethical elephant sanctuaries, limestone karsts and legendary street food.</p>
+                            <div class="card-footer">
+                                <span class="price-badge">From $1,099</span>
+                                <a href="#" class="btn btn-sm btn-primary">Explore</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- SPOTLIGHT + TIPS -->
+        <section class="section-alt">
+            <div class="container">
+                <div class="section-header">
+                    <span class="eyebrow">This month's spotlight</span>
+                    <h2>Featured: Bali Discovery</h2>
+                    <p>A 10-day slow-travel journey blending culture, coast and volcanic adventure.</p>
+                </div>
+
+                <div class="sidebar-layout">
+                    <div class="spotlight">
+                        <div class="placeholder placeholder-bali">🌋</div>
+                        <div>
+                            <h3>10 Days in Bali</h3>
+                            <p>Handcrafted by our Ubud-based team, this journey pairs guided rice-paddy walks, a Mount Batur sunrise trek and beachfront stays in Uluwatu.</p>
+                            <div class="itinerary">
+                                <div class="itinerary-day">
+                                    <div class="day-num">Day 1–2</div>
+                                    <div>
+                                        <h4>Ubud Arrival</h4>
+                                        <p>Airport welcome, jungle villa check-in, welcome dinner at a family warung.</p>
+                                    </div>
+                                </div>
+                                <div class="itinerary-day">
+                                    <div class="day-num">Day 3–4</div>
+                                    <div>
+                                        <h4>Culture &amp; Ceremonies</h4>
+                                        <p>Tegallalang rice terraces, temple blessing, private batik workshop.</p>
+                                    </div>
+                                </div>
+                                <div class="itinerary-day">
+                                    <div class="day-num">Day 5–6</div>
+                                    <div>
+                                        <h4>Mount Batur</h4>
+                                        <p>3am sunrise volcano trek, natural hot springs recovery, floating breakfast.</p>
+                                    </div>
+                                </div>
+                                <div class="itinerary-day">
+                                    <div class="day-num">Day 7–10</div>
+                                    <div>
+                                        <h4>Uluwatu Coast</h4>
+                                        <p>Cliffside resort, surfing lessons, sunset kecak dance and farewell dinner.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="packages.html" class="btn btn-primary mt-lg">View Full Package</a>
+                        </div>
+                    </div>
+
+                    <aside class="tips">
+                        <h3>🎒 Travel Tips</h3>
+                        <ul>
+                            <li>
+                                <strong>Best time to book</strong>
+                                6–8 months ahead unlocks premium villa inventory.
+                            </li>
+                            <li>
+                                <strong>Visa &amp; entry</strong>
+                                Most Wanderlust travelers get visa-on-arrival; we handle e-visas free.
+                            </li>
+                            <li>
+                                <strong>Currency &amp; tipping</strong>
+                                Bring small local notes for temples and drivers.
+                            </li>
+                            <li>
+                                <strong>Health &amp; insurance</strong>
+                                Full travel insurance included on all Premium and Ultimate packages.
+                            </li>
+                            <li>
+                                <strong>Sustainable choices</strong>
+                                Look for our 🌱 leaf badge — 100% carbon-offset itineraries.
+                            </li>
+                            <li>
+                                <strong>Pack smart</strong>
+                                Free packing checklist emailed 30 days before departure.
+                            </li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div>
+                <span class="footer-brand">🌴 Wanderlust</span>
+                <p>Independent travel designers based in Sydney, London and New York. Curating meaningful journeys since 2010.</p>
+                <div class="social-links" style="justify-content: flex-start;">
+                    <a href="#" class="social-link">IG</a>
+                    <a href="#" class="social-link">FB</a>
+                    <a href="#" class="social-link">TW</a>
+                    <a href="#" class="social-link">YT</a>
+                </div>
+            </div>
+            <div>
+                <h4>Explore</h4>
+                <div class="footer-nav">
+                    <a href="index.html">Home</a>
+                    <a href="destinations.html">Destinations</a>
+                    <a href="packages.html">Packages</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Travel Letters</h4>
+                <p>Monthly destination stories and members-only deals.</p>
+                <form action="#" method="post">
+                    <input type="email" placeholder="your@email.com" required>
+                    <button type="submit" class="btn btn-accent btn-block">Join the List</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 Wanderlust Travel Co. — ATAS Accredited · IATA Certified · Carbon-Neutral Since 2019
+        </div>
+    </footer>
+</body>
+</html>

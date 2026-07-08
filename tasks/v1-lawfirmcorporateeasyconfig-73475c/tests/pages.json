@@ -1,0 +1,54 @@
+{
+  "pages": [
+    {
+      "name": "page_home",
+      "file": "index.html",
+      "label": "Home",
+      "description": "Distinguished hero with navy gradient background, serif headline 'Trusted Counsel for Complex Matters', 'Schedule Consultation' CTA; 3-column practice areas preview (Corporate Law, Litigation, Real Estate) with brief descriptions; firm stats: 40+ years, 200+ attorneys, 95% success rate; recognition section with 4 award names; client testimonial quote"
+    },
+    {
+      "name": "page_practice",
+      "file": "practice.html",
+      "label": "Practice Areas",
+      "description": "Practice areas page: 6 areas listed (Corporate & M&A, Litigation, Real Estate, Employment, Intellectual Property, Tax) each with icon placeholder, title, 3-line description, and key clients mention; notable cases section with 3 case summaries"
+    },
+    {
+      "name": "page_attorneys",
+      "file": "attorneys.html",
+      "label": "Attorneys",
+      "description": "Attorney directory: 6 attorney cards (portrait placeholder, name, title/partner level, practice area, bar admissions, education, email); managing partner spotlight with larger card; diversity statement"
+    },
+    {
+      "name": "page_about",
+      "file": "about.html",
+      "label": "About",
+      "description": "Firm history section: founded 1982 narrative; values (Integrity, Excellence, Client Focus, Teamwork) in 2\u00d72 grid; office photo placeholder; community involvement section; pro bono commitment; diversity and inclusion statement"
+    },
+    {
+      "name": "page_contact",
+      "file": "contact.html",
+      "label": "Contact",
+      "description": "Contact page: consultation request form (name, company, email, phone, practice area dropdown, brief description, preferred contact method, submit); main office address with map placeholder; 3 branch offices; confidentiality notice; office hours"
+    }
+  ],
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800
+    }
+  },
+  "active_viewports": [
+    "desktop"
+  ],
+  "screenshot_fmt": "png",
+  "ssim_weight": 0.6,
+  "phash_weight": 0.4,
+  "dom_iou_weight": 0.0,
+  "scroll_heights": {
+    "page_home_desktop": 3159,
+    "page_practice_desktop": 3209,
+    "page_attorneys_desktop": 3863,
+    "page_about_desktop": 3762,
+    "page_contact_desktop": 3318
+  }
+}

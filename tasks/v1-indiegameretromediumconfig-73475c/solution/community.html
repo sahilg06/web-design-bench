@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PixelForge — Community Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">PIXELFORGE</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="community.html" class="active">Community</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section>
+            <div class="hero">
+                <div class="hero-tagline">// MULTIPLAYER LOBBY //</div>
+                <h1 class="hero-title">COMMUNITY</h1>
+                <p class="hero-subtitle">50,000 players. One shared save file.</p>
+                <p class="hero-subtitle">Fan art. Speedruns. Modding channels. Bug bounties. It all lives here.</p>
+                <a href="#discord" class="btn btn-large">Join Discord</a>
+            </div>
+        </section>
+
+        <!-- ACTIVITY FEED -->
+        <section id="discord">
+            <div class="container">
+                <div class="grid grid-2">
+                    <div>
+                        <h2>Live Activity</h2>
+                        <div class="activity-feed">
+                            <div class="activity-item">
+                                <div class="activity-avatar">V</div>
+                                <div class="activity-content">
+                                    <span class="activity-user">VoidHunter92</span>
+                                    <span class="activity-time">2 min ago</span>
+                                    <div class="activity-message">Just cleared Neon Dungeon on Nightmare with a fists-only run. Video incoming.</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-avatar">M</div>
+                                <div class="activity-content">
+                                    <span class="activity-user">MiraKallio [DEV]</span>
+                                    <span class="activity-time">18 min ago</span>
+                                    <div class="activity-message">Patch 2.4.1 dropping tonight — nerfing Void Runner's boost stack, buffing the Corsair chassis.</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-avatar">Q</div>
+                                <div class="activity-content">
+                                    <span class="activity-user">QuestForKobolds</span>
+                                    <span class="activity-time">42 min ago</span>
+                                    <div class="activity-message">Anyone want to run the Marrowkeep alpha this weekend? Looking for 3 more.</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-avatar">P</div>
+                                <div class="activity-content">
+                                    <span class="activity-user">PixelPilotAyla</span>
+                                    <span class="activity-time">1 hr ago</span>
+                                    <div class="activity-message">Uploaded new fan art of the Stellar Drift Corsair — check the gallery below!</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-avatar">B</div>
+                                <div class="activity-content">
+                                    <span class="activity-user">ByteKingDMX</span>
+                                    <span class="activity-time">3 hrs ago</span>
+                                    <div class="activity-message">Reached 100 hours in Byte Kingdom. Still finding new resource nodes. This game is a marvel.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2>Community Events</h2>
+                        <div class="event-card">
+                            <div class="event-date">JUL 15, 2026 &middot; 18:00 UTC</div>
+                            <h3>Stellar Drift Speedrun Marathon</h3>
+                            <p>Charity marathon on Twitch — race the top 20 pilots across every star system. All proceeds to Games for Change.</p>
+                        </div>
+                        <br>
+                        <div class="event-card">
+                            <div class="event-date">JUL 22, 2026 &middot; ALL DAY</div>
+                            <h3>Neon Dungeon Mod Jam</h3>
+                            <p>72-hour modding jam with $5,000 prize pool. Theme drops at midnight. Bring your pixel brush.</p>
+                        </div>
+                        <br>
+                        <div class="event-card">
+                            <div class="event-date">AUG 04, 2026 &middot; 20:00 UTC</div>
+                            <h3>Dev AMA — Marrowkeep Deep Dive</h3>
+                            <p>Live Q&amp;A with the Marrowkeep team on our Discord voice stage. Bring your torch.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAN ART GALLERY -->
+        <section>
+            <div class="container">
+                <h2 class="section-title">Fan Art Gallery</h2>
+                <div class="grid grid-3">
+                    <div class="placeholder placeholder-pink placeholder-square">CORSAIR SUNSET</div>
+                    <div class="placeholder placeholder-purple placeholder-square">NEON KNIGHT</div>
+                    <div class="placeholder placeholder-green placeholder-square">BYTE KEEP</div>
+                    <div class="placeholder placeholder-yellow placeholder-square">STARLIGHT DRIFT</div>
+                    <div class="placeholder placeholder-blue placeholder-square">GLITCH BLOOM</div>
+                    <div class="placeholder placeholder-orange placeholder-square">RUST RIDER</div>
+                    <div class="placeholder placeholder-purple placeholder-square">CHROME WING</div>
+                    <div class="placeholder placeholder-pink placeholder-square">HEX WITCH</div>
+                    <div class="placeholder placeholder-green placeholder-square">MARROW GATE</div>
+                </div>
+                <div class="center-cta">
+                    <a href="#" class="btn">Submit Your Art</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- LEADERBOARD -->
+        <section>
+            <div class="container">
+                <h2 class="section-title">Top 10 Players</h2>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Player</th>
+                                <th>Score</th>
+                                <th>Game</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="rank-1">01</td><td>VoidHunter92</td><td>1,482,300</td><td>Neon Dungeon</td></tr>
+                            <tr><td class="rank-2">02</td><td>ByteKingDMX</td><td>1,391,050</td><td>Byte Kingdom</td></tr>
+                            <tr><td class="rank-3">03</td><td>PixelPilotAyla</td><td>1,244,720</td><td>Stellar Drift</td></tr>
+                            <tr><td>04</td><td>QuestForKobolds</td><td>1,102,880</td><td>Rust &amp; Ruby</td></tr>
+                            <tr><td>05</td><td>NeonSamurai_77</td><td>987,410</td><td>Chrome Falcon</td></tr>
+                            <tr><td>06</td><td>OrbitalCat</td><td>956,300</td><td>Stellar Drift</td></tr>
+                            <tr><td>07</td><td>HexWitchMoira</td><td>891,220</td><td>Hexfall Saga</td></tr>
+                            <tr><td>08</td><td>Kobayashi_Bit</td><td>844,900</td><td>Byte Kingdom</td></tr>
+                            <tr><td>09</td><td>GlitchGardener</td><td>781,540</td><td>Glitch Garden</td></tr>
+                            <tr><td>10</td><td>SignalRunner</td><td>762,110</td><td>Echo Circuit</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODDING RESOURCES -->
+        <section>
+            <div class="container">
+                <h2 class="section-title">Modding Resources</h2>
+                <div class="grid grid-3">
+                    <div class="info-box">
+                        <h3>SDK &amp; Tools</h3>
+                        <p>The PixelForge Modding Kit is free for all owners of Byte Kingdom, Neon Dungeon, and Stellar Drift.</p>
+                        <a href="#" class="btn btn-small">Download SDK</a>
+                    </div>
+                    <div class="info-box">
+                        <h3>Documentation</h3>
+                        <p>Full API reference, asset pipeline docs, and video tutorials by the dev team.</p>
+                        <a href="#" class="btn btn-small">Read Docs</a>
+                    </div>
+                    <div class="info-box">
+                        <h3>Workshop</h3>
+                        <p>Browse 2,400+ community mods — new maps, characters, campaigns, and total conversions.</p>
+                        <a href="#" class="btn btn-small">Open Workshop</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEWSLETTER -->
+        <section>
+            <div class="container">
+                <div class="newsletter">
+                    <div class="hero-tagline">// SUBSCRIBE.EXE //</div>
+                    <h2>Get The Weekly Byte</h2>
+                    <p>Patch notes, event invites, and free wallpapers — delivered every Friday. No spam, unsubscribe with one click.</p>
+                    <form class="newsletter-form" action="#" method="post">
+                        <input type="email" placeholder="your.email@planet.io" name="email">
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-logo">PIXELFORGE</div>
+                <p>Independent game studio crafting worlds, one pixel at a time. Est. 2019.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="games.html">Games</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="community.html">Community</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Games</h4>
+                <ul>
+                    <li><a href="games.html">Stellar Drift</a></li>
+                    <li><a href="games.html">Neon Dungeon</a></li>
+                    <li><a href="games.html">Byte Kingdom</a></li>
+                    <li><a href="games.html">Chrome Falcon</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="community.html">Discord</a></li>
+                    <li><a href="community.html">Twitter</a></li>
+                    <li><a href="community.html">YouTube</a></li>
+                    <li><a href="community.html">Twitch</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 PIXELFORGE STUDIOS &middot; ALL RIGHTS RESERVED &middot; PRESS START TO CONTINUE
+        </div>
+    </footer>
+</body>
+</html>

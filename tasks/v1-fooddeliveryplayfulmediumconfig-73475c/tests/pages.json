@@ -1,0 +1,54 @@
+{
+  "pages": [
+    {
+      "name": "page_home",
+      "file": "index.html",
+      "label": "Home",
+      "description": "Fun, energetic hero with white bg and large playful illustration-style colored shapes (CSS circles/blobs), large bold headline 'Delicious, Delivered in Minutes', address input bar with 'Find Food' orange button; cuisine carousel-style strip (8 cuisine circles: Pizza, Sushi, Burger, Thai, Indian, Mexican, Salad, Dessert) with emoji-style labels; popular restaurants: 4 cards (name, cuisine type, delivery time, rating stars, delivery fee); how it works: 3 steps (Browse, Order, Enjoy) with numbered circles; download app section; partner restaurant CTA"
+    },
+    {
+      "name": "page_restaurants",
+      "file": "restaurants.html",
+      "label": "Restaurants",
+      "description": "Restaurant listing: filter bar (Cuisine, Rating, Delivery Time, Price Range, Dietary: Vegan/Halal/Gluten-Free); restaurant grid (9 cards) each with image placeholder, name, cuisine tags, rating, delivery time, min order, 'Order Now' button; sort options (Recommended, Rating, Delivery Time, Price); map-view toggle visual"
+    },
+    {
+      "name": "page_deals",
+      "file": "deals.html",
+      "label": "Deals",
+      "description": "Deals & promotions: hero banner 'Save Big This Week'; featured deal card (50% off first order); 3-column deal cards (6 deals) each with restaurant, discount amount, valid dates, and claim CTA; loyalty program section explaining BiteBuzz Points; referral program section"
+    },
+    {
+      "name": "page_partner",
+      "file": "partner.html",
+      "label": "Partner",
+      "description": "Partner with us page: two-column hero (benefits text + restaurant illustration placeholder); stats (10K+ restaurants, 50 cities, 2M orders/month); partnership tiers (Basic, Premium, Enterprise) with features; success stories (3 restaurant testimonials); partner signup form (restaurant name, owner name, email, phone, cuisine, location)"
+    },
+    {
+      "name": "page_contact",
+      "file": "contact.html",
+      "label": "Help",
+      "description": "Help center: 3 quick action cards (Track Order, Refund Request, Report Issue); FAQ accordion (8 questions in categories: Orders, Payments, Account); contact form (order number, email, issue type, description); live chat CTA; social media links; app download badges"
+    }
+  ],
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800
+    }
+  },
+  "active_viewports": [
+    "desktop"
+  ],
+  "screenshot_fmt": "png",
+  "ssim_weight": 0.6,
+  "phash_weight": 0.4,
+  "dom_iou_weight": 0.0,
+  "scroll_heights": {
+    "page_home_desktop": 3600,
+    "page_restaurants_desktop": 2600,
+    "page_deals_desktop": 3618,
+    "page_partner_desktop": 3722,
+    "page_contact_desktop": 4223
+  }
+}

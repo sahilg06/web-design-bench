@@ -1,0 +1,32 @@
+schema_version = "1.1"
+
+[task]
+name = "web-design-bench/v1-indiegameretromediumconfig-73475c"
+description = "Replicate a indie_game_studio website design from screenshots using HTML and CSS only."
+authors = [{ name = "web-design-bench" }]
+keywords = ["web-design", "html", "css", "replication", "visual", "indie_game_studio"]
+
+[metadata]
+recipe_version = "v1"
+config_name    = "IndieGameRetroMediumConfig"
+seed           = 42
+difficulty     = "medium"
+archetype      = "indie_game_studio"
+visual_style   = "retro_vibrant"
+viewports      = ["desktop"]
+ssim_weight    = 0.6
+phash_weight   = 0.4
+
+[verifier]
+timeout_sec = 300.0
+
+[agent]
+timeout_sec = 900.0
+
+[environment]
+build_timeout_sec = 600.0
+os = "linux"
+cpus = 2
+memory_mb = 3072
+storage_mb = 10240
+allow_internet = true

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VaultX — Fee Schedule</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="brand">VAULT<span class="tld">X</span></a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="markets.html">Markets</a>
+        <a href="security.html">Security</a>
+        <a href="fees.html" class="active">Fees</a>
+        <a href="contact.html">Support</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="contact.html" class="btn btn-ghost btn-sm">Sign In</a>
+        <a href="markets.html" class="btn btn-primary btn-sm">Launch App</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Fee Schedule · Effective 01-JUL-2026</span>
+      <h1>Priced for size. Rewarding for scale.</h1>
+      <p>Trade smarter with volume-based tiers, VLTX holder discounts, and zero maker fees at VIP 5. Full transparency, no hidden spreads.</p>
+    </div>
+  </section>
+
+  <main>
+
+    <!-- VIP TIER TABLE -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <span class="eyebrow">VIP Tiers</span>
+            <h2>Spot fee schedule</h2>
+          </div>
+          <p class="text-mid">Volume calculated on a rolling 30-day window across spot + derivatives.</p>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Level</th>
+                <th class="num">30d Volume (USD)</th>
+                <th class="num">Maker Fee</th>
+                <th class="num">Taker Fee</th>
+                <th class="num">Withdrawal (USDT)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="strong">VIP 0</td><td class="num">&lt; $50,000</td><td class="num up">0.100%</td><td class="num">0.140%</td><td class="num">$1.20</td></tr>
+              <tr><td class="strong">VIP 1</td><td class="num">$50,000 – $500,000</td><td class="num up">0.080%</td><td class="num">0.120%</td><td class="num">$1.00</td></tr>
+              <tr><td class="strong">VIP 2</td><td class="num">$500,000 – $2,500,000</td><td class="num up">0.060%</td><td class="num">0.100%</td><td class="num">$0.80</td></tr>
+              <tr><td class="strong">VIP 3</td><td class="num">$2,500,000 – $10,000,000</td><td class="num up">0.040%</td><td class="num">0.080%</td><td class="num">$0.60</td></tr>
+              <tr><td class="strong">VIP 4</td><td class="num">$10,000,000 – $50,000,000</td><td class="num up">0.020%</td><td class="num">0.060%</td><td class="num">$0.40</td></tr>
+              <tr><td class="strong">VIP 5</td><td class="num">&gt; $50,000,000</td><td class="num up">0.000%</td><td class="num up">0.040%</td><td class="num">$0.20</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPOT vs FUTURES -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <span class="eyebrow">Comparison</span>
+            <h2>Spot · Futures · Options</h2>
+          </div>
+        </div>
+
+        <div class="grid grid-3">
+          <div class="feature-card">
+            <div class="num">SURFACE 01</div>
+            <h3>Spot Markets</h3>
+            <p>Maker <span class="text-green">0.10%</span> · Taker <span class="text-green">0.14%</span></p>
+            <p class="mt-3 text-mid">All spot pairs across 214 markets. No slippage guarantees for orders under $100k.</p>
+            <a href="markets.html" class="btn btn-secondary btn-sm mt-4">See Spot Book</a>
+          </div>
+          <div class="feature-card">
+            <div class="num">SURFACE 02</div>
+            <h3>Perpetual Futures</h3>
+            <p>Maker <span class="text-green">0.02%</span> · Taker <span class="text-green">0.06%</span></p>
+            <p class="mt-3 text-mid">USDT-margined and coin-margined perps up to 125× leverage. Funding paid every 8 hours.</p>
+            <a href="markets.html" class="btn btn-secondary btn-sm mt-4">See Perps Book</a>
+          </div>
+          <div class="feature-card">
+            <div class="num">SURFACE 03</div>
+            <h3>Options</h3>
+            <p>Trade <span class="text-green">0.03%</span> · Exercise <span class="text-green">0.015%</span></p>
+            <p class="mt-3 text-mid">European style vanilla options on BTC, ETH, SOL. Weekly, monthly and quarterly expiries.</p>
+            <a href="markets.html" class="btn btn-secondary btn-sm mt-4">See Options Book</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEPOSIT / WITHDRAWAL FEES -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <span class="eyebrow">Network Fees</span>
+            <h2>Deposit &amp; withdrawal · 15 assets</h2>
+          </div>
+          <p class="text-mid">Deposits are free. Withdrawal fees cover network gas plus a small operations margin.</p>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Asset</th>
+                <th>Network</th>
+                <th class="num">Min Withdrawal</th>
+                <th class="num">Fee</th>
+                <th class="num">Deposit Fee</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><div class="pair"><span class="coin-dot">₿</span>BTC</div></td><td>Bitcoin</td><td class="num">0.0005 BTC</td><td class="num">0.0002 BTC</td><td class="num up">FREE</td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">Ξ</span>ETH</div></td><td>Ethereum</td><td class="num">0.005 ETH</td><td class="num">0.0018 ETH</td><td class="num up">FREE</td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">Ξ</span>ETH</div></td><td>Arbitrum One</td><td class="num">0.001 ETH</td><td class="num">0.00008 ETH</td><td class="num up">FREE</td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">◎</span>SOL</div></td><td>Solana</td><td class="num">0.01 SOL</td><td class="num">0.001 SOL</td><td class="num up">FREE</td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">$</span>USDT</div></td><td>Tron (TRC-20)</td><td class="num">10 USDT</td><td class="num">1 USDT</td><td class="num up">FREE</td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">$</span>USDT</div></td><td>Ethereum (ERC-20)</td><td class="num">20 USDT</td><td class="num">3.5 USDT</td><td class="num up">FREE</td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">$</span>USDC</div></td><td>Solana</td><td class="num">2 USDC</td><td class="num">0.25 USDC</td><td class="num up">FREE</td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">B</span>BNB</div></td><td>BNB Smart Chain</td><td class="num">0.01 BNB</td><td class="num">0.0004 BNB</td><td class="num up">FREE</td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">M</span>MATIC</div></td><td>Polygon</td><td class="num">1 MATIC</td><td class="num">0.1 MATIC</td><td class="num up">FREE</td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">A</span>AVAX</div></td><td>Avalanche C-Chain</td><td class="num">0.05 AVAX</td><td class="num">0.008 AVAX</td><td class="num up">FREE</td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">A</span>ARB</div></td><td>Arbitrum One</td><td class="num">1 ARB</td><td class="num">0.08 ARB</td><td class="num up">FREE</td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">O</span>OP</div></td><td>Optimism</td><td class="num">0.5 OP</td><td class="num">0.04 OP</td><td class="num up">FREE</td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">L</span>LINK</div></td><td>Ethereum (ERC-20)</td><td class="num">0.5 LINK</td><td class="num">0.35 LINK</td><td class="num up">FREE</td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">L</span>LTC</div></td><td>Litecoin</td><td class="num">0.001 LTC</td><td class="num">0.0002 LTC</td><td class="num up">FREE</td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">V</span>VLTX</div></td><td>Ethereum (ERC-20)</td><td class="num">10 VLTX</td><td class="num up">FREE</td><td class="num up">FREE</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- VLTX DISCOUNT -->
+    <section class="section">
+      <div class="container">
+        <div class="grid grid-2">
+          <div>
+            <span class="eyebrow">Discounts · Native Token</span>
+            <h2>Pay in VLTX, save more</h2>
+            <p class="text-mid mt-4">Elect to pay trading fees in <span class="text-green">VLTX</span> and unlock up to <span class="text-green">40% off</span> your taker fee across every market. Discounts stack with your VIP tier.</p>
+
+            <div class="grid grid-2 mt-6">
+              <div class="badge">
+                <h4>Tier I · &gt; 100 VLTX</h4>
+                <p class="text-green" style="font-size: 20px; font-weight: 700; margin-top: 8px;">−10% fees</p>
+              </div>
+              <div class="badge">
+                <h4>Tier II · &gt; 1,000 VLTX</h4>
+                <p class="text-green" style="font-size: 20px; font-weight: 700; margin-top: 8px;">−20% fees</p>
+              </div>
+              <div class="badge">
+                <h4>Tier III · &gt; 10,000 VLTX</h4>
+                <p class="text-green" style="font-size: 20px; font-weight: 700; margin-top: 8px;">−30% fees</p>
+              </div>
+              <div class="badge">
+                <h4>Tier IV · &gt; 100,000 VLTX</h4>
+                <p class="text-green" style="font-size: 20px; font-weight: 700; margin-top: 8px;">−40% fees</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <span class="eyebrow">Referral Program</span>
+            <h2>Earn while your network trades</h2>
+            <p class="text-mid mt-4">Every referred trader pays you a lifetime revenue share. Payouts stream daily in USDT direct to your VaultX wallet.</p>
+
+            <div class="callout mt-5">
+              <h4>Earnings Calculator · sample</h4>
+              <p class="mt-2">10 referred users × avg $250,000 30d volume × 40% rev-share on taker fees</p>
+              <div class="wallet-list mt-4">
+                <div class="wallet-row">
+                  <div class="asset">Referred volume · 30d</div>
+                  <div class="balance">$2,500,000</div>
+                  <div class="usd">100%</div>
+                </div>
+                <div class="wallet-row">
+                  <div class="asset">Taker fees generated</div>
+                  <div class="balance">$3,500</div>
+                  <div class="usd">0.14%</div>
+                </div>
+                <div class="wallet-row">
+                  <div class="asset">Your monthly cut</div>
+                  <div class="balance">$1,400</div>
+                  <div class="usd">40%</div>
+                </div>
+                <div class="wallet-row">
+                  <div class="asset">Annualized</div>
+                  <div class="balance">$16,800</div>
+                  <div class="usd">/ year</div>
+                </div>
+              </div>
+              <div class="mt-5">
+                <a href="contact.html" class="btn btn-primary">Get Your Referral Link</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEE CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="callout pink">
+          <div class="flex-between flex-wrap">
+            <div>
+              <h4>Institutional desk · sub-VIP-5 pricing</h4>
+              <p class="text-mid">Trading over $100M in monthly volume? Reach out for bespoke maker rebates, colocation, and direct FIX access.</p>
+            </div>
+            <div class="flex">
+              <a href="contact.html" class="btn btn-pink">Contact Institutional</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">VAULT<span class="tld">X</span></a>
+          <p>Trade the future, own the edge. Institutional-grade infrastructure for individual sovereigns. Licensed under BVI-FSA #221084.</p>
+        </div>
+        <div>
+          <h5>Product</h5>
+          <ul>
+            <li><a href="markets.html">Spot</a></li>
+            <li><a href="markets.html">Futures</a></li>
+            <li><a href="markets.html">Options</a></li>
+            <li><a href="markets.html">Staking</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Company</h5>
+          <ul>
+            <li><a href="security.html">Security</a></li>
+            <li><a href="fees.html">Fees</a></li>
+            <li><a href="contact.html">Careers</a></li>
+            <li><a href="contact.html">Press</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Developers</h5>
+          <ul>
+            <li><a href="contact.html">API Docs</a></li>
+            <li><a href="contact.html">Status</a></li>
+            <li><a href="contact.html">Webhooks</a></li>
+            <li><a href="contact.html">SDKs</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="contact.html">Terms</a></li>
+            <li><a href="contact.html">Privacy</a></li>
+            <li><a href="contact.html">Cookies</a></li>
+            <li><a href="contact.html">Disclosures</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 VaultX Global Holdings, PVT · All rights reserved · v4.11.7-mainnet</span>
+        <div class="footer-socials">
+          <a href="contact.html">TELEGRAM</a>
+          <a href="contact.html">DISCORD</a>
+          <a href="contact.html">X / TWITTER</a>
+          <a href="contact.html">GITHUB</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

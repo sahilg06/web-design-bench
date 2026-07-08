@@ -1,0 +1,167 @@
+# 🌌 `web-design-bench`: Scalable RL Environments for Web Design Replication
+
+[![Harbor Framework](https://img.shields.io/badge/Harbor-Framework-blueviolet.svg?style=flat-square)](https://harborframework.com/)
+[![Python 3.13+](https://img.shields.io/badge/Python-3.13%2B-blue.svg?style=flat-square)](https://www.python.org/)
+[![Model: Claude 3.5 Sonnet / Opus 4.7](https://img.shields.io/badge/Model-Claude--3.5--Sonnet%20%7C%20Opus--4.7-orange.svg?style=flat-square)](https://anthropic.com/)
+
+> A highly scalable, production-grade Reinforcement Learning (RL) environment recipe and evaluation pipeline for benchmarking AI coding agents on high-fidelity, multi-page website replication.
+
+---
+
+## 🚀 Executive Summary & Architecture
+
+This repository hosts a robust **RL Environment Recipe** built on top of the **Harbor Framework** to assess state-of-the-art coding agents (e.g., Claude Code with Opus 4.7) on their ability to translate design requirements and screenshots into production-quality front-end code.
+
+Rather than relying on brittle HTML tree-diffing or exact text matching, the framework implements a **multivariate Computer Vision (CV) visual grading pipeline** utilizing Structural Similarity Indexing (SSIM), Perceptual Hashing (pHash), and Color Histogram Correlation to score rendered implementations against ground-truth designs on a continuous `[0, 1]` scale.
+
+```mermaid
+graph TD
+    A[Design Specs / Seeds] --> B[recipe.generate CLI]
+    B --> C[Cloud Agent Generation]
+    C --> D[JS & Structural Safety Validators]
+    D --> E[Aesthetic Vision Judge]
+    E --> F[Self-Contained Harbor Tasks]
+    F --> G[harbor run Job Launcher]
+    G --> H[Modal Parallel Sandbox Execution]
+    H --> I[Visual Grader: SSIM & pHash & Color]
+    I --> J[Reward/Telemetry Output]
+```
+
+---
+
+## 🛠️ Key Capabilities & Features
+
+### 📐 Pixel-Perfect Multi-Page Grader
+* **High-Fidelity Synthesis**: Programmatically seeds and generates realistic, human-like multi-page websites across 10 diverse archetypes (AI Startup, Luxury Fashion, Crypto Exchange, Architecture Studio, etc.) with at least 5 pages each.
+* **Continuous Visual Grading**: Computes a balanced score combining structural patterns (SSIM, 50% weight), macro visual gestalt (pHash, 30% weight), and color palette distribution (Color Histogram, 20% weight).
+* **Multi-Viewport & Responsive Benchmarking**: Renders and grades layouts independently across desktop (`1280x800`) viewports with natural scroll height capture.
+
+### 📦 Production Framework Scaffolding
+* **Harbor Schema v1.1**: Evaluates modern development workflows by packaging fully configured compile-time pipelines inside Docker containers.
+* **No-JS Policy Enforcement**: Strict validators ensure agents are evaluated purely on HTML/CSS design replication rather than JavaScript event hacks or scripts.
+
+---
+
+## 📂 Repository Directory Layout
+
+```markdown
+/
+├── run_eval.sh                 # Central orchestration shell runner script
+├── pyproject.toml              # Project dependencies, python specifications & linter settings
+├── README.md                   # Project landing page and main user manual
+├── tasks/                      # Registered, self-contained Harbor task packages
+│   └── v1-aistartupneon...     # Configured task environment (instruction, assets, verifier tests)
+├── recipe/                     # Automated task generation pipeline codebase
+│   ├── generate.py             # Main CLI entrance for at-scale task synthesis
+│   ├── configs/                # Website archetype definitions (10 unique brands)
+│   ├── validators/             # Safety & structure checks (javascript, structure, complexity)
+│   ├── spec.py                 # DesignSpec builder
+│   ├── prompt.py               # Agent prompt renderer
+│   ├── agent.py                # Claude API caller for website generation
+│   ├── capture.py              # Playwright screenshot capture
+│   └── packager.py             # Assemble into Harbor task directory
+├── eval/                       # Evaluation orchestration runner config registry
+│   ├── run.py                  # CLI orchestrator to launch harbor runs
+│   └── configs/                # Version-controlled job configuration suites
+├── grader/                     # Shared grading logic (copied into tasks/tests/)
+│   ├── grade.py                # Visual similarity scorer (SSIM + pHash + Color Histogram)
+│   ├── render.py               # Playwright screenshot renderer
+│   └── text_recall.py          # Token-level content recall
+├── jobs/                       # Evaluation output directory (trajectories, logs, rewards)
+└── docs/                       # Structured documentation and research reports
+    ├── design_decisions.md     # Thought process & trade-offs
+    └── evaluation_report.md    # Results, analysis, model failure patterns
+```
+
+---
+
+## 🚀 Quick-Start & Evaluation Guide
+
+Ensure you have [uv](https://astral.sh/uv/) installed. Install Harbor and Modal for evaluation:
+```bash
+uv tool install harbor
+uv tool install modal && modal setup
+```
+
+### 1. Set Up API Credentials
+The evaluation agents require your Anthropic API key to interact with Claude Opus 4.7. Store it in your environment:
+```bash
+export ANTHROPIC_API_KEY="sk-ant-..."
+```
+
+### 2. Launch Evaluations via JobConfig
+The framework utilizes the central shell wrapper to trigger mass-parallel evaluations on Modal (100 trials concurrently):
+
+```bash
+# Run evaluations via Modal (recommended, no Docker needed)
+HARBOR_ENV=modal ./run_eval.sh --config v0_generated
+
+# Or run locally with Docker (4 concurrent trials)
+./run_eval.sh --config v0_generated
+```
+
+### 3. Browse Visual Trajectories & Scores
+Launch the native web interface to inspect interactive trajectories, DOM differences, and rendering side-by-sides:
+```bash
+harbor view jobs/
+```
+Once running, open your web browser to [http://localhost:8080/](http://localhost:8080/) to browse visual reports of completed trials.
+
+---
+
+## 🛠️ Automated Task Generation Recipe CLI
+
+Synthesize brand new, safety-validated tasks of custom visual styles and difficulty tiers at scale using the generation CLI:
+
+```bash
+# List all available archetype configs
+uv run python -m recipe.generate --list
+
+# Generate a single AI Startup task (Seed 42)
+uv run python -m recipe.generate --config ai_startup_neon_hard --seed 42
+```
+
+---
+
+## 📊 Grader Core Mechanics (Visual Similarity & Text Recall)
+
+The evaluation framework combines visual fidelity (CV-based layout matching) with content correctness (semantic token-based matching):
+
+### 1. Visual Similarity Grader (`reward`)
+The visual score enforces visual alignment across three complementary metrics:
+
+```
+Visual Reward (Page) = (0.50 * SSIM_Cropped) + (0.30 * pHash_Score) + (0.20 * Color_Histogram_Correlation)
+
+where pHash_Score = 1.0 - (pHash_Distance / 64.0)
+```
+
+* **SSIM (50% weight)**: Highly sensitive to spacing shifts, typography changes, layout grids, alignment breaks, and overflowing boundaries.
+* **pHash (30% weight)**: Captures visual gestalt (structural placement of headers, buttons, colors, and balance) regardless of minor sub-pixel rendering deltas.
+* **Color Histogram (20% weight)**: Compares 3D HSV color distributions using Pearson correlation. Catches severe color palette mismatches (e.g., agent generating a light theme instead of a dark theme) that SSIM and pHash often underweight.
+* **Height Penalty**: Applies a quadratic penalty when the height ratio drops below 0.5, heavily penalizing truncated sections or omitted widgets.
+
+### 2. Text Recall Content Grader (`mean_text_recall`)
+To catch instances where agents output visually perfect layouts but utilize Lorem Ipsum placeholder texts or omit critical textual information, we integrate a semantic token recall check. For each page:
+
+```
+Text Recall (Page) = |GroundTruth_Tokens intersect Agent_Tokens| / |GroundTruth_Tokens|
+```
+
+* **Token Filtering**: Raw HTML text is extracted, normalized, stripped of markup tags, and filtered to remove common stopwords and standard Lorem Ipsum sequences.
+
+### 3. Holistic Blended Reward (`blended_reward`)
+To guide RL agent alignment across both design and content requirements, we blend the visual and text recall scores:
+
+```
+Blended Reward = (0.75 * Visual Reward) + (0.25 * Mean Text Recall)
+```
+
+---
+
+## 📚 Documentation Index
+
+Discover deep architectural notes, engineering trade-offs, and research findings in the polished documentation suite:
+
+1. **[Design Decisions & Trade-offs](docs/design_decisions.md)**: Details of the 3-metric grading formula, DesignSpec schema, and safety validators.
+2. **[Evaluation Report & Model Behavior](docs/evaluation_report.md)**: Deep dive into visual similarity mechanics, aggregate grading, and extensive results analysis showing how high rewards align with high-taste UI elements.

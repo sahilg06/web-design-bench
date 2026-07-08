@@ -1,0 +1,54 @@
+{
+  "pages": [
+    {
+      "name": "page_home",
+      "file": "index.html",
+      "label": "Home",
+      "description": "Full-bleed editorial hero with large serif headline 'Timeless Craftsmanship' in elegant italic, thin gold horizontal rule, and 'Explore Collection' CTA; 3-column category feature (Haute Couture, Pr\u00eat-\u00e0-Porter, Accessories) with tall image placeholders and serif labels; editorial quote strip in large italic ('Fashion fades, only style remains'); new season preview: 4 product cards in a row with name and price; atelier story teaser with left image placeholder and right text; newsletter signup with gold accent input"
+    },
+    {
+      "name": "page_collection",
+      "file": "collection.html",
+      "label": "Collection",
+      "description": "Collection header with season name (Automne-Hiver 2025); filter bar (All, Dresses, Coats, Accessories, Shoes) with underline active state; 3-column product grid (12 items) each with tall image placeholder, product name in serif, price, and 'View' link; subtle hover overlay with gold border"
+    },
+    {
+      "name": "page_atelier",
+      "file": "atelier.html",
+      "label": "Atelier",
+      "description": "Brand story page: large cinematic image placeholder top; founding narrative in two-column serif text; craftsmanship timeline (1987, 1995, 2003, 2015, 2024) with descriptions; materials section showcasing 4 fabric types with placeholders and descriptions; artisan portraits section (3 circular placeholders with names and specialties)"
+    },
+    {
+      "name": "page_journal",
+      "file": "journal.html",
+      "label": "Journal",
+      "description": "Fashion journal/editorial page: featured article with full-width image placeholder and large serif headline; 2-column article grid (6 posts) each with image placeholder, date, category tag, headline, and 2-line excerpt; sidebar with 'Editor's Picks' list; bottom: fashion week calendar section"
+    },
+    {
+      "name": "page_contact",
+      "file": "contact.html",
+      "label": "Contact",
+      "description": "Minimal elegant contact: centered 'Maison \u00c9l\u00e9gance' in large display serif; two-column: left has appointment booking form (name, email, phone, preferred date, interest dropdown, message) with thin borders; right has boutique locations (Paris 8\u00e8me, Milan, New York, Tokyo) with addresses and hours; thin gold decorative rules throughout"
+    }
+  ],
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800
+    }
+  },
+  "active_viewports": [
+    "desktop"
+  ],
+  "screenshot_fmt": "png",
+  "ssim_weight": 0.6,
+  "phash_weight": 0.4,
+  "dom_iou_weight": 0.0,
+  "scroll_heights": {
+    "page_home_desktop": 6058,
+    "page_collection_desktop": 4657,
+    "page_atelier_desktop": 5816,
+    "page_journal_desktop": 5225,
+    "page_contact_desktop": 2926
+  }
+}

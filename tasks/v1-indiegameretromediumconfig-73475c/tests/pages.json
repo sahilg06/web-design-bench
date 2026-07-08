@@ -1,0 +1,54 @@
+{
+  "pages": [
+    {
+      "name": "page_home",
+      "file": "index.html",
+      "label": "Home",
+      "description": "Retro-styled hero with pixel-art-inspired CSS border patterns, large pixelated headline 'PIXELFORGE' in monospace, subtitle in smaller type, and 'Play Our Games' CTA button styled like a retro game button; featured game showcase: 3 large game cards (Stellar Drift, Neon Dungeon, Byte Kingdom) each with colored placeholder, genre tag, platform badges, and description; studio news ticker strip with 4 updates; community stats (50K players, 15 games, 8 awards); press logos strip"
+    },
+    {
+      "name": "page_games",
+      "file": "games.html",
+      "label": "Games",
+      "description": "Games catalog hero; filter tabs (All / Action / RPG / Puzzle / Strategy); game grid (8 cards) each with image placeholder, title in monospace, genre badge, platform icons (PC/Console/Mobile as text), release year, and 'Learn More' button; coming soon section with 2 teaser cards; retro-styled pagination"
+    },
+    {
+      "name": "page_about",
+      "file": "about.html",
+      "label": "About",
+      "description": "Studio story in retro terminal style: founding story (Est. 2019) with blinking-cursor-look accent; team section with 6 members (pixel-art-style colored square placeholders, name, role); studio values in 4 columns (Passion, Innovation, Community, Quality) with pixelated icons; timeline of major releases; job openings section with 3 positions"
+    },
+    {
+      "name": "page_community",
+      "file": "community.html",
+      "label": "Community",
+      "description": "Community hub: Discord-style activity feed (static, 5 items); fan art gallery grid (9 colored placeholders); leaderboard table (top 10 players with rank, username, score, game); community events section (3 upcoming events); modding resources section; newsletter signup with retro styling"
+    },
+    {
+      "name": "page_contact",
+      "file": "contact.html",
+      "label": "Contact",
+      "description": "Retro terminal-styled contact page: form with pixel-border inputs (name, email, subject dropdown: Business/Press/Support/Fan Mail, message, submit button styled as game button); business inquiries section; press kit download section; social links (Twitter, Discord, YouTube, Twitch) with retro button styling"
+    }
+  ],
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800
+    }
+  },
+  "active_viewports": [
+    "desktop"
+  ],
+  "screenshot_fmt": "png",
+  "ssim_weight": 0.6,
+  "phash_weight": 0.4,
+  "dom_iou_weight": 0.0,
+  "scroll_heights": {
+    "page_home_desktop": 2993,
+    "page_games_desktop": 3317,
+    "page_about_desktop": 4565,
+    "page_community_desktop": 5175,
+    "page_contact_desktop": 3457
+  }
+}

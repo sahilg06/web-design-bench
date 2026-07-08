@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BiteBuzz — Restaurants Near You</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a href="index.html" class="logo"><span class="logo-dot"></span>BiteBuzz</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="restaurants.html" class="active">Restaurants</a>
+        <a href="deals.html">Deals</a>
+        <a href="partner.html">Partner</a>
+        <a href="contact.html">Help</a>
+        <a href="restaurants.html" class="nav-cta">Order Now</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section-tight">
+      <div class="container">
+        <div style="margin-bottom: var(--space-6);">
+          <span class="eyebrow">📍 Delivering to 1234 Market St</span>
+          <h1>Restaurants near you</h1>
+          <p style="margin-top: var(--space-2); font-size: 1.05rem;">Showing 248 restaurants delivering to your address right now.</p>
+        </div>
+
+        <!-- FILTER BAR -->
+        <div class="filter-bar">
+          <div>
+            <label for="f-cuisine">Cuisine</label>
+            <select id="f-cuisine">
+              <option>All Cuisines</option>
+              <option>Pizza</option>
+              <option>Sushi</option>
+              <option>Burger</option>
+              <option>Thai</option>
+              <option>Indian</option>
+              <option>Mexican</option>
+              <option>Salad</option>
+              <option>Dessert</option>
+            </select>
+          </div>
+          <div>
+            <label for="f-rating">Rating</label>
+            <select id="f-rating">
+              <option>Any Rating</option>
+              <option>4.5+ stars</option>
+              <option>4.0+ stars</option>
+              <option>3.5+ stars</option>
+            </select>
+          </div>
+          <div>
+            <label for="f-time">Delivery Time</label>
+            <select id="f-time">
+              <option>Any Time</option>
+              <option>Under 20 min</option>
+              <option>Under 30 min</option>
+              <option>Under 45 min</option>
+            </select>
+          </div>
+          <div>
+            <label for="f-price">Price Range</label>
+            <select id="f-price">
+              <option>Any Price</option>
+              <option>$ Budget</option>
+              <option>$$ Moderate</option>
+              <option>$$$ Premium</option>
+            </select>
+          </div>
+          <div>
+            <label for="f-diet">Dietary</label>
+            <select id="f-diet">
+              <option>Any</option>
+              <option>Vegan</option>
+              <option>Vegetarian</option>
+              <option>Halal</option>
+              <option>Gluten-Free</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- TOOLBAR: Sort + View -->
+        <div class="toolbar">
+          <div class="sort-pills">
+            <span class="pill active">Recommended</span>
+            <span class="pill">Rating</span>
+            <span class="pill">Delivery Time</span>
+            <span class="pill">Price</span>
+          </div>
+          <div class="view-toggle">
+            <span class="selected">🍽️ List</span>
+            <span>🗺️ Map</span>
+          </div>
+        </div>
+
+        <!-- MAP VIEW PLACEHOLDER -->
+        <div class="img-placeholder img-thai" style="height: 180px; aspect-ratio: unset; border-radius: var(--radius-lg); margin-bottom: var(--space-8); font-size: 2rem;">
+          🗺️ &nbsp; Interactive map of nearby restaurants
+        </div>
+
+        <!-- RESTAURANT GRID -->
+        <div class="grid grid-3">
+          <article class="card">
+            <div class="img-placeholder img-pizza">🍕</div>
+            <div class="card-body">
+              <div class="card-title">Slice Society</div>
+              <div>
+                <span class="tag">Italian</span>
+                <span class="tag">Pizza</span>
+                <span class="tag tag-green">Vegetarian</span>
+              </div>
+              <div class="card-meta"><span class="rating"><span class="stars">★★★★★</span> 4.9</span> · 🕒 20–30 min · Min $12</div>
+              <div class="card-footer">
+                <span class="delivery-badge">✓ Free Delivery</span>
+                <a href="#" class="btn btn-primary btn-sm">Order Now</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="img-placeholder img-burger">🍔</div>
+            <div class="card-body">
+              <div class="card-title">Patty &amp; Bun Co.</div>
+              <div>
+                <span class="tag">American</span>
+                <span class="tag">Burgers</span>
+              </div>
+              <div class="card-meta"><span class="rating"><span class="stars">★★★★★</span> 4.8</span> · 🕒 15–25 min · Min $10</div>
+              <div class="card-footer">
+                <span class="delivery-badge">🛵 $1.99</span>
+                <a href="#" class="btn btn-primary btn-sm">Order Now</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="img-placeholder img-sushi">🍣</div>
+            <div class="card-body">
+              <div class="card-title">Wasabi Roll</div>
+              <div>
+                <span class="tag">Japanese</span>
+                <span class="tag">Sushi</span>
+                <span class="tag tag-green">Gluten-Free</span>
+              </div>
+              <div class="card-meta"><span class="rating"><span class="stars">★★★★★</span> 4.9</span> · 🕒 25–35 min · Min $20</div>
+              <div class="card-footer">
+                <span class="delivery-badge">🛵 $3.49</span>
+                <a href="#" class="btn btn-primary btn-sm">Order Now</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="img-placeholder img-thai">🍜</div>
+            <div class="card-body">
+              <div class="card-title">Bangkok Bowls</div>
+              <div>
+                <span class="tag">Thai</span>
+                <span class="tag">Noodles</span>
+                <span class="tag tag-green">Vegan Options</span>
+              </div>
+              <div class="card-meta"><span class="rating"><span class="stars">★★★★☆</span> 4.7</span> · 🕒 20–30 min · Min $15</div>
+              <div class="card-footer">
+                <span class="delivery-badge">🛵 $1.99</span>
+                <a href="#" class="btn btn-primary btn-sm">Order Now</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="img-placeholder img-indian">🍛</div>
+            <div class="card-body">
+              <div class="card-title">Curry Corner</div>
+              <div>
+                <span class="tag">Indian</span>
+                <span class="tag tag-green">Halal</span>
+                <span class="tag tag-green">Vegan</span>
+              </div>
+              <div class="card-meta"><span class="rating"><span class="stars">★★★★★</span> 4.8</span> · 🕒 30–40 min · Min $18</div>
+              <div class="card-footer">
+                <span class="delivery-badge">🛵 $2.49</span>
+                <a href="#" class="btn btn-primary btn-sm">Order Now</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="img-placeholder img-mexican">🌮</div>
+            <div class="card-body">
+              <div class="card-title">Taco Fiesta</div>
+              <div>
+                <span class="tag">Mexican</span>
+                <span class="tag">Tacos</span>
+              </div>
+              <div class="card-meta"><span class="rating"><span class="stars">★★★★☆</span> 4.6</span> · 🕒 20–30 min · Min $12</div>
+              <div class="card-footer">
+                <span class="delivery-badge">✓ Free Delivery</span>
+                <a href="#" class="btn btn-primary btn-sm">Order Now</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="img-placeholder img-salad">🥗</div>
+            <div class="card-body">
+              <div class="card-title">Green Garden</div>
+              <div>
+                <span class="tag">Salad</span>
+                <span class="tag tag-green">Vegan</span>
+                <span class="tag tag-green">Gluten-Free</span>
+              </div>
+              <div class="card-meta"><span class="rating"><span class="stars">★★★★★</span> 4.9</span> · 🕒 15–25 min · Min $14</div>
+              <div class="card-footer">
+                <span class="delivery-badge">🛵 $1.49</span>
+                <a href="#" class="btn btn-primary btn-sm">Order Now</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="img-placeholder img-dessert">🍰</div>
+            <div class="card-body">
+              <div class="card-title">Sugar Rush Bakery</div>
+              <div>
+                <span class="tag">Dessert</span>
+                <span class="tag">Bakery</span>
+              </div>
+              <div class="card-meta"><span class="rating"><span class="stars">★★★★★</span> 4.9</span> · 🕒 25–35 min · Min $10</div>
+              <div class="card-footer">
+                <span class="delivery-badge">🛵 $2.99</span>
+                <a href="#" class="btn btn-primary btn-sm">Order Now</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="img-placeholder img-vegan">🥑</div>
+            <div class="card-body">
+              <div class="card-title">Bowl of Zen</div>
+              <div>
+                <span class="tag">Healthy</span>
+                <span class="tag tag-green">Vegan</span>
+                <span class="tag tag-green">Gluten-Free</span>
+              </div>
+              <div class="card-meta"><span class="rating"><span class="stars">★★★★☆</span> 4.7</span> · 🕒 20–30 min · Min $16</div>
+              <div class="card-footer">
+                <span class="delivery-badge">✓ Free Delivery</span>
+                <a href="#" class="btn btn-primary btn-sm">Order Now</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Pagination -->
+        <div class="toolbar" style="justify-content: center; margin-top: var(--space-8);">
+          <div class="sort-pills">
+            <span class="pill">←</span>
+            <span class="pill active">1</span>
+            <span class="pill">2</span>
+            <span class="pill">3</span>
+            <span class="pill">…</span>
+            <span class="pill">28</span>
+            <span class="pill">→</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo"><span class="logo-dot"></span>BiteBuzz</div>
+          <p>Delicious, delivered in minutes. Connecting hungry humans with amazing local food since 2019.</p>
+          <div class="social" style="margin-top: var(--space-4);">
+            <span class="social-dot">f</span>
+            <span class="social-dot">i</span>
+            <span class="social-dot">t</span>
+            <span class="social-dot">y</span>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="index.html">About Us</a></li>
+            <li><a href="partner.html">Careers</a></li>
+            <li><a href="partner.html">Press</a></li>
+            <li><a href="index.html">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>For You</h4>
+          <ul>
+            <li><a href="restaurants.html">Restaurants</a></li>
+            <li><a href="deals.html">Deals</a></li>
+            <li><a href="index.html">BiteBuzz Points</a></li>
+            <li><a href="index.html">Gift Cards</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="contact.html">Help Center</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="contact.html">Track Order</a></li>
+            <li><a href="partner.html">Partner Portal</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 BiteBuzz Inc. All rights reserved.</span>
+        <span>Made with 🧡 in San Francisco · Privacy · Terms · Cookies</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

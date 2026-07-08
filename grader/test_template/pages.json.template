@@ -1,0 +1,39 @@
+{
+  "pages": [
+    {
+      "name": "page_home",
+      "file": "index.html",
+      "label": "Home",
+      "description": "Main landing page with hero section, feature grid, and footer"
+    },
+    {
+      "name": "page_about",
+      "file": "about.html",
+      "label": "About",
+      "description": "About page with team section and company overview"
+    }
+  ],
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800
+    }
+  },
+  "active_viewports": [
+    "desktop"
+  ],
+  "screenshot_fmt": "png",
+  "visual_weights": {
+    "ssim": 0.50,
+    "phash": 0.30,
+    "color_hist": 0.20
+  },
+  "blended_weights": {
+    "visual": 0.75,
+    "text_recall": 0.25
+  },
+  "scroll_heights": {
+    "page_home_desktop": 3500,
+    "page_about_desktop": 2200
+  }
+}

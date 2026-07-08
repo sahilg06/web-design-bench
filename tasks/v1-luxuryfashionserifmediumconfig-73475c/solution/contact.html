@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Appointments | Maison Élégance</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <a href="index.html" class="brand">Maison Élégance</a>
+        <span class="brand-tagline">Est. Paris 1987</span>
+        <nav class="main-nav">
+            <a href="index.html">Home</a>
+            <a href="collection.html">Collection</a>
+            <a href="atelier.html">Atelier</a>
+            <a href="journal.html">Journal</a>
+            <a href="contact.html" class="active">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Contact Hero -->
+        <section class="contact-hero container">
+            <h1>Maison Élégance</h1>
+            <hr class="gold-rule">
+            <span class="section-label">Correspondence &amp; Appointments</span>
+        </section>
+
+        <section class="container">
+            <div class="contact-layout">
+                <!-- Left: Booking Form -->
+                <div class="contact-form-block">
+                    <h3>Private Appointment</h3>
+                    <hr class="gold-rule" style="margin-left:0;">
+                    <p>Reserve a personal fitting or archive viewing at one of our four ateliers. We reply, by hand, within two working days.</p>
+
+                    <form class="contact-form" action="#" method="post">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstname">First Name</label>
+                                <input type="text" id="firstname" name="firstname" placeholder="Camille" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastname">Last Name</label>
+                                <input type="text" id="lastname" name="lastname" placeholder="Lévesque" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="votre@adresse.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Telephone</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+33 1 42 60 00 00">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="date">Preferred Date</label>
+                                <input type="date" id="date" name="date">
+                            </div>
+                            <div class="form-group">
+                                <label for="interest">Your Interest</label>
+                                <select id="interest" name="interest">
+                                    <option>Haute Couture Consultation</option>
+                                    <option>Prêt-à-Porter Fitting</option>
+                                    <option>Bridal Commission</option>
+                                    <option>Archive Viewing</option>
+                                    <option>Press &amp; Media</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" placeholder="Tell us what you have in mind..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn">Request Appointment</button>
+                    </form>
+                </div>
+
+                <!-- Right: Locations -->
+                <div class="contact-locations">
+                    <h3>Our Boutiques</h3>
+                    <hr class="gold-rule" style="margin-left:0;">
+                    <p>Four salons across four cities — each with a resident tailor and private fitting rooms by reservation.</p>
+
+                    <div class="locations-list">
+                        <div class="location">
+                            <h4>Paris — 8<sup>ème</sup></h4>
+                            <address>
+                                24 Rue Saint-Honoré<br>
+                                75008 Paris, France<br>
+                                +33 1 42 60 87 24
+                            </address>
+                            <p class="hours">Mardi — Samedi · 10h00 — 19h00</p>
+                        </div>
+
+                        <div class="location">
+                            <h4>Milano</h4>
+                            <address>
+                                Via della Spiga, 17<br>
+                                20121 Milano, Italia<br>
+                                +39 02 7601 2003
+                            </address>
+                            <p class="hours">Martedì — Sabato · 10.30 — 19.00</p>
+                        </div>
+
+                        <div class="location">
+                            <h4>New York</h4>
+                            <address>
+                                923 Madison Avenue<br>
+                                New York, NY 10021<br>
+                                +1 212 288 4750
+                            </address>
+                            <p class="hours">Tuesday — Saturday · 11.00 — 18.30</p>
+                        </div>
+
+                        <div class="location">
+                            <h4>Tokyo</h4>
+                            <address>
+                                Ginza Six, Level 4<br>
+                                6-10-1 Ginza, Chūō-ku<br>
+                                +81 3 6263 9987
+                            </address>
+                            <p class="hours">火曜日 — 土曜日 · 11.00 — 20.00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-brand">Maison Élégance</div>
+        <div class="footer-tagline">Paris · Milan · New York · Tokyo</div>
+        <nav class="footer-nav">
+            <a href="index.html">Home</a>
+            <a href="collection.html">Collection</a>
+            <a href="atelier.html">Atelier</a>
+            <a href="journal.html">Journal</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <p class="footer-copy">© 2025 Maison Élégance — All Rights Reserved</p>
+    </footer>
+</body>
+</html>

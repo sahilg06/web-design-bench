@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Platform — NexaAI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-mark"></span>
+        NexaAI
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="platform.html" class="active">Platform</a></li>
+          <li><a href="solutions.html">Solutions</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="contact.html" class="nav-cta">Start Free Trial</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero hero-mini-hero">
+      <div class="container hero-inner">
+        <span class="eyebrow">The NexaAI Platform</span>
+        <h1>One platform. Every stage of the ML lifecycle.</h1>
+        <p class="hero-subtitle">Data pipelines, training, deployment, monitoring, experimentation, and edge — engineered as one cohesive system so your team ships models, not glue code.</p>
+      </div>
+    </section>
+
+    <!-- FEATURE DEEP DIVES -->
+    <section>
+      <div class="container">
+        <div class="feature-split">
+          <div class="feature-visual"></div>
+          <div class="feature-content">
+            <span class="eyebrow">Model Training</span>
+            <h2>Train on GPUs, not on paperwork</h2>
+            <p>Launch distributed training jobs across A100, H100, and TPU pools with a single YAML. Experiments version themselves, hyperparameters are tracked automatically, and every run is reproducible from raw data hash to final checkpoint.</p>
+            <ul class="feature-list">
+              <li>Multi-node distributed training with automatic gradient sharding</li>
+              <li>Live dashboards for loss, GPU utilization, and memory pressure</li>
+              <li>Checkpoint pinning to registry with lineage tracking</li>
+              <li>Fine-tune 400+ open foundation models or bring your own</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-split reverse">
+          <div class="feature-visual"></div>
+          <div class="feature-content">
+            <span class="eyebrow">Data Pipeline</span>
+            <h2>From raw parquet to feature store</h2>
+            <p>Compose declarative ETL graphs that materialize features on demand, backfill history when schemas change, and expose them to inference through a low-latency online store. Everything is typed, everything is versioned.</p>
+            <ul class="feature-list">
+              <li>Streaming and batch feature engineering in a single DSL</li>
+              <li>Point-in-time correct joins with automatic time-travel</li>
+              <li>Freshness monitors that alert before drift enters production</li>
+              <li>Native connectors for Snowflake, BigQuery, Kafka, S3, Postgres</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-split">
+          <div class="feature-visual"></div>
+          <div class="feature-content">
+            <span class="eyebrow">Auto-Scaling</span>
+            <h2>Serverless inference with predictable cost</h2>
+            <p>Endpoints scale from zero to fifty thousand requests per second and back again, colocated across regions for tail-latency SLAs. Pay for tokens processed, not idle GPUs waiting for traffic.</p>
+            <ul class="feature-list">
+              <li>Cold-start under 800ms even on 70B parameter models</li>
+              <li>Automatic request batching maximizes throughput per GPU</li>
+              <li>Regional failover with health-aware routing</li>
+              <li>Cost anomaly detection with per-endpoint spend caps</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-split reverse">
+          <div class="feature-visual"></div>
+          <div class="feature-content">
+            <span class="eyebrow">Monitoring</span>
+            <h2>Know when a model is drifting, not after</h2>
+            <p>Ship models with confidence, then keep that confidence in production. NexaAI's observability suite watches input distributions, prediction health, and downstream business metrics — surfacing the anomaly, the affected slice, and the likely cause.</p>
+            <ul class="feature-list">
+              <li>Real-time input drift, output drift, and concept drift detection</li>
+              <li>Slice-based fairness auditing across protected attributes</li>
+              <li>Root-cause analysis linking predictions to feature changes</li>
+              <li>PagerDuty, Slack, and OpsGenie routing out of the box</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-split">
+          <div class="feature-visual"></div>
+          <div class="feature-content">
+            <span class="eyebrow">A/B Testing</span>
+            <h2>Ship changes, measure the impact</h2>
+            <p>Route traffic between model versions with statistical rigor. Shadow deploy candidate models against live traffic, run interleaved bandits, or graduate winners with one click after the guardrail metrics settle.</p>
+            <ul class="feature-list">
+              <li>Bayesian and frequentist experiment engines</li>
+              <li>Shadow, canary, and multi-armed bandit routing modes</li>
+              <li>Guardrail alerts halt rollouts on regression automatically</li>
+              <li>Integrated hold-out audiences and CUPED variance reduction</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-split reverse">
+          <div class="feature-visual"></div>
+          <div class="feature-content">
+            <span class="eyebrow">Edge Deployment</span>
+            <h2>Push intelligence to where your data lives</h2>
+            <p>Quantize, prune, and compile models for browsers, mobile, and industrial hardware. NexaEdge streams model updates over-the-air with delta patches, so a 12GB checkpoint becomes a 40MB rollout.</p>
+            <ul class="feature-list">
+              <li>ONNX, CoreML, TensorRT, and WebGPU compile targets</li>
+              <li>INT8 and INT4 quantization with accuracy preservation</li>
+              <li>Signed OTA updates with rollback on device health failure</li>
+              <li>On-device telemetry aggregated privately via secure enclave</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARCHITECTURE -->
+    <section class="section-alt">
+      <div class="container">
+        <h2 class="section-title">The NexaAI architecture</h2>
+        <p class="section-lead">Every layer designed to be swappable, observable, and safe to change on a Friday afternoon.</p>
+        <div class="architecture">
+          <div class="arch-layer">
+            <div>
+              <div class="arch-label">Applications</div>
+              <div class="arch-desc">Your product, dashboards, agent tooling, and end-user experiences</div>
+            </div>
+            <div class="arch-nodes">
+              <span class="arch-node">web</span>
+              <span class="arch-node">mobile</span>
+              <span class="arch-node">agents</span>
+            </div>
+          </div>
+          <div class="arch-layer">
+            <div>
+              <div class="arch-label">Serving Layer</div>
+              <div class="arch-desc">Multi-region gateway with routing, rate limiting, and observability</div>
+            </div>
+            <div class="arch-nodes">
+              <span class="arch-node">REST</span>
+              <span class="arch-node">gRPC</span>
+              <span class="arch-node">streaming</span>
+            </div>
+          </div>
+          <div class="arch-layer">
+            <div>
+              <div class="arch-label">Model Runtime</div>
+              <div class="arch-desc">GPU-accelerated inference with autoscaling and dynamic batching</div>
+            </div>
+            <div class="arch-nodes">
+              <span class="arch-node">A100</span>
+              <span class="arch-node">H100</span>
+              <span class="arch-node">Inferentia</span>
+            </div>
+          </div>
+          <div class="arch-layer">
+            <div>
+              <div class="arch-label">Feature & Vector Store</div>
+              <div class="arch-desc">Point-in-time correct features, embeddings, and retrieval</div>
+            </div>
+            <div class="arch-nodes">
+              <span class="arch-node">online</span>
+              <span class="arch-node">offline</span>
+              <span class="arch-node">vector</span>
+            </div>
+          </div>
+          <div class="arch-layer">
+            <div>
+              <div class="arch-label">Training & Registry</div>
+              <div class="arch-desc">Distributed compute, experiment tracking, versioned checkpoints</div>
+            </div>
+            <div class="arch-nodes">
+              <span class="arch-node">jobs</span>
+              <span class="arch-node">runs</span>
+              <span class="arch-node">registry</span>
+            </div>
+          </div>
+          <div class="arch-layer">
+            <div>
+              <div class="arch-label">Data Sources</div>
+              <div class="arch-desc">Warehouses, lakes, streams, and operational databases</div>
+            </div>
+            <div class="arch-nodes">
+              <span class="arch-node">Snowflake</span>
+              <span class="arch-node">Kafka</span>
+              <span class="arch-node">S3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CODE SECTION -->
+    <section>
+      <div class="container">
+        <h2 class="section-title">Two lines to production</h2>
+        <p class="section-lead">Auth once, deploy anywhere. The NexaAI SDK handles retries, streaming, and telemetry for you.</p>
+        <div class="code-section">
+          <div>
+            <span class="eyebrow">Python SDK</span>
+            <h2>The Pythonic path to real-time inference</h2>
+            <p>Whether you're calling a hosted foundation model, a fine-tune, or your own custom architecture, the client stays the same. Change a string, change your model.</p>
+            <ul class="feature-list">
+              <li>Sync, async, and streaming interfaces</li>
+              <li>Structured outputs with typed schemas</li>
+              <li>Built-in retry, backoff, and circuit breaking</li>
+              <li>Automatic OpenTelemetry span propagation</li>
+            </ul>
+          </div>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-dot"></span>
+              <span class="code-dot"></span>
+              <span class="code-dot"></span>
+              <span class="code-file">quickstart.py</span>
+            </div>
+<pre><span class="kw">from</span> nexa <span class="kw">import</span> Nexa
+
+client = Nexa(api_key=<span class="str">"nx-live-..."</span>)
+
+<span class="cm"># Predict from any managed or custom model</span>
+result = client.predict(
+    model=<span class="str">"nexa/vision-detect-v3"</span>,
+    inputs={<span class="str">"image_url"</span>: url},
+    stream=<span class="kw">True</span>,
+)
+
+<span class="kw">for</span> chunk <span class="kw">in</span> result:
+    <span class="fn">print</span>(chunk.label, chunk.score)</pre>
+          </div>
+        </div>
+
+        <div class="code-section" style="margin-top: 5rem;">
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-dot"></span>
+              <span class="code-dot"></span>
+              <span class="code-dot"></span>
+              <span class="code-file">deploy.py</span>
+            </div>
+<pre><span class="kw">from</span> nexa <span class="kw">import</span> Deploy
+
+<span class="fn">Deploy</span>(
+    model=<span class="str">"acme/fraud-detector:v42"</span>,
+    regions=[<span class="str">"us-east"</span>, <span class="str">"eu-west"</span>],
+    scaling={
+        <span class="str">"min"</span>: <span class="num">1</span>,
+        <span class="str">"max"</span>: <span class="num">200</span>,
+        <span class="str">"target_ms"</span>: <span class="num">120</span>,
+    },
+    canary=<span class="num">0.05</span>,
+).<span class="fn">launch</span>()</pre>
+          </div>
+          <div>
+            <span class="eyebrow">Deploy</span>
+            <h2>From notebook to global fleet</h2>
+            <p>The same declarative primitive works for a single-region canary and a hundred-region autoscaling deployment. NexaAI provisions the fleet, handles rollout, and keeps the config in git next to your model code.</p>
+            <ul class="feature-list">
+              <li>GitOps-friendly deployment manifests</li>
+              <li>Canary percentages evaluated against guardrails</li>
+              <li>Automatic rollback on error rate or latency regression</li>
+              <li>Region pinning for data residency requirements</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENCHMARK TABLE -->
+    <section class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Benchmark the difference</h2>
+        <p class="section-lead">Independent latency and throughput measurements collected via the OpenBench suite in April 2026. Lower is better for latency; higher is better for tokens/sec.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Benchmark</th>
+                <th>NexaAI</th>
+                <th>AWS SageMaker</th>
+                <th>Google Vertex</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>P50 inference latency (7B model)</td>
+                <td class="table-highlight">88 ms</td>
+                <td>142 ms</td>
+                <td>127 ms</td>
+              </tr>
+              <tr>
+                <td>P99 inference latency (7B model)</td>
+                <td class="table-highlight">210 ms</td>
+                <td>410 ms</td>
+                <td>385 ms</td>
+              </tr>
+              <tr>
+                <td>Cold start time</td>
+                <td class="table-highlight">780 ms</td>
+                <td>4.2 s</td>
+                <td>3.6 s</td>
+              </tr>
+              <tr>
+                <td>Throughput (tokens / sec / GPU)</td>
+                <td class="table-highlight">3,240</td>
+                <td>2,100</td>
+                <td>2,410</td>
+              </tr>
+              <tr>
+                <td>Cost per 1M tokens (batch)</td>
+                <td class="table-highlight">$0.42</td>
+                <td>$0.68</td>
+                <td>$0.61</td>
+              </tr>
+              <tr>
+                <td>Regions available</td>
+                <td class="table-highlight">18</td>
+                <td>32</td>
+                <td>27</td>
+              </tr>
+              <tr>
+                <td>Auto-scaling to zero</td>
+                <td class="table-highlight table-check">Yes</td>
+                <td class="table-x">No</td>
+                <td class="table-highlight table-check">Yes</td>
+              </tr>
+              <tr>
+                <td>Edge compile targets</td>
+                <td class="table-highlight">6</td>
+                <td>2</td>
+                <td>3</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-banner">
+      <div class="container">
+        <div class="cta-banner-inner">
+          <h2>Try the platform in five minutes</h2>
+          <p>Sign up, drop your API key into your codebase, and watch the metrics roll in. Free tier is generous. Support is human.</p>
+          <a href="contact.html" class="btn btn-lg">Talk to Engineering</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">
+            <span class="brand-mark"></span>
+            NexaAI
+          </a>
+          <p>Production-grade AI infrastructure for teams that treat machine learning as core product surface, not a science project.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Product</h5>
+          <ul>
+            <li><a href="platform.html">Platform</a></li>
+            <li><a href="solutions.html">Solutions</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="platform.html">Documentation</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="index.html">About</a></li>
+            <li><a href="contact.html">Careers</a></li>
+            <li><a href="index.html">Press</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <ul>
+            <li><a href="platform.html">Blog</a></li>
+            <li><a href="platform.html">Changelog</a></li>
+            <li><a href="contact.html">Status</a></li>
+            <li><a href="contact.html">Community</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 NexaAI, Inc. Intelligence that scales with you.</div>
+        <div class="footer-social">
+          <a href="index.html" class="footer-social-link">Tw</a>
+          <a href="index.html" class="footer-social-link">Li</a>
+          <a href="index.html" class="footer-social-link">Gh</a>
+          <a href="index.html" class="footer-social-link">Dc</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

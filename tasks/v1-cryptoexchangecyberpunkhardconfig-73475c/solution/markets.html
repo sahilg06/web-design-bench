@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VaultX — Markets</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="brand">VAULT<span class="tld">X</span></a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="markets.html" class="active">Markets</a>
+        <a href="security.html">Security</a>
+        <a href="fees.html">Fees</a>
+        <a href="contact.html">Support</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="contact.html" class="btn btn-ghost btn-sm">Sign In</a>
+        <a href="markets.html" class="btn btn-primary btn-sm">Launch App</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Markets · Live</span>
+      <h1>The market terminal</h1>
+      <p>Real-time depth across 214 instruments. Route to spot, perp or dated futures from one order form. Data refresh: 100ms websocket stream.</p>
+    </div>
+  </section>
+
+  <main>
+
+    <!-- MARKET OVERVIEW STATS -->
+    <section class="section-sm">
+      <div class="container">
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-label">Total Market Cap</div>
+            <div class="stat-value">$2.41T</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">24h Volume Global</div>
+            <div class="stat-value">$88.6B</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">BTC Dominance</div>
+            <div class="stat-value">52.8%</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Fear &amp; Greed</div>
+            <div class="stat-value pink">74 · GREED</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEARCH + TABS -->
+    <section class="section-sm">
+      <div class="container">
+        <div class="flex-between flex-wrap mb-5">
+          <div class="search-bar">
+            <input type="search" placeholder="Search markets — BTC, ETH, pair, contract...">
+          </div>
+          <div class="flex">
+            <button class="btn btn-secondary btn-sm">USD</button>
+            <button class="btn btn-ghost btn-sm">USDT</button>
+            <button class="btn btn-ghost btn-sm">USDC</button>
+            <button class="btn btn-ghost btn-sm">BTC</button>
+          </div>
+        </div>
+
+        <div class="tabs">
+          <button class="tab active">Spot<span class="tab-count">147</span></button>
+          <button class="tab">Futures<span class="tab-count">48</span></button>
+          <button class="tab">Options<span class="tab-count">19</span></button>
+          <button class="tab">Staking<span class="tab-count">38</span></button>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Pair</th>
+                <th class="num">Price</th>
+                <th class="num">24h Change</th>
+                <th class="num">24h Volume</th>
+                <th class="num">Market Cap</th>
+                <th class="num">7d Chart</th>
+                <th class="num">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><div class="pair"><span class="coin-dot">₿</span>BTC/USD</div></td><td class="num strong">$67,432.18</td><td class="num up">+2.34%</td><td class="num">$32.8B</td><td class="num">$1.32T</td><td class="num"><span class="spark"></span></td><td class="num"><a href="markets.html" class="btn btn-primary btn-sm">Trade</a></td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">Ξ</span>ETH/USD</div></td><td class="num strong">$3,891.02</td><td class="num up">+1.87%</td><td class="num">$14.2B</td><td class="num">$468.4B</td><td class="num"><span class="spark"></span></td><td class="num"><a href="markets.html" class="btn btn-primary btn-sm">Trade</a></td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">◎</span>SOL/USD</div></td><td class="num strong">$178.44</td><td class="num up">+5.61%</td><td class="num">$5.11B</td><td class="num">$82.9B</td><td class="num"><span class="spark"></span></td><td class="num"><a href="markets.html" class="btn btn-primary btn-sm">Trade</a></td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">B</span>BNB/USD</div></td><td class="num strong">$612.88</td><td class="num up">+0.42%</td><td class="num">$1.82B</td><td class="num">$91.4B</td><td class="num"><span class="spark"></span></td><td class="num"><a href="markets.html" class="btn btn-primary btn-sm">Trade</a></td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">X</span>XRP/USD</div></td><td class="num strong">$0.6142</td><td class="num down">-1.24%</td><td class="num">$1.44B</td><td class="num">$34.2B</td><td class="num"><span class="spark down"></span></td><td class="num"><a href="markets.html" class="btn btn-primary btn-sm">Trade</a></td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">A</span>ADA/USD</div></td><td class="num strong">$0.4821</td><td class="num up">+3.02%</td><td class="num">$780.4M</td><td class="num">$17.1B</td><td class="num"><span class="spark"></span></td><td class="num"><a href="markets.html" class="btn btn-primary btn-sm">Trade</a></td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">D</span>DOGE/USD</div></td><td class="num strong">$0.1244</td><td class="num up">+7.88%</td><td class="num">$1.94B</td><td class="num">$18.0B</td><td class="num"><span class="spark"></span></td><td class="num"><a href="markets.html" class="btn btn-primary btn-sm">Trade</a></td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">T</span>TON/USD</div></td><td class="num strong">$7.42</td><td class="num up">+4.12%</td><td class="num">$412.4M</td><td class="num">$25.8B</td><td class="num"><span class="spark"></span></td><td class="num"><a href="markets.html" class="btn btn-primary btn-sm">Trade</a></td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">A</span>AVAX/USD</div></td><td class="num strong">$42.09</td><td class="num up">+3.11%</td><td class="num">$698.1M</td><td class="num">$16.7B</td><td class="num"><span class="spark"></span></td><td class="num"><a href="markets.html" class="btn btn-primary btn-sm">Trade</a></td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">L</span>LINK/USD</div></td><td class="num strong">$18.62</td><td class="num up">+0.55%</td><td class="num">$524.9M</td><td class="num">$11.4B</td><td class="num"><span class="spark"></span></td><td class="num"><a href="markets.html" class="btn btn-primary btn-sm">Trade</a></td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">M</span>MATIC/USD</div></td><td class="num strong">$0.7811</td><td class="num down">-1.44%</td><td class="num">$402.7M</td><td class="num">$7.8B</td><td class="num"><span class="spark down"></span></td><td class="num"><a href="markets.html" class="btn btn-primary btn-sm">Trade</a></td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">A</span>ARB/USD</div></td><td class="num strong">$1.2411</td><td class="num down">-0.92%</td><td class="num">$248.0M</td><td class="num">$4.2B</td><td class="num"><span class="spark down"></span></td><td class="num"><a href="markets.html" class="btn btn-primary btn-sm">Trade</a></td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">O</span>OP/USD</div></td><td class="num strong">$2.44</td><td class="num up">+1.09%</td><td class="num">$188.1M</td><td class="num">$3.4B</td><td class="num"><span class="spark"></span></td><td class="num"><a href="markets.html" class="btn btn-primary btn-sm">Trade</a></td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">S</span>SUI/USD</div></td><td class="num strong">$1.87</td><td class="num up">+11.22%</td><td class="num">$602.4M</td><td class="num">$4.9B</td><td class="num"><span class="spark"></span></td><td class="num"><a href="markets.html" class="btn btn-primary btn-sm">Trade</a></td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">A</span>APT/USD</div></td><td class="num strong">$9.22</td><td class="num down">-2.18%</td><td class="num">$174.9M</td><td class="num">$4.1B</td><td class="num"><span class="spark down"></span></td><td class="num"><a href="markets.html" class="btn btn-primary btn-sm">Trade</a></td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">N</span>NEAR/USD</div></td><td class="num strong">$6.44</td><td class="num up">+0.88%</td><td class="num">$188.7M</td><td class="num">$7.0B</td><td class="num"><span class="spark"></span></td><td class="num"><a href="markets.html" class="btn btn-primary btn-sm">Trade</a></td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">L</span>LTC/USD</div></td><td class="num strong">$78.12</td><td class="num up">+0.24%</td><td class="num">$302.5M</td><td class="num">$5.8B</td><td class="num"><span class="spark"></span></td><td class="num"><a href="markets.html" class="btn btn-primary btn-sm">Trade</a></td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">D</span>DOT/USD</div></td><td class="num strong">$7.06</td><td class="num down">-0.71%</td><td class="num">$142.9M</td><td class="num">$9.8B</td><td class="num"><span class="spark down"></span></td><td class="num"><a href="markets.html" class="btn btn-primary btn-sm">Trade</a></td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">A</span>ATOM/USD</div></td><td class="num strong">$9.12</td><td class="num up">+1.44%</td><td class="num">$88.0M</td><td class="num">$3.5B</td><td class="num"><span class="spark"></span></td><td class="num"><a href="markets.html" class="btn btn-primary btn-sm">Trade</a></td></tr>
+              <tr><td><div class="pair"><span class="coin-dot">V</span>VLTX/USD</div></td><td class="num strong">$4.28</td><td class="num up">+18.44%</td><td class="num">$62.4M</td><td class="num">$412M</td><td class="num"><span class="spark"></span></td><td class="num"><a href="markets.html" class="btn btn-primary btn-sm">Trade</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- GAINERS / LOSERS -->
+    <section class="section">
+      <div class="container">
+        <div class="grid grid-2">
+          <div>
+            <div class="section-title">
+              <div>
+                <span class="eyebrow">Top Gainers · 24h</span>
+                <h2 class="text-green">↑ Movers</h2>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Pair</th><th class="num">Price</th><th class="num">Change</th><th class="num">Volume</th></tr></thead>
+                <tbody>
+                  <tr><td><div class="pair"><span class="coin-dot">S</span>SUI/USD</div></td><td class="num">$1.87</td><td class="num up">+11.22%</td><td class="num">$602.4M</td></tr>
+                  <tr><td><div class="pair"><span class="coin-dot">V</span>VLTX/USD</div></td><td class="num">$4.28</td><td class="num up">+18.44%</td><td class="num">$62.4M</td></tr>
+                  <tr><td><div class="pair"><span class="coin-dot">D</span>DOGE/USD</div></td><td class="num">$0.1244</td><td class="num up">+7.88%</td><td class="num">$1.94B</td></tr>
+                  <tr><td><div class="pair"><span class="coin-dot">P</span>PEPE/USD</div></td><td class="num">$0.0000122</td><td class="num up">+9.02%</td><td class="num">$188.4M</td></tr>
+                  <tr><td><div class="pair"><span class="coin-dot">S</span>SEI/USD</div></td><td class="num">$0.5892</td><td class="num up">+6.71%</td><td class="num">$92.8M</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div>
+            <div class="section-title">
+              <div>
+                <span class="eyebrow">Top Losers · 24h</span>
+                <h2 class="text-pink">↓ Bleeders</h2>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Pair</th><th class="num">Price</th><th class="num">Change</th><th class="num">Volume</th></tr></thead>
+                <tbody>
+                  <tr><td><div class="pair"><span class="coin-dot">O</span>ORDI/USD</div></td><td class="num">$28.14</td><td class="num down">-8.44%</td><td class="num">$104.4M</td></tr>
+                  <tr><td><div class="pair"><span class="coin-dot">R</span>RUNE/USD</div></td><td class="num">$3.02</td><td class="num down">-6.11%</td><td class="num">$78.9M</td></tr>
+                  <tr><td><div class="pair"><span class="coin-dot">A</span>APT/USD</div></td><td class="num">$9.22</td><td class="num down">-2.18%</td><td class="num">$174.9M</td></tr>
+                  <tr><td><div class="pair"><span class="coin-dot">M</span>MATIC/USD</div></td><td class="num">$0.7811</td><td class="num down">-1.44%</td><td class="num">$402.7M</td></tr>
+                  <tr><td><div class="pair"><span class="coin-dot">X</span>XRP/USD</div></td><td class="num">$0.6142</td><td class="num down">-1.24%</td><td class="num">$1.44B</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">VAULT<span class="tld">X</span></a>
+          <p>Trade the future, own the edge. Institutional-grade infrastructure for individual sovereigns. Licensed under BVI-FSA #221084.</p>
+        </div>
+        <div>
+          <h5>Product</h5>
+          <ul>
+            <li><a href="markets.html">Spot</a></li>
+            <li><a href="markets.html">Futures</a></li>
+            <li><a href="markets.html">Options</a></li>
+            <li><a href="markets.html">Staking</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Company</h5>
+          <ul>
+            <li><a href="security.html">Security</a></li>
+            <li><a href="fees.html">Fees</a></li>
+            <li><a href="contact.html">Careers</a></li>
+            <li><a href="contact.html">Press</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Developers</h5>
+          <ul>
+            <li><a href="contact.html">API Docs</a></li>
+            <li><a href="contact.html">Status</a></li>
+            <li><a href="contact.html">Webhooks</a></li>
+            <li><a href="contact.html">SDKs</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="contact.html">Terms</a></li>
+            <li><a href="contact.html">Privacy</a></li>
+            <li><a href="contact.html">Cookies</a></li>
+            <li><a href="contact.html">Disclosures</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 VaultX Global Holdings, PVT · All rights reserved · v4.11.7-mainnet</span>
+        <div class="footer-socials">
+          <a href="contact.html">TELEGRAM</a>
+          <a href="contact.html">DISCORD</a>
+          <a href="contact.html">X / TWITTER</a>
+          <a href="contact.html">GITHUB</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
