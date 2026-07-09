@@ -8,6 +8,7 @@ This document details the architectural design decisions, grading mechanics, and
 
 Evaluating an AI coding agent's ability to replicate web animations (e.g., fade-ins, slide-ups, staggered entrances) introduces two major engineering challenges:
 a. **Flaky Video Extraction**: Traditional video-based grading relies on recording mp4/webm videos of the browser and extracting frames. This is highly lossy, CPU-intensive, and prone to severe flakiness due to video encoding artifacts and variable frame rates across container environments.
+
 b. **Reward Hacking (The Static Bypass)**: If an agent is evaluated only on the final settled state of a webpage, it can completely ignore the animation instructions and render a static page—scoring perfectly while failing the prompt.
 
 ---
@@ -29,8 +30,11 @@ document.getAnimations().forEach(a => {
 ### The 3-Stage Frame Evaluation
 For every page in an animation task, we capture and evaluate four distinct states:
 a. **`t=0ms` (Initial State / Anti-Gaming Guardian)**: Verifies that animated elements start in their correct initial state (e.g., `opacity: 0`, `transform: translateY(30px)`). If an agent attempts the "Static Bypass" by omitting animations, it will fail the `t=0` comparison because the reference screenshot shows the elements hidden/off-screen.
+
 b. **`t=500ms` (Mid-Flight State)**: Evaluates easing curves (`cubic-bezier`), duration, and staggered delays (`animation-delay`).
+
 c. **`t=1200ms` (Near-Settled State)**: Captures the tail end of the animation sequence.
+
 d. **Settled State (`t=2000ms`)**: Evaluates the final static layout fidelity.
 
 ---

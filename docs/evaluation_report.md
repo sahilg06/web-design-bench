@@ -65,7 +65,9 @@ graph TD
 ```
 ### 🟢 Where Claude Code Excels
 a. **Semantic Structure & Layout Grids**: Claude is exceptionally good at identifying standard section layouts (Hero, Features grid, Testimonials, Footer) from screenshots and structuring them cleanly using CSS `display: flex` and `display: grid`.
+
 b. **Color Palette Adherence**: Thanks to the explicit color token hints in `instruction.md`, Claude almost never hallucinates random colors. It consistently applies `--background`, `--primary`, and `--surface` variables correctly across the stylesheet.
+
 c. **Consistent Multi-Page Output**: Across all 100 trials, Claude successfully produced all 5 HTML pages + `style.css` for every task — achieving a 100% structural completeness rate with 0 errors.
 
 ---
@@ -252,7 +254,9 @@ We evaluated Claude Code across the Part 3 Multi-Framework Benchmark (`v3`). Thi
 ```
 
 a. **Flawless Build & SPA Execution (0 Errors)**: Across all 40 trials, Claude Code achieved a **100% success rate** in scaffolding valid Vite projects (`package.json`, `vite.config.js`), installing dependencies, and building `dist/` without a single compilation or bundling error.
+
 b. **The Vanilla CSS Advantage (`0.901` vs `0.869`)**: The agent achieved its highest visual similarity scores when using Vanilla CSS custom properties (`0.925` and `0.876`) compared to Tailwind CSS (`0.862` and `0.875`). Tailwind forces the AI to quantize visual dimensions into pre-defined utility scales (`p-4` for `1rem`), creating minor padding/typography approximation gaps. Vanilla CSS allows the agent to micro-tune exact pixel values (`padding: 18px 24px`), leading to higher SSIM alignment.
+
 c. **Flawless Solid JS Adherence**: Despite Solid JS's unique reactivity model (`createSignal`, function-call getters `activeTab()`, and `class` instead of `className`), Claude Code maintained 100% compliance with Solid conventions across all 20 Solid trials without accidentally reverting to React idioms.
 
 > **Full Framework Report**: See [Part 3: Multi-Framework Benchmark Report](part3_frameworks.md) for complete quadrant charts and per-task submetric breakdowns (SSIM, pHash, Color Hist).

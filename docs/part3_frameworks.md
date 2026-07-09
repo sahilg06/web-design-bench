@@ -35,7 +35,9 @@ We ran **10 trials per task** (40 total trials) on Modal's serverless infrastruc
 
 ### 🏆 Key Takeaways
 a. **Flawless Build & SPA Execution (0 Errors)**: Across all 40 trials, Claude Code achieved a **100% success rate** in scaffolding valid Vite projects (`package.json`, `vite.config.js`), installing dependencies, and building `dist/` without a single compilation or bundling error.
+
 b. **Perfect Pass@1 Rate**: Every single trial exceeded the `0.70` visual similarity threshold, proving that modern agentic coding models can maintain high visual fidelity regardless of the underlying component framework.
+
 c. **The Vanilla CSS Advantage**: The agent achieved its highest scores when using Vanilla CSS custom properties (`0.925` and `0.876`) compared to Tailwind CSS (`0.862` and `0.875`).
 
 ---
@@ -112,4 +114,5 @@ The Part 3 evaluation conclusively demonstrates that **Claude Code (Opus 4.7)** 
 
 ### 💡 Recommendations for Benchmark Users
 a. **Prefer Vanilla CSS for Pixel-Perfect Replication**: If your evaluation prioritizes exact visual cloning (SSIM/pHash), Vanilla CSS allows agents to micro-tune pixel dimensions more effectively than Tailwind's utility scales.
+
 b. **Leverage Vite + Playwright SPA Navigation**: The successful execution of this suite validates our automated SPA tab-clicking architecture in `render.py`, establishing a robust foundation for evaluating complex interactive web applications beyond static HTML.

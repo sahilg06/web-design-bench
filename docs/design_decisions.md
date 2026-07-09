@@ -101,7 +101,9 @@ To render agent HTML into full-page screenshots, we selected **Playwright (Async
 
 ### Engineering Rationale
 a. **Async Concurrency**: Rendering 5 pages across 10 tasks requires 50 browser sessions. Using `asyncio` with Playwright allows us to render multiple pages concurrently within the verifier container, reducing grading overhead by 70% compared to synchronous Selenium.
+
 b. **Network-Idle Guarantees**: A common failure in automated screenshot capture is taking the screenshot before web fonts or external assets finish loading. We utilize `page.goto(url, wait_until="networkidle")` followed by a `500ms` animation settling timeout to ensure the DOM is fully rendered.
+
 c. **Strict Pixel Scaling**: We force `device_scale_factor=1` in the browser context. This guarantees that screenshot dimensions match the reference assets pixel-for-pixel, preventing retina display scaling discrepancies across different execution environments.
 
 ---
@@ -147,7 +149,9 @@ We evaluated traditional mathematical models of aesthetics, such as **Ngo's 14 A
 
 We ultimately chose **not** to include these in the current grader for three reasons:
 a. **Replication vs. Absolute Aesthetics**: Our benchmark is fundamentally a *replication fidelity* benchmark. A reference design might intentionally feature asymmetric layouts (e.g., our Architecture Studio) or extreme whitespace (e.g., Luxury Fashion). An absolute symmetry or balance metric would incorrectly penalize faithful replications of intentional asymmetry.
+
 b. **RL Gaming Risks**: Static mathematical formulas are highly susceptible to reward hacking by RL agents. An agent could optimize for Ngo's Symmetry and Balance by outputting a perfectly centered grid of identical grey boxes—scoring perfectly on the heuristic while failing the design brief.
+
 c. **DOM Dependency**: Ngo's formulas require segmenting individual UI objects and calculating their optical weight and coordinates, which would require complex DOM parsing or object detection, making the grader brittle.
 
 ### Future Work: Learned Multimodal Evaluation (Design-o-meter)
