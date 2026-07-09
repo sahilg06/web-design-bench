@@ -19,6 +19,9 @@ import os
 import sys
 from pathlib import Path
 from collections import defaultdict
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 from eval import get_task_display_name
 
 

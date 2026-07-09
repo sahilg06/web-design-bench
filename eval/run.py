@@ -15,6 +15,8 @@ import sys
 import tempfile
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 # Import config modules so their @register_config decorators fire.
 import eval.configs  # noqa: F401
 from eval import load_config

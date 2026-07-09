@@ -23,6 +23,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 RESULTS_DIR = Path(__file__).resolve().parent.parent / "results"
 HISTORY_CSV = RESULTS_DIR / "history.csv"
