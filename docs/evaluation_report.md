@@ -94,7 +94,7 @@ c. **Consistent Multi-Page Output**: Across all 100 trials, Claude successfully 
 
 ---
 
-#### d. The Whitespace Paradox: Why "Simple" Minimalist Designs Score Lowest
+### 📊 The Whitespace Paradox: Why "Simple" Minimalist Designs Score Lowest
 
 A natural question arises: *Why does Luxury Fashion (a "simple" minimalist serif design) score only 0.611 at its best, while the visually complex Food Delivery (cards, grids, icons) hits 0.803?*
 
