@@ -107,11 +107,21 @@ The per-metric breakdown reveals the answer:
 | **Color Hist** | 0.99 | 0.97–1.00 | Both excellent — cream/orange palettes are easy to match |
 | **Height Ratio** | 0.92–0.99 | **0.64–0.83** | 🔴 Agent compresses luxury whitespace by 20-40% |
 
-**Why pHash collapses on minimalist designs**: pHash creates a 64-bit perceptual fingerprint of the page's macro visual structure. A dense page (Food Delivery with colorful cards, icons, and multi-column grids) has many anchoring features that stabilize the hash — moving a card 20px barely changes the hash. A minimalist cream page with just one serif headline and vast whitespace has almost *nothing* to anchor on. A small typography shift or spacing change rewrites the entire perceptual hash.
+**Why pHash collapses on minimalist designs**:
+* pHash creates a 64-bit perceptual fingerprint of the page's macro visual structure.
+* A **dense page** (Food Delivery with colorful cards, icons, and multi-column grids) has many anchoring features that stabilize the hash — moving a card 20px barely changes the hash.
+* A **minimalist cream page** with just one serif headline and vast whitespace has almost *nothing* to anchor on — a small typography shift or spacing change rewrites the entire perceptual hash.
 
-**Why Height Ratio suffers**: AI models are trained primarily on tech-company layouts with standard `20-40px` section padding. The Luxury Fashion reference uses extreme editorial whitespace (`80-120px` padding, generous margins). The agent consistently under-estimates these generous proportions, producing pages 20-40% shorter than the reference. This isn't a grader bug — a human reviewer would also perceive the compressed version as "less luxurious."
+**Why Height Ratio suffers**:
+* AI models are trained primarily on tech-company layouts with standard `20-40px` section padding.
+* The Luxury Fashion reference uses extreme editorial whitespace (`80-120px` padding, generous margins).
+* The agent consistently under-estimates these generous proportions, producing pages **20-40% shorter** than the reference.
+* This isn't a grader bug — a human reviewer would also perceive the compressed version as "less luxurious."
 
-**This is correct grader behavior**: The agent *is* producing a demonstrably worse replica. The compressed spacing destroys the luxury editorial aesthetic, and the grader correctly penalizes it. This is a genuine model limitation, not a scoring artifact.
+**This is correct grader behavior**:
+* The agent *is* producing a demonstrably worse replica.
+* The compressed spacing destroys the luxury editorial aesthetic, and the grader correctly penalizes it.
+* This is a **genuine model limitation**, not a scoring artifact.
 
 > **Research Insight**: This paradox suggests that minimalist, whitespace-heavy designs may be the hardest category for RL-trained web design agents — they must learn delicate spatial proportions that cannot be inferred from pixel-level pattern matching alone. For visual reports confirming this analysis, see the [Visual Grader Validation Report](grader_validation/grader_validation.md).
 
@@ -201,18 +211,14 @@ We evaluated Claude Code across 4 distinct animation archetype configurations (2
 
 ## 2.2 Per-Frame Temporal Trajectories (Key Pages)
 
-```
-┌────────────────────────────────────────────────────────────────────────────┐
-│ Page                   t0       t500      t1200     t1800     settled  │
-├────────────────────────────────────────────────────────────────────────────┤
-│ agency: page_work    0.8119    0.6848    0.6564       -       0.6707   │
-│ agency: page_about   0.7537    0.6376    0.6569       -       0.6788   │
-│ fintech: page_pricing 0.7752   0.7296    0.7274    0.7553     0.7558   │
-│ fintech: page_security 0.7437  0.7064    0.6991    0.7069     0.7045   │
-│ saas: page_home      0.7066    0.6836    0.6778       -       0.6780   │
-│ portfolio: page_home 0.7617    0.7329    0.7301       -       0.7337   │
-└────────────────────────────────────────────────────────────────────────────┘
-```
+| Page | t0 | t500 | t1200 | t1800 | settled |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| agency: page_work | 0.8119 | 0.6848 | 0.6564 | — | 0.6707 |
+| agency: page_about | 0.7537 | 0.6376 | 0.6569 | — | 0.6788 |
+| fintech: page_pricing | 0.7752 | 0.7296 | 0.7274 | 0.7553 | 0.7558 |
+| fintech: page_security | 0.7437 | 0.7064 | 0.6991 | 0.7069 | 0.7045 |
+| saas: page_home | 0.7066 | 0.6836 | 0.6778 | — | 0.6780 |
+| portfolio: page_home | 0.7617 | 0.7329 | 0.7301 | — | 0.7337 |
 
 ## 2.3 Key Temporal Insights & Model Behaviors
 
@@ -227,6 +233,8 @@ We evaluated Claude Code across 4 distinct animation archetype configurations (2
 ### c. Multi-Phase Choreography & `t1800` Recovery (Vault Fintech)
 * **Observation**: `fintech_animation_hard` implements complex multi-phase keyframes (fade → slide → glow pulse) with an extended `t1800` capture point.
 * **Impact on Grader**: On `page_pricing`, the score bottoms out at `t1200` (`0.7274`) during the active glow pulse transition, before recovering at `t1800` (`0.7553`) as the elements settle into their final resting positions. This confirms the grader's extreme sensitivity to micro-animation states.
+
+> **Deep-Dive Visualizations**: See [Part 2: Animations & Temporal State Freezing](part2_animations.md#7-grader-validation-best-vs-worst-animation-trials) for side-by-side composite comparisons of the best and worst animation trials.
 
 ---
 
@@ -246,18 +254,12 @@ We evaluated Claude Code across the Part 3 Multi-Framework Benchmark (`v3`). Thi
 
 ## 3.2 Key Architectural Insights
 
-```
-┌───────────────────────────────────────────────────────────────────────────┐
-│                           STYLING PARADIGM COMPARISON                     │
-├─────────────────────────────┬─────────────────────────────────────────────┤
-│ Vanilla CSS (src/index.css) │ Tailwind CSS (Utility Classes)              │
-├─────────────────────────────┼─────────────────────────────────────────────┤
-│ • Mean Reward: 0.901        │ • Mean Reward: 0.869                        │
-│ • Higher SSIM & pHash       │ • Lower SSIM (Utility approximation gaps)   │
-│ • Exact pixel micro-tuning  │ • Pre-defined spacing/color scales          │
-│ • Global custom properties  │ • Highly verbose JSX markup                 │
-└─────────────────────────────┴─────────────────────────────────────────────┘
-```
+| | Vanilla CSS (`src/index.css`) | Tailwind CSS (Utility Classes) |
+| :--- | :--- | :--- |
+| **Mean Reward** | 0.901 | 0.869 |
+| **SSIM & pHash** | Higher — exact pixel micro-tuning | Lower — utility approximation gaps |
+| **Styling Approach** | Global custom properties | Pre-defined spacing/color scales |
+| **Markup Impact** | Clean, semantic HTML | Highly verbose JSX markup |
 
 a. **Flawless Build & SPA Execution (0 Errors)**: Across all 40 trials, Claude Code achieved a **100% success rate** in scaffolding valid Vite projects (`package.json`, `vite.config.js`), installing dependencies, and building `dist/` without a single compilation or bundling error.
 
@@ -265,7 +267,7 @@ b. **The Vanilla CSS Advantage (`0.901` vs `0.869`)**: The agent achieved its hi
 
 c. **Flawless Solid JS Adherence**: Despite Solid JS's unique reactivity model (`createSignal`, function-call getters `activeTab()`, and `class` instead of `className`), Claude Code maintained 100% compliance with Solid conventions across all 20 Solid trials without accidentally reverting to React idioms.
 
-> **Full Framework Report**: See [Part 3: Multi-Framework Benchmark Report](part3_frameworks.md) for complete quadrant charts and per-task submetric breakdowns (SSIM, pHash, Color Hist).
+> **Deep-Dive Visualizations**: See [Part 3: Multi-Framework Benchmark Report](part3_frameworks.md#benchmark-visualizations) for complete statistical plots (boxplots & barcharts), quadrant charts, and per-task submetric breakdowns.
 
 ---
 

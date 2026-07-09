@@ -119,6 +119,7 @@ def create_side_by_side(ref_img_path: Path, agent_img_path: Path,
 
 def generate_report(job_dir: Path, output_dir: Path, tasks_root: Path):
     """Generate the full visual validation report."""
+    job_name = job_dir.name
     output_dir.mkdir(parents=True, exist_ok=True)
     comparisons_dir = output_dir / "comparisons"
     comparisons_dir.mkdir(exist_ok=True)
@@ -195,7 +196,7 @@ def generate_report(job_dir: Path, output_dir: Path, tasks_root: Path):
 
     # Generate markdown report
     md_lines = [
-        "# 🔍 Visual Grader Validation Report",
+        f"# 🔍 Visual Grader Validation Report ({job_name})",
         "",
         "> **Purpose**: This report provides visual proof that higher grader scores correspond",
         "> to objectively better design replications. For each task, we show the **best-scoring**",
@@ -277,7 +278,7 @@ def generate_report(job_dir: Path, output_dir: Path, tasks_root: Path):
         "",
     ])
 
-    report_path = output_dir / "grader_validation.md"
+    report_path = output_dir / f"grader_validation_{job_name}.md"
     with open(report_path, "w") as f:
         f.write("\n".join(md_lines))
 

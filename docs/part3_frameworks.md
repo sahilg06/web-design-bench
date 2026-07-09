@@ -40,6 +40,14 @@ b. **Perfect Pass@1 Rate**: Every single trial exceeded the `0.70` visual simila
 
 c. **The Vanilla CSS Advantage**: The agent achieved its highest scores when using Vanilla CSS custom properties (`0.925` and `0.876`) compared to Tailwind CSS (`0.862` and `0.875`).
 
+### 📈 Benchmark Visualizations
+
+<!-- PLOTS_START -->
+![Task Variance Boxplot](../results/part-3/task_variance_boxplot.png)
+
+![Task Means Barchart](../results/part-3/task_means_barchart.png)
+<!-- PLOTS_END -->
+
 ---
 
 ## 2. Deep-Dive: Framework & Styling Comparisons
@@ -67,18 +75,12 @@ graph TD
 
 ### 🎨 Vanilla CSS vs. 💨 Tailwind CSS
 
-```
-┌───────────────────────────────────────────────────────────────────────────┐
-│                           STYLING PARADIGM COMPARISON                     │
-├─────────────────────────────┬─────────────────────────────────────────────┤
-│ Vanilla CSS (src/index.css) │ Tailwind CSS (Utility Classes)              │
-├─────────────────────────────┼─────────────────────────────────────────────┤
-│ • Mean Reward: 0.901        │ • Mean Reward: 0.869                        │
-│ • Higher SSIM & pHash       │ • Lower SSIM (Utility approximation gaps)   │
-│ • Exact pixel micro-tuning  │ • Pre-defined spacing/color scales          │
-│ • Global custom properties  │ • Highly verbose JSX markup                 │
-└─────────────────────────────┴─────────────────────────────────────────────┘
-```
+| | Vanilla CSS (`src/index.css`) | Tailwind CSS (Utility Classes) |
+| :--- | :--- | :--- |
+| **Mean Reward** | 0.901 | 0.869 |
+| **SSIM & pHash** | Higher — exact pixel micro-tuning | Lower — utility approximation gaps |
+| **Styling Approach** | Global custom properties | Pre-defined spacing/color scales |
+| **Markup Impact** | Clean, semantic HTML | Highly verbose JSX markup |
 
 * **The Tailwind Approximation Gap**: While Tailwind CSS accelerates human development, it forces the AI agent to quantize visual dimensions into pre-defined utility scales (e.g., `p-4` for `1rem`, `text-2xl` for `1.5rem`). When replicating arbitrary pixel layouts from screenshots, this quantization creates minor padding and typography mismatches, explaining why `react_tailwind` (`0.862`) scored lower than `react_css` (`0.925`).
 * **Vanilla CSS Precision**: With Vanilla CSS, the agent writes exact pixel values (`padding: 18px 24px; font-size: 28px;`) directly into `src/index.css`, allowing it to achieve significantly higher structural alignment (SSIM `0.798` vs `0.751`).
@@ -116,3 +118,16 @@ The Part 3 evaluation conclusively demonstrates that **Claude Code (Opus 4.7)** 
 a. **Prefer Vanilla CSS for Pixel-Perfect Replication**: If your evaluation prioritizes exact visual cloning (SSIM/pHash), Vanilla CSS allows agents to micro-tune pixel dimensions more effectively than Tailwind's utility scales.
 
 b. **Leverage Vite + Playwright SPA Navigation**: The successful execution of this suite validates our automated SPA tab-clicking architecture in `render.py`, establishing a robust foundation for evaluating complex interactive web applications beyond static HTML.
+
+---
+
+## 📚 Documentation Navigation
+
+Explore the complete documentation suite to understand the full lifecycle of `web-design-bench`:
+1. **[Main README & Quick-Start](../README.md)**: Repository overview, architecture diagrams, and execution instructions.
+2. **[Design Decisions & Trade-offs](design_decisions.md)**: Architectural thought process, grader mechanics, and framework integrations.
+3. **[Evaluation Report & Model Behavior](evaluation_report.md)**: Comprehensive analysis of the 100-trial benchmark run, `Pass@K` metrics, and deep dives into AI model failure patterns.
+4. **[Visual Grader Validation](grader_validation/grader_validation.md)**: Side-by-side reference vs. agent screenshot comparisons proving higher scores = better designs.
+5. **[Part 2: Animations & Temporal State Freezing](part2_animations.md)**: Architecture for grading CSS animations via Playwright frame freezing (`t0`, `t500`, `t1200`) and WebM video generation.
+6. **[Part 3: Multi-Framework Benchmark Report](part3_frameworks.md)**: Architectural and empirical analysis of the 2×2 framework matrix (React vs. Solid JS, Vanilla vs. Tailwind CSS).
+

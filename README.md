@@ -75,7 +75,10 @@ graph TD
 │   └── <job-id>/               # Per-job summary.json & generated plots
 └── docs/                       # Structured documentation and research reports
     ├── design_decisions.md     # Thought process & trade-offs (9 sections)
-    └── evaluation_report.md    # Results, analysis, model failure patterns
+    ├── evaluation_report.md    # Results, analysis, model failure patterns
+    ├── part2_animations.md     # Part 2 architecture: temporal state freezing & WebM generation
+    ├── part3_frameworks.md     # Part 3 architecture: 2×2 framework matrix (React/Solid, Vanilla/Tailwind)
+    └── grader_validation/      # Visual proof that higher reward = better design
 ```
 
 ---
@@ -203,3 +206,4 @@ Explore the complete documentation suite to understand the full lifecycle of `we
 3. **[Evaluation Report & Model Behavior](docs/evaluation_report.md)**: Comprehensive analysis of the 100-trial benchmark run, `Pass@K` metrics, and deep dives into AI model failure patterns.
 4. **[Visual Grader Validation](docs/grader_validation/grader_validation.md)**: Side-by-side reference vs. agent screenshot comparisons proving higher scores = better designs.
 5. **[Part 2: Animations & Temporal State Freezing](docs/part2_animations.md)**: Architecture for grading CSS animations via Playwright frame freezing (`t0`, `t500`, `t1200`) and WebM video generation.
+6. **[Part 3: Multi-Framework Benchmark Report](docs/part3_frameworks.md)**: Architectural and empirical analysis of the 2×2 framework matrix (React vs. Solid JS, Vanilla vs. Tailwind CSS).

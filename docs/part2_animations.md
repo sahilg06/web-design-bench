@@ -77,7 +77,7 @@ blended_reward  = 0.75 * visual_reward + 0.25 * mean_text_recall
 
 ## 5. New Animation Archetypes
 
-We added two dedicated animation configs to `recipe/configs/library.py` to benchmark motion design capabilities:
+We added four dedicated animation configs to `recipe/configs/library.py` to benchmark motion design capabilities across different difficulty tiers and temporal mechanics:
 
 ### 1. Portfolio Animation (`portfolio_animation_medium`)
 * **Brand**: Studio Lumina (*"Living design through motion"*)
@@ -89,6 +89,16 @@ We added two dedicated animation configs to `recipe/configs/library.py` to bench
 * **Visual Style**: Modern Tech (Clean white `#ffffff`, bright blue `#3b82f6`)
 * **Motion Specs**: Sophisticated page entrances (`@keyframes slideInLeft`, `slideInRight`, `fadeInUp`), live metrics counter simulation, infinite client logo scroll, and snappy `cubic-bezier(0.22, 1, 0.36, 1)` motion.
 
+### 3. Creative Agency Animation (`agency_animation_medium`)
+* **Brand**: Prism Studio (*"Where ideas take shape"*)
+* **Visual Style**: Bold Gradient (Dark theme `#0a0a0f`, purple-to-pink accents `#a855f7`)
+* **Motion Specs**: Slow `1.5s`–`2.5s` animations with large stagger delays (`0.3s`–`1.0s`) designed to create distinct visual separation between intermediate frames (`t500` vs `t1200`).
+
+### 4. Fintech Dashboard Animation (`fintech_animation_hard`)
+* **Brand**: Vault (*"Your wealth, engineered"*)
+* **Visual Style**: Dark Precision (Ultra-dark `#09090b`, emerald green accent `#10b981`)
+* **Motion Specs**: Complex multi-phase keyframes (fade → slide → glow pulse) with an extended `t1800` capture point to evaluate micro-animation states and slow stagger choreography.
+
 ---
 
 ## 6. Generating & Running Animation Tasks
@@ -98,6 +108,8 @@ To generate the new animation tasks using your Anthropic API key, run:
 export ANTHROPIC_API_KEY="your-api-key"
 python -m recipe.generate --config portfolio_animation_medium
 python -m recipe.generate --config saas_animation_hard
+python -m recipe.generate --config agency_animation_medium
+python -m recipe.generate --config fintech_animation_hard
 ```
 
 The generated tasks will be prefixed with `v2-` (e.g., `v2-portfolioanimationmediumconfig-73475c`) to distinguish them from Part 1 static tasks (`v1-`).
@@ -112,3 +124,32 @@ python -m eval.run --config v2_animations
 ```
 
 The generated tasks will automatically include the WebM videos, frozen frames, and updated `pages.json` configuration for the verifier.
+
+---
+
+## 7. Grader Validation: Best vs. Worst Animation Trials
+
+To verify that the temporal grader correctly penalizes animation failures, we compared the best and worst trials for `saas_animation_hard`.
+
+#### ✅ SaaS Animation — Best Trial
+The agent successfully implemented the `@keyframes` entrances and correct easing curves, maintaining high alignment across all frozen frames (`t0`, `t500`, `t1200`).
+
+![SaaS Animation Best Trial](grader_validation/comparisons/v2-saasanimationhardconfig-73475__best.png)
+
+#### ❌ SaaS Animation — Worst Trial
+The agent failed to include the initial hidden states (`opacity: 0`), triggering the anti-gaming penalty at `t=0ms` and causing severe layout mismatches during mid-flight.
+
+![SaaS Animation Worst Trial](grader_validation/comparisons/v2-saasanimationhardconfig-73475__worst.png)
+
+---
+
+## 📚 Documentation Navigation
+
+Explore the complete documentation suite to understand the full lifecycle of `web-design-bench`:
+1. **[Main README & Quick-Start](../README.md)**: Repository overview, architecture diagrams, and execution instructions.
+2. **[Design Decisions & Trade-offs](design_decisions.md)**: Architectural thought process, grader mechanics, and framework integrations.
+3. **[Evaluation Report & Model Behavior](evaluation_report.md)**: Comprehensive analysis of the 100-trial benchmark run, `Pass@K` metrics, and deep dives into AI model failure patterns.
+4. **[Visual Grader Validation](grader_validation/grader_validation.md)**: Side-by-side reference vs. agent screenshot comparisons proving higher scores = better designs.
+5. **[Part 2: Animations & Temporal State Freezing](part2_animations.md)**: Architecture for grading CSS animations via Playwright frame freezing (`t0`, `t500`, `t1200`) and WebM video generation.
+6. **[Part 3: Multi-Framework Benchmark Report](part3_frameworks.md)**: Architectural and empirical analysis of the 2×2 framework matrix (React vs. Solid JS, Vanilla vs. Tailwind CSS).
+
