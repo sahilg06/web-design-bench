@@ -1,0 +1,32 @@
+schema_version = "1.1"
+
+[task]
+name = "web-design-bench/v2-fintechanimationhardconfig-73475c"
+description = "Replicate a fintech_animation website design from screenshots using HTML and CSS only."
+authors = [{ name = "web-design-bench" }]
+keywords = ["web-design", "html", "css", "replication", "visual", "fintech_animation"]
+
+[metadata]
+recipe_version = "v2"
+config_name    = "FintechAnimationHardConfig"
+seed           = 42
+difficulty     = "hard"
+archetype      = "fintech_animation"
+visual_style   = "dark_precision"
+viewports      = ["desktop"]
+ssim_weight    = 0.6
+phash_weight   = 0.4
+
+[verifier]
+timeout_sec = 300.0
+
+[agent]
+timeout_sec = 900.0
+
+[environment]
+build_timeout_sec = 600.0
+os = "linux"
+cpus = 2
+memory_mb = 3072
+storage_mb = 10240
+allow_internet = true

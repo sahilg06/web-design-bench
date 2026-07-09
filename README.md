@@ -119,14 +119,35 @@ Once running, open your web browser to [http://localhost:8080/](http://localhost
 Synthesize brand new, safety-validated tasks of custom visual styles and difficulty tiers at scale using the generation CLI:
 
 ```bash
-# List all available archetype configs
+# List all available archetype configs (14 total: 10 Static v1, 4 Animation v2)
 uv run python -m recipe.generate --list
 
 # Generate a single AI Startup task (Seed 42)
 uv run python -m recipe.generate --config ai_startup_neon_hard --seed 42
 ```
 
+### 🎛️ Difficulty Tiers & Config Library
+The benchmark includes 14 distinct archetype configurations in `recipe/configs/library.py`, categorized into clear difficulty tiers based on design and layout complexity.
+
+> [!NOTE]
+> **Tiers reflect structural complexity, not empirical agent performance.** These difficulty labels (`easy`, `medium`, `hard`) categorize the density, advanced CSS styling, and animation choreography required by the design specification. They do not imply that agents will achieve higher rewards on "easy" tasks; state-of-the-art agents often excel at dense, structured layouts while struggling with specific subtle alignment or temporal constraints regardless of the nominal tier.
+
+#### Part 1: Static Tasks (v1)
+* **Easy**: Clean, standard layouts (e.g., single column, basic grids), standard typography, minimal decorative elements or complex background meshes.
+  * `law_firm_corporate_easy`, `wellness_spa_organic_easy`
+* **Medium**: Richer layouts (asymmetrical sections, overlapping cards), curated color palettes, custom UI components (pricing tables, calculators).
+  * `luxury_fashion_serif_medium`, `food_delivery_playful_medium`, `indie_game_retro_medium`, `music_streaming_gradient_medium`, `travel_agency_tropical_medium`
+* **Hard**: Dense, highly complex interfaces (e.g., SaaS dashboards, crypto exchanges), advanced CSS styling (glassmorphism, neon glows, complex gradient meshes).
+  * `ai_startup_neon_hard`, `crypto_exchange_cyberpunk_hard`, `architecture_studio_mono_hard`
+
+#### Part 2: Animation Tasks (v2)
+* **Medium**: Clean, elegant animations (fade-ins, slide-ups) with moderate stagger delays (0.1s–0.5s). Tests basic temporal property adherence.
+  * `portfolio_animation_medium`, `agency_animation_medium`
+* **Hard**: Multi-phase keyframes (e.g., fade → slide → glow/pulse) and complex choreography with large stagger delays (0.5s–1.5s+), requiring precise intermediate state matching across extended time windows (0–1800ms).
+  * `saas_animation_hard`, `fintech_animation_hard`
+
 ---
+
 
 ## 📊 Grader Core Mechanics (Visual Similarity & Text Recall)
 
@@ -171,3 +192,4 @@ Explore the complete documentation suite to understand the full lifecycle of `we
 2. **[Design Decisions & Trade-offs](docs/design_decisions.md)**: Architectural thought process, grader mechanics, and framework integrations.
 3. **[Evaluation Report & Model Behavior](docs/evaluation_report.md)**: Comprehensive analysis of the 100-trial benchmark run, `Pass@K` metrics, and deep dives into AI model failure patterns.
 4. **[Visual Grader Validation](docs/grader_validation/grader_validation.md)**: Side-by-side reference vs. agent screenshot comparisons proving higher scores = better designs.
+5. **[Part 2: Animations & Temporal State Freezing](docs/part2_animations.md)**: Architecture for grading CSS animations via Playwright frame freezing (`t0`, `t500`, `t1200`) and WebM video generation.

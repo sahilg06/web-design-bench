@@ -247,6 +247,7 @@ def main(argv: list[str] | None = None) -> int:
                         "desktop", {}
                     ).get("height", 800),
                     screenshot_fmt=getattr(config, "SCREENSHOT_FMT", "png"),
+                    animation_frames_ms=getattr(config, "ANIMATION_FRAMES_MS", None),
                 )
                 print(f"  OK: {len(scroll_heights)} screenshots captured")
             except ImportError as e:

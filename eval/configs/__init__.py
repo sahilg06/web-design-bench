@@ -32,3 +32,29 @@ class V0GeneratedConfig:
 
     N_CONCURRENT = 1
     ENV_BUILD_TIMEOUT_MULTIPLIER = 5
+
+
+@register_config("v2_animations")
+class V2AnimationsConfig:
+    """Part 2: Animation tasks with temporal state freezing (t0, t500, t1200)."""
+
+    TASKS = [
+        "tasks/v2-portfolioanimationmediumconfig-73475c",
+        "tasks/v2-saasanimationhardconfig-73475c",
+        "tasks/v2-agencyanimationmediumconfig-73475c",
+        "tasks/v2-fintechanimationhardconfig-73475c",
+    ]
+
+    MODEL = "anthropic/claude-opus-4-7"
+    AGENT = "claude-code"
+    ENV = os.environ.get("HARBOR_ENV", "docker")
+
+    if ENV == "modal":
+        N_CONCURRENT_TRIALS = 100
+        N_ATTEMPTS = 10
+    else:
+        N_CONCURRENT_TRIALS = 4
+        N_ATTEMPTS = 1
+
+    N_CONCURRENT = 1
+    ENV_BUILD_TIMEOUT_MULTIPLIER = 5

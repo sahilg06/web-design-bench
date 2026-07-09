@@ -111,6 +111,7 @@ def _generate_instruction_md(
     viewport_width = getattr(config, "VIEWPORT_SIZES", {}).get(
         viewports[0] if viewports else "desktop", {}
     ).get("width", 1280)
+    animation_frames_ms = getattr(config, "ANIMATION_FRAMES_MS", None)
 
     fonts = design_spec.get("fonts", [])
     colors = design_spec.get("colors", {})
@@ -123,18 +124,22 @@ def _generate_instruction_md(
                   "**HTML and CSS only** — no JavaScript.")
     lines.append("")
 
-    # Step 1: Screenshots
-    lines.append("## Step 1 — View the Reference Screenshots")
+    # Step 1: Screenshots and Videos
+    lines.append("## Step 1 — View the Reference Assets")
     lines.append("")
-    lines.append("Read each of the following image files to see the target design. "
+    lines.append("Read each of the following files to see the target design. "
                   "Use the `Read` tool on each path:")
     lines.append("")
     for page in pages:
         for vp in viewports:
             lines.append(f"- `/app/assets/{page['name']}_{vp}.{fmt}` — {page['label']} ({vp})")
+            if animation_frames_ms:
+                lines.append(f"- `/app/assets/{page['name']}_{vp}.webm` — {page['label']} Animation Video ({vp})")
     lines.append("")
-    lines.append("Study each screenshot carefully before writing any code. Note the color "
+    lines.append("Study each asset carefully before writing any code. Note the color "
                   "palette, typography, layout structure, spacing, and UI components on each page.")
+    if animation_frames_ms:
+        lines.append("Pay special attention to the WebM videos to observe the CSS animations (easing, duration, stagger, and initial hidden states).")
     lines.append("")
 
     # Step 2: Design info
@@ -174,6 +179,8 @@ def _generate_instruction_md(
     lines.append("- Layout patterns (grid, flexbox, columns)")
     lines.append("- Shared components (nav, footer, cards)")
     lines.append("- Spacing and typography scale")
+    if animation_frames_ms:
+        lines.append("- CSS Animations (keyframes, transitions, initial states)")
     lines.append("")
 
     # Step 4: Code
@@ -198,9 +205,11 @@ def _generate_instruction_md(
                   f"{len(pages)} pages")
     lines.append("4. **Match the visual design closely**: colors, fonts, spacing, section "
                   "structure, decorative elements")
-    lines.append("5. **Self-contained**: no external CDN links — embed all styles in `style.css`")
-    lines.append("6. **Do not modify any files in `/tests/`** — they are used to verify your output")
-    lines.append("7. Write files using the `Write` tool directly to `/app/output/<filename>`")
+    if animation_frames_ms:
+        lines.append("5. **Match the CSS animations**: ensure elements animate exactly as seen in the WebM videos (e.g. fade-in, slide-up, stagger). Elements must start in their correct initial state (e.g. opacity 0) before animating.")
+    lines.append("6. **Self-contained**: no external CDN links — embed all styles in `style.css`")
+    lines.append("7. **Do not modify any files in `/tests/`** — they are used to verify your output")
+    lines.append("8. Write files using the `Write` tool directly to `/app/output/<filename>`")
     lines.append("")
     lines.append("### Validation")
     lines.append("")
@@ -211,7 +220,7 @@ def _generate_instruction_md(
     lines.append("The verifier will report which files are missing and display a reward score.")
     lines.append("Aim for a score as close to 1.0 as possible.")
     lines.append("")
-    lines.append("Start by reading all reference screenshots, then write `style.css`, "
+    lines.append("Start by reading all reference assets, then write `style.css`, "
                   "then each HTML page.")
 
     return "\n".join(lines)
@@ -326,10 +335,13 @@ def assemble(
 
     # ── solution/ ────────────────────────────────────────────────────────────
     sol_dst = task_dir / "solution"
-    if sol_dst.exists():
-        shutil.rmtree(sol_dst)
-    shutil.copytree(solution_dir, sol_dst)
-    logger.info("  Copied solution/ (%d files)", len(list(sol_dst.iterdir())))
+    if sol_dst.resolve() == solution_dir.resolve():
+        logger.info("  Solution dir is already in place — skipping copy")
+    else:
+        if sol_dst.exists():
+            shutil.rmtree(sol_dst)
+        shutil.copytree(solution_dir, sol_dst)
+        logger.info("  Copied solution/ (%d files)", len(list(sol_dst.iterdir())))
 
     # ── environment/assets/ ──────────────────────────────────────────────────
     env_dir = task_dir / "environment"
@@ -360,6 +372,11 @@ def assemble(
         "phash_weight":     getattr(config, "PHASH_WEIGHT", 0.4),
         "dom_iou_weight":   getattr(config, "DOM_IOU_WEIGHT", 0.0),
     }
+    if getattr(config, "ANIMATION_FRAMES_MS", None):
+        pages_cfg["animation_frames_ms"] = config.ANIMATION_FRAMES_MS
+        pages_cfg["static_weight"] = getattr(config, "STATIC_WEIGHT", 0.6)
+        pages_cfg["animation_weight"] = getattr(config, "ANIMATION_WEIGHT", 0.4)
+
     if scroll_heights:
         pages_cfg["scroll_heights"] = scroll_heights
 

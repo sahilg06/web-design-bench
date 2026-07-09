@@ -1,0 +1,61 @@
+{
+  "pages": [
+    {
+      "name": "page_home",
+      "file": "index.html",
+      "label": "Home",
+      "description": "Hero section with large headline 'Living design through motion' that fades in and slides up; portfolio grid of 6 project cards that fade in with a staggered animation delay (0.1s to 0.6s); about section with sliding text overlay; footer with glowing accent bar."
+    },
+    {
+      "name": "page_projects",
+      "file": "projects.html",
+      "label": "Projects",
+      "description": "Projects gallery with 12 items; each row of projects slides in from the bottom with a smooth cubic-bezier easing; category filter bar with animated bottom border on active item."
+    },
+    {
+      "name": "page_process",
+      "file": "process.html",
+      "label": "Process",
+      "description": "4-step process timeline (Discovery, Strategy, Design, Motion); each step card animates in sequentially as if scrolling into view; large typography numbers (01, 02, 03, 04) with pulse animation."
+    },
+    {
+      "name": "page_about",
+      "file": "about.html",
+      "label": "About",
+      "description": "About page with large hero image placeholder that scales up smoothly from 0.95 to 1.0 scale; team grid of 4 profiles with staggered fade-in; values list with sliding underline animations."
+    },
+    {
+      "name": "page_contact",
+      "file": "contact.html",
+      "label": "Contact",
+      "description": "Contact form with animated input borders that expand on focus; large heading 'Let's create together' with subtle floating animation; social media links with bouncy hover animations."
+    }
+  ],
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800
+    }
+  },
+  "active_viewports": [
+    "desktop"
+  ],
+  "screenshot_fmt": "png",
+  "ssim_weight": 0.6,
+  "phash_weight": 0.4,
+  "dom_iou_weight": 0.0,
+  "animation_frames_ms": [
+    0,
+    500,
+    1200
+  ],
+  "static_weight": 0.6,
+  "animation_weight": 0.4,
+  "scroll_heights": {
+    "page_home_desktop": 4714,
+    "page_projects_desktop": 3541,
+    "page_process_desktop": 3877,
+    "page_about_desktop": 3972,
+    "page_contact_desktop": 2319
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "pages": [
+    {
+      "name": "page_home",
+      "file": "index.html",
+      "label": "Home",
+      "description": "Hero with headline 'Where ideas take shape' \u2014 each word appears one at a time with a 2.0s `@keyframes wordReveal` animation using `animation-delay: 0s, 0.4s, 0.8s, 1.2s` for each word. Words start invisible (`opacity: 0; transform: translateY(40px)`) and slide up. Below the hero: 3 large service cards (Strategy, Design, Build) that each have a 1.5s fade-in with stagger delays of `0.3s, 0.6s, 0.9s` \u2014 at t=500ms only the first card should be partially visible. Bottom: client logo bar with a slow 1.8s opacity fade."
+    },
+    {
+      "name": "page_work",
+      "file": "work.html",
+      "label": "Work",
+      "description": "Portfolio grid with 8 project cards arranged 2\u00d74. Each card uses a 1.5s `@keyframes slideUp` with stagger delays of `0.15s` between cards (0.15s, 0.30s, 0.45s, ... 1.20s). At t=500ms, only the first 3 cards should be partially visible; at t=1200ms all 8 should be visible. Each card slides up from `translateY(60px)` with `opacity: 0`. Category filters at top with a separate 1.2s slide-down animation."
+    },
+    {
+      "name": "page_services",
+      "file": "services.html",
+      "label": "Services",
+      "description": "5 service sections stacked vertically, each with icon + title + description. Each section uses a 2.0s `@keyframes expandIn` (starts at `scale(0.8); opacity: 0;` \u2192 `scale(1); opacity: 1;`). Stagger delays: `0s, 0.5s, 1.0s, 1.5s, 2.0s`. At t=500ms only the first section is visible; at t=1200ms the first 3 are visible; the last 2 are still hidden. Purple-to-pink gradient accent line between sections with a 2.5s width animation from 0% to 100%."
+    },
+    {
+      "name": "page_about",
+      "file": "about.html",
+      "label": "About",
+      "description": "About page with a large team photo placeholder that uses a 2.0s `@keyframes clipReveal` \u2014 starts with `clip-path: inset(0 100% 0 0)` and reveals to `clip-path: inset(0 0 0 0)`. Below: 4 team member cards with 1.5s fade-in, staggered by 0.4s each (0.4s, 0.8s, 1.2s, 1.6s). Stats counter section (150+, 50+, 12) with a 1.8s scale-up animation starting at delay 0.6s."
+    },
+    {
+      "name": "page_contact",
+      "file": "contact.html",
+      "label": "Contact",
+      "description": "Contact form where each input field slides in from the left with a 1.5s animation, staggered by 0.3s per field (5 fields: 0.3s, 0.6s, 0.9s, 1.2s, 1.5s). Submit button fades in last with a 1.0s delay of 1.8s. Map placeholder on the right uses a 2.0s fade-in starting at 0.5s delay."
+    }
+  ],
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800
+    }
+  },
+  "active_viewports": [
+    "desktop"
+  ],
+  "screenshot_fmt": "png",
+  "ssim_weight": 0.6,
+  "phash_weight": 0.4,
+  "dom_iou_weight": 0.0,
+  "animation_frames_ms": [
+    0,
+    500,
+    1200
+  ],
+  "static_weight": 0.6,
+  "animation_weight": 0.4,
+  "scroll_heights": {
+    "page_home_desktop": 2144,
+    "page_work_desktop": 3272,
+    "page_services_desktop": 3276,
+    "page_about_desktop": 3212,
+    "page_contact_desktop": 2352
+  }
+}

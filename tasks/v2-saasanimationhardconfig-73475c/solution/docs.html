@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlowSync — Documentation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a href="index.html" class="brand">
+        <span class="brand-mark"></span>
+        FlowSync
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="docs.html" class="active">Documentation</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="nav-cta">
+        <a href="contact.html" class="btn btn-ghost">Sign in</a>
+        <a href="pricing.html" class="btn btn-primary">Start free</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="docs-layout">
+        <!-- SIDEBAR -->
+        <aside class="docs-sidebar anim-slide-left">
+          <h4>Getting started</h4>
+          <ul>
+            <li><a href="#introduction" class="active">Introduction</a></li>
+            <li><a href="#quickstart">Quickstart</a></li>
+            <li><a href="#install">Install the CLI</a></li>
+            <li><a href="#auth">Authentication</a></li>
+          </ul>
+          <h4>Core concepts</h4>
+          <ul>
+            <li><a href="#workflows">Workflows</a></li>
+            <li><a href="#triggers">Triggers</a></li>
+            <li><a href="#actions">Actions</a></li>
+            <li><a href="#variables">Variables</a></li>
+          </ul>
+          <h4>API reference</h4>
+          <ul>
+            <li><a href="#rest">REST API</a></li>
+            <li><a href="#webhooks">Webhooks</a></li>
+            <li><a href="#sdk">Node.js SDK</a></li>
+            <li><a href="#errors">Error codes</a></li>
+          </ul>
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="#salesforce">Salesforce sync</a></li>
+            <li><a href="#stripe">Stripe pipelines</a></li>
+            <li><a href="#slack">Slack notifications</a></li>
+          </ul>
+        </aside>
+
+        <!-- CONTENT -->
+        <article class="docs-content">
+          <section id="introduction" class="anim-fade-up">
+            <span class="eyebrow">Documentation</span>
+            <h1>Build your first workflow</h1>
+            <p>Welcome to FlowSync — the fastest way to automate anything from webhook processing to multi-system data pipelines. This guide takes you from zero to a production workflow in under five minutes.</p>
+
+            <div class="callout">
+              <strong>New to automation?</strong> Start with the visual studio at
+              <a href="index.html">app.flowsync.io</a> — everything in this guide can be
+              done point-and-click.
+            </div>
+          </section>
+
+          <section id="quickstart">
+            <h2>Quickstart</h2>
+            <p>Follow these four steps to ship a workflow that watches an inbox, extracts structured data, and posts a Slack notification.</p>
+
+            <div class="steps">
+              <div class="step anim-fade-up delay-1">
+                <div class="step-num">1</div>
+                <div>
+                  <h3>Install the FlowSync CLI</h3>
+                  <p>The CLI lets you version, test, and deploy workflows from your local machine or CI pipeline.</p>
+                  <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+<pre><span class="cm"># macOS &amp; Linux</span>
+curl -fsSL <span class="str">https://get.flowsync.io</span> | sh
+
+<span class="cm"># Verify installation</span>
+flowsync --version</pre>
+                  </div>
+                </div>
+              </div>
+
+              <div class="step anim-fade-up delay-2">
+                <div class="step-num">2</div>
+                <div>
+                  <h3>Authenticate with your workspace</h3>
+                  <p>Log in with SSO or an API token. Tokens are scoped per environment and rotate automatically.</p>
+                  <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+<pre>flowsync auth login
+<span class="cm"># Opens browser → returns with a scoped token</span>
+
+flowsync workspace <span class="fn">use</span> <span class="str">acme-production</span></pre>
+                  </div>
+                </div>
+              </div>
+
+              <div class="step anim-fade-up delay-3">
+                <div class="step-num">3</div>
+                <div>
+                  <h3>Scaffold your first workflow</h3>
+                  <p>The <code>init</code> command generates a starter workflow with a trigger, action, and test fixtures.</p>
+                  <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+<pre>flowsync init inbox-to-slack
+<span class="cm"># Creates ./inbox-to-slack/workflow.yaml</span>
+
+<span class="kw">cd</span> inbox-to-slack
+flowsync test</pre>
+                  </div>
+                </div>
+              </div>
+
+              <div class="step anim-fade-up delay-4">
+                <div class="step-num">4</div>
+                <div>
+                  <h3>Deploy and monitor</h3>
+                  <p>Push to production, then watch the trace stream in real time — every payload, every retry, every branch.</p>
+                  <div class="code-block">
+                    <button class="copy-btn">Copy</button>
+<pre>flowsync deploy --env <span class="str">production</span>
+<span class="cm"># ✓ Workflow "inbox-to-slack" is live</span>
+
+flowsync logs --tail
+<span class="cm"># Live stream of execution traces</span></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="workflows">
+            <h2>Core concept: Workflows</h2>
+            <p>A workflow is a directed graph of nodes: exactly one <em>trigger</em>, one or more <em>actions</em>, and optional <em>control-flow</em> nodes (branch, loop, delay, filter). Every workflow is declared in YAML — or built visually and exported to YAML.</p>
+
+            <div class="code-block">
+              <button class="copy-btn">Copy</button>
+<pre><span class="cm"># workflow.yaml</span>
+<span class="kw">name</span>: inbox-to-slack
+<span class="kw">on</span>:
+  <span class="fn">gmail.message.received</span>:
+    <span class="kw">filter</span>: <span class="str">"from:*@customer.com"</span>
+
+<span class="kw">steps</span>:
+  - <span class="fn">extract</span>:
+      <span class="kw">model</span>: <span class="str">"claude-3-5-sonnet"</span>
+      <span class="kw">schema</span>: <span class="str">./schemas/ticket.json</span>
+
+  - <span class="fn">slack.postMessage</span>:
+      <span class="kw">channel</span>: <span class="str">"#support-triage"</span>
+      <span class="kw">text</span>: <span class="str">"{{ extract.summary }}"</span></pre>
+            </div>
+          </section>
+
+          <section id="triggers">
+            <h3>Triggers</h3>
+            <p>Triggers are the entry points that kick off a workflow. FlowSync supports three trigger families:</p>
+            <ul class="feature-list">
+              <li><span class="check">✓</span> <strong>Event triggers</strong> — Slack messages, Gmail arrivals, Salesforce updates, GitHub pushes</li>
+              <li><span class="check">✓</span> <strong>Schedule triggers</strong> — cron-style expressions with timezone support</li>
+              <li><span class="check">✓</span> <strong>HTTP triggers</strong> — signed webhooks with per-workflow endpoints</li>
+            </ul>
+          </section>
+
+          <section id="rest">
+            <h2>REST API</h2>
+            <p>Every workflow can be invoked, listed, or paused via our REST API. All endpoints require a bearer token and return JSON.</p>
+
+            <div class="code-block">
+              <button class="copy-btn">Copy</button>
+<pre>POST /v1/workflows/inbox-to-slack/run
+<span class="kw">Authorization</span>: <span class="str">Bearer $FLOWSYNC_TOKEN</span>
+<span class="kw">Content-Type</span>: <span class="str">application/json</span>
+
+{
+  <span class="str">"input"</span>: {
+    <span class="str">"subject"</span>: <span class="str">"Refund request #4821"</span>,
+    <span class="str">"body"</span>: <span class="str">"Order arrived damaged..."</span>
+  }
+}</pre>
+            </div>
+
+            <div class="callout">
+              <strong>Rate limits.</strong> Starter plans allow 60 req/min. Pro allows 1,200 req/min. Enterprise is negotiable. All endpoints support the <code>Retry-After</code> header on 429 responses.
+            </div>
+          </section>
+
+          <section id="sdk">
+            <h3>Node.js SDK</h3>
+            <p>Prefer code? Our SDK wraps the REST API with typed clients for TypeScript and Python.</p>
+            <div class="code-block">
+              <button class="copy-btn">Copy</button>
+<pre><span class="kw">import</span> { FlowSync } <span class="kw">from</span> <span class="str">"@flowsync/sdk"</span>;
+
+<span class="kw">const</span> client = <span class="kw">new</span> <span class="fn">FlowSync</span>({ token: process.env.FLOWSYNC_TOKEN });
+
+<span class="kw">const</span> run = <span class="kw">await</span> client.workflows.<span class="fn">run</span>(<span class="str">"inbox-to-slack"</span>, {
+  input: { subject: <span class="str">"Refund"</span>, body: <span class="str">"..."</span> }
+});
+
+console.<span class="fn">log</span>(run.status);   <span class="cm">// "succeeded"</span>
+console.<span class="fn">log</span>(run.output);   <span class="cm">// { ticketId: 4821, priority: "high" }</span></pre>
+            </div>
+          </section>
+
+          <section id="errors">
+            <h3>Error handling</h3>
+            <p>Every failed step returns a structured error with a stable code, message, and retry hint. You can catch errors globally with an <code>on_error</code> block, or per-step with a fallback branch.</p>
+            <div class="code-block">
+              <button class="copy-btn">Copy</button>
+<pre><span class="kw">steps</span>:
+  - <span class="fn">salesforce.upsert</span>:
+      <span class="kw">object</span>: <span class="str">"Contact"</span>
+      <span class="kw">on_error</span>:
+        - <span class="fn">slack.postMessage</span>:
+            <span class="kw">channel</span>: <span class="str">"#ops-alerts"</span>
+            <span class="kw">text</span>: <span class="str">"CRM sync failed: {{ error.message }}"</span></pre>
+            </div>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">
+            <span class="brand-mark"></span>
+            FlowSync
+          </a>
+          <p>The workflow automation platform for teams that refuse to slow down. Built in San Francisco, deployed everywhere.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="docs.html">Documentation</a></li>
+            <li><a href="features.html">Integrations</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="contact.html">About</a></li>
+            <li><a href="contact.html">Careers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.html">Press kit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="docs.html">Quickstart</a></li>
+            <li><a href="docs.html">API reference</a></li>
+            <li><a href="docs.html">Changelog</a></li>
+            <li><a href="docs.html">Status page</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 FlowSync, Inc. All rights reserved.</span>
+        <div class="footer-social">
+          <a href="contact.html">Twitter</a>
+          <a href="contact.html">LinkedIn</a>
+          <a href="contact.html">GitHub</a>
+          <a href="contact.html">YouTube</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

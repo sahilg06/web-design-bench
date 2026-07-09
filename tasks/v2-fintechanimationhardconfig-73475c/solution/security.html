@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security — Vault</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-wrapper">
+      <a href="index.html" class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Vault</span>
+      </a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="security.html" class="active">Security</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Security &amp; trust</span>
+          <h1>Custody-grade posture. Client-side control.</h1>
+          <p>Vault is built to the standard institutional custodians hold themselves to. Your data is encrypted before it is stored, signed as it moves, and audited on every read.</p>
+        </div>
+
+        <div class="shield-wrap" aria-hidden="true">
+          <div class="shield"></div>
+        </div>
+
+        <div class="security-rows">
+          <article class="security-row">
+            <div class="security-icon">AES</div>
+            <div>
+              <h3>Encryption at rest &amp; in transit</h3>
+              <p>AES-256-GCM at rest, TLS 1.3 in transit. Per-tenant key encryption keys managed in a FIPS 140-2 Level 3 HSM. You may bring your own KMS key on Enterprise.</p>
+            </div>
+          </article>
+
+          <article class="security-row">
+            <div class="security-icon">MFA</div>
+            <div>
+              <h3>Zero-trust access controls</h3>
+              <p>Hardware-backed MFA (WebAuthn / FIDO2) is mandatory for every session. Fine-grained RBAC with quorum approvals for any read of raw beneficiary data.</p>
+            </div>
+          </article>
+
+          <article class="security-row">
+            <div class="security-icon">LOG</div>
+            <div>
+              <h3>Immutable audit trail</h3>
+              <p>Every read and write is recorded to a tamper-evident, hash-chained log with 7-year WORM retention. Auditors get read-only access on their own credentials — never yours.</p>
+            </div>
+          </article>
+
+          <article class="security-row">
+            <div class="security-icon">VPC</div>
+            <div>
+              <h3>Isolated infrastructure</h3>
+              <p>Multi-region deployment across AWS us-east-1, eu-west-1, and ap-southeast-1. Enterprise plans run in customer-owned VPCs with peering only to your allow-listed partners.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="compliance-row">
+          <div class="compliance-badge">SOC 2 Type II</div>
+          <div class="compliance-badge">ISO 27001</div>
+          <div class="compliance-badge">PCI DSS L1</div>
+          <div class="compliance-badge">GDPR</div>
+          <div class="compliance-badge">CCPA</div>
+          <div class="compliance-badge">FINRA</div>
+          <div class="compliance-badge">SEC · RIA</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <h2>Independent verification.</h2>
+          <p>Our controls are attested by third-party auditors and open to your risk team on request.</p>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Attestation</th>
+              <th>Scope</th>
+              <th>Renewal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>SOC 2 Type II</td><td>Security, availability, confidentiality</td><td>Annual</td></tr>
+            <tr><td>ISO/IEC 27001:2022</td><td>Information security management</td><td>Three-year cycle</td></tr>
+            <tr><td>PCI DSS Level 1</td><td>Cardholder data environment</td><td>Annual</td></tr>
+            <tr><td>Penetration testing</td><td>App, API, cloud infra</td><td>Bi-annual</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span>Vault</span>
+          </div>
+          <p>Vault Capital Systems, Inc. is a registered investment adviser. Custody services provided by qualified partner institutions.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="security.html">Security</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="index.html">About</a></li>
+            <li><a href="index.html">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="index.html">Terms</a></li>
+            <li><a href="index.html">Privacy</a></li>
+            <li><a href="index.html">Disclosures</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Vault Capital Systems, Inc. All rights reserved.</span>
+        <span>Engineered in New York · London · Singapore</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,61 @@
+{
+  "pages": [
+    {
+      "name": "page_home",
+      "file": "index.html",
+      "label": "Home",
+      "description": "SaaS landing hero with headline 'Automate your workflow at the speed of thought' sliding in from left; hero dashboard mockup placeholder sliding in from right; 3 feature cards with staggered fade-in; live metrics counter simulation with pulse animation; client logos strip with infinite scroll animation."
+    },
+    {
+      "name": "page_features",
+      "file": "features.html",
+      "label": "Features",
+      "description": "Deep-dive features page; 6 alternating left/right sections; each text block slides in from the side while the corresponding diagram placeholder fades in; interactive-looking comparison table with hover row highlights."
+    },
+    {
+      "name": "page_pricing",
+      "file": "pricing.html",
+      "label": "Pricing",
+      "description": "3 pricing tiers (Starter, Pro, Enterprise); Pro tier card is highlighted and animates with a subtle scale-up and glowing blue border; FAQ section with animated expand/collapse arrows."
+    },
+    {
+      "name": "page_docs",
+      "file": "docs.html",
+      "label": "Documentation",
+      "description": "Documentation layout with left sidebar and right content area; sidebar links slide in from left; code snippet boxes with animated copy button tooltips; step-by-step quickstart guide with staggered fade-in."
+    },
+    {
+      "name": "page_contact",
+      "file": "contact.html",
+      "label": "Contact",
+      "description": "Contact sales form with smooth slide-up animation; office locations grid with bouncing pin icon placeholders; support ticket CTA banner with gradient background animation."
+    }
+  ],
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800
+    }
+  },
+  "active_viewports": [
+    "desktop"
+  ],
+  "screenshot_fmt": "png",
+  "ssim_weight": 0.6,
+  "phash_weight": 0.4,
+  "dom_iou_weight": 0.0,
+  "animation_frames_ms": [
+    0,
+    500,
+    1200
+  ],
+  "static_weight": 0.6,
+  "animation_weight": 0.4,
+  "scroll_heights": {
+    "page_home_desktop": 3133,
+    "page_features_desktop": 5680,
+    "page_pricing_desktop": 3983,
+    "page_docs_desktop": 5669,
+    "page_contact_desktop": 3190
+  }
+}

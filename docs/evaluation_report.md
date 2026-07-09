@@ -181,6 +181,51 @@ The reward function provides a smooth, continuous, and stable gradient suitable 
 
 ---
 
+## 4. Part 2: Animation Benchmark Results & Temporal Analysis
+
+We evaluated Claude Code across 4 distinct animation archetype configurations (2 Medium, 2 Hard), running **10 trials per task** (40 total trials) on Modal to assess its ability to replicate dynamic CSS animations and temporal states (`t0`, `t500`, `t1200`, `t1800`).
+
+### Per-Task Rigorous Breakdown
+
+| Task Archetype | Mean Blended Reward | Static Score | Animation Score |
+| :--- | :---: | :---: | :---: |
+| **Fintech Dashboard (`fintech_animation_hard`)** | **0.7457** | 0.7457 | 0.7456 |
+| **Portfolio Studio (`portfolio_animation_medium`)** | **0.7428** | 0.7377 | 0.7504 |
+| **Creative Agency (`agency_animation_medium`)** | **0.7221** | 0.7158 | 0.7314 |
+| **SaaS FlowSync (`saas_animation_hard`)** | **0.6587** | 0.6540 | 0.6658 |
+| **Part 2 Suite Average** | **0.7173** | **0.7133** | **0.7233** |
+
+### Per-Frame Temporal Trajectories (Key Pages)
+
+```
+┌────────────────────────────────────────────────────────────────────────────┐
+│ Page                   t0       t500      t1200     t1800     settled  │
+├────────────────────────────────────────────────────────────────────────────┤
+│ agency: page_work    0.8119    0.6848    0.6564       -       0.6707   │
+│ agency: page_about   0.7537    0.6376    0.6569       -       0.6788   │
+│ fintech: page_pricing 0.7752   0.7296    0.7274    0.7553     0.7558   │
+│ fintech: page_security 0.7437  0.7064    0.6991    0.7069     0.7045   │
+│ saas: page_home      0.7066    0.6836    0.6778       -       0.6780   │
+│ portfolio: page_home 0.7617    0.7329    0.7301       -       0.7337   │
+└────────────────────────────────────────────────────────────────────────────┘
+```
+
+### 🔍 Key Temporal Insights & Model Behaviors
+
+#### 1. Solving the `t500` ≈ `t1200` Problem (Prism Studio Agency)
+* **Observation**: In our initial animation configs (`portfolio_animation`, `saas_animation`), animations were fast (`0.8s`–`1.2s`) with short stagger delays (`0.1s`), causing `t500`, `t1200`, and `settled` scores to be nearly identical.
+* **Impact of New Configs**: By introducing `agency_animation_medium` with slower durations (`1.5s`–`2.5s`) and large stagger delays (`0.3s`–`1.0s`), we successfully forced significant visual separation between intermediate frames. For example, `page_work` drops from `0.8119` at `t0` down to `0.6848` at `t500` and `0.6564` at `t1200`.
+
+#### 2. The "Uncanny Valley" of Intermediate Animation States
+* **Observation**: Across both new configs (`agency` and `fintech`), we observe a distinct "U-shaped" score trajectory. Agents achieve high scores at `t0` (initial hidden state, e.g., `0.7752`) and `settled` (final layout, e.g., `0.7558`), but experience a noticeable dip at `t500` (`0.7296`) and `t1200` (`0.7274`).
+* **Model Limitation**: This proves that while Claude Code understands *start* (`opacity: 0`) and *end* (`opacity: 1`) states perfectly, it struggles to match the precise non-linear easing curves (`cubic-bezier`) and stagger choreography during mid-flight.
+
+#### 3. Multi-Phase Choreography & `t1800` Recovery (Vault Fintech)
+* **Observation**: `fintech_animation_hard` implements complex multi-phase keyframes (fade → slide → glow pulse) with an extended `t1800` capture point.
+* **Impact on Grader**: On `page_pricing`, the score bottoms out at `t1200` (`0.7274`) during the active glow pulse transition, before recovering at `t1800` (`0.7553`) as the elements settle into their final resting positions. This confirms the grader's extreme sensitivity to micro-animation states.
+
+---
+
 ## 📚 Documentation Navigation
 
 Explore the complete documentation suite to understand the full lifecycle of `web-design-bench`:
@@ -188,3 +233,4 @@ Explore the complete documentation suite to understand the full lifecycle of `we
 2. **[Design Decisions & Trade-offs](design_decisions.md)**: Architectural thought process, grader mechanics, and framework integrations.
 3. **[Evaluation Report & Model Behavior](evaluation_report.md)**: Comprehensive analysis of the 100-trial benchmark run, `Pass@K` metrics, and deep dives into AI model failure patterns.
 4. **[Visual Grader Validation](grader_validation/grader_validation.md)**: Side-by-side reference vs. agent screenshot comparisons proving higher scores = better designs.
+5. **[Part 2: Animations & Temporal State Freezing](part2_animations.md)**: Architecture for grading CSS animations via Playwright frame freezing (`t0`, `t500`, `t1200`) and WebM video generation.

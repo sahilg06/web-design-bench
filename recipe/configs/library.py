@@ -1,5 +1,5 @@
 """
-10 diverse GenerationConfig classes for web-design-bench.
+14 diverse GenerationConfig classes for web-design-bench (10 Static v1, 4 Animation v2).
 
 Each config encodes a complete, distinctive DesignSpec: specific brand identity,
 color palette, typography, page structure, and design directives. The generator
@@ -9,7 +9,30 @@ Archetypes span dark/light, warm/cool, minimal/rich, serif/sans-serif to ensure
 SSIM/pHash comparisons are meaningful across the full difficulty spectrum.
 
 Every config produces 5 pages with a shared style.css — no JavaScript allowed.
+
+── Difficulty Tiers & Definitions ─────────────────────────────────────────────
+
+NOTE: Tiers reflect structural design complexity (density, advanced CSS styling,
+and animation choreography), not empirical agent performance. They do not imply
+that agents will achieve higher rewards on "easy" tasks; agents often excel at
+dense layouts while struggling with subtle alignment or temporal constraints.
+
+Part 1: Static Tasks (v1)
+  • Easy:   Clean, standard layouts (e.g., single column, basic grids), standard
+            typography, minimal decorative elements or complex background meshes.
+  • Medium: Richer layouts (asymmetrical sections, overlapping cards), curated
+            color palettes, custom UI components (pricing tables, calculators).
+  • Hard:   Dense, highly complex interfaces (e.g., SaaS dashboards, crypto exchanges),
+            advanced CSS styling (glassmorphism, neon glows, complex gradient meshes).
+
+Part 2: Animation Tasks (v2)
+  • Medium: Clean, elegant animations (fade-ins, slide-ups) with moderate stagger
+            delays (0.1s–0.5s). Tests basic temporal property adherence.
+  • Hard:   Multi-phase keyframes (e.g., fade → slide → glow/pulse) and complex
+            choreography with large stagger delays (0.5s–1.5s+), requiring precise
+            intermediate state matching across extended time windows (0–1800ms).
 """
+
 
 from recipe.configs import register_config
 
@@ -705,3 +728,264 @@ class ArchitectureStudioMonoHardConfig(_Base):
         "white text or outlined black, no radius. Thin 1px rules (#e0e0e0) for section "
         "separators. Footer: white with thin black top border, minimal single row."
     )
+
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# 11 · Portfolio Animation · Studio Lumina · Elegant Minimal · Medium
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+@register_config("portfolio_animation_medium")
+class PortfolioAnimationMediumConfig(_Base):
+    RECIPE_VERSION = "v2"
+    ARCHETYPE    = "portfolio_animation"
+    VISUAL_STYLE = "elegant_minimal"
+    DIFFICULTY   = "medium"
+    BRAND_NAME   = "Studio Lumina"
+    BRAND_TAGLINE = "Living design through motion"
+    ANIMATION_FRAMES_MS = [0, 500, 1200]
+    STATIC_WEIGHT = 0.6
+    ANIMATION_WEIGHT = 0.4
+    COLORS = {
+        "background":    "#0f0f12",
+        "surface":       "#1a1a20",
+        "border":        "#33333d",
+        "primary":       "#ffffff",
+        "accent":        "#ff5533",
+        "text_primary":  "#f0f0f5",
+        "text_secondary":"#9999a3",
+        "cta":           "#ff5533",
+    }
+    FONTS = ["Inter", "system-ui", "sans-serif"]
+    PAGES = [
+        {"name": "page_home",     "file": "index.html",    "label": "Home",
+         "description": "Hero section with large headline 'Living design through motion' that fades in and slides up; "
+                        "portfolio grid of 6 project cards that fade in with a staggered animation delay (0.1s to 0.6s); "
+                        "about section with sliding text overlay; footer with glowing accent bar."},
+        {"name": "page_projects", "file": "projects.html", "label": "Projects",
+         "description": "Projects gallery with 12 items; each row of projects slides in from the bottom with a smooth "
+                        "cubic-bezier easing; category filter bar with animated bottom border on active item."},
+        {"name": "page_process",  "file": "process.html",  "label": "Process",
+         "description": "4-step process timeline (Discovery, Strategy, Design, Motion); each step card animates in "
+                        "sequentially as if scrolling into view; large typography numbers (01, 02, 03, 04) with pulse animation."},
+        {"name": "page_about",    "file": "about.html",    "label": "About",
+         "description": "About page with large hero image placeholder that scales up smoothly from 0.95 to 1.0 scale; "
+                        "team grid of 4 profiles with staggered fade-in; values list with sliding underline animations."},
+        {"name": "page_contact",  "file": "contact.html",  "label": "Contact",
+         "description": "Contact form with animated input borders that expand on focus; large heading 'Let's create together' "
+                        "with subtle floating animation; social media links with bouncy hover animations."}
+    ]
+    DESIGN_DIRECTIVES = (
+        "Dark theme (#0f0f12) with vibrant coral accent (#ff5533). CRITICAL ANIMATION REQUIREMENT: "
+        "Use CSS `@keyframes` and `animation` properties extensively. All major sections (hero, project cards, "
+        "timeline steps) MUST start in an initial hidden state (e.g., `opacity: 0; transform: translateY(30px);`) "
+        "and animate to `opacity: 1; transform: translateY(0);` over 0.8s to 1.2s using smooth easing (`cubic-bezier(0.16, 1, 0.3, 1)`). "
+        "Use staggered `animation-delay` (e.g., `0.1s`, `0.2s`, `0.3s`) for grid items so they appear sequentially. "
+        "Ensure `animation-fill-mode: forwards` is set so elements stay visible after animating."
+    )
+
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# 12 · SaaS Animation · FlowSync · Modern Tech · Hard
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+@register_config("saas_animation_hard")
+class SaaSAnimationHardConfig(_Base):
+    RECIPE_VERSION = "v2"
+    ARCHETYPE    = "saas_animation"
+    VISUAL_STYLE = "modern_tech"
+    DIFFICULTY   = "hard"
+    BRAND_NAME   = "FlowSync"
+    BRAND_TAGLINE = "Automate your workflow at the speed of thought"
+    ANIMATION_FRAMES_MS = [0, 500, 1200]
+    STATIC_WEIGHT = 0.6
+    ANIMATION_WEIGHT = 0.4
+    COLORS = {
+        "background":    "#ffffff",
+        "surface":       "#f8fafc",
+        "border":        "#e2e8f0",
+        "primary":       "#0f172a",
+        "accent":        "#3b82f6",
+        "text_primary":  "#1e293b",
+        "text_secondary":"#64748b",
+        "cta":           "#3b82f6",
+    }
+    FONTS = ["Roboto", "system-ui", "sans-serif"]
+    PAGES = [
+        {"name": "page_home",     "file": "index.html",    "label": "Home",
+         "description": "SaaS landing hero with headline 'Automate your workflow at the speed of thought' sliding in from left; "
+                        "hero dashboard mockup placeholder sliding in from right; 3 feature cards with staggered fade-in; "
+                        "live metrics counter simulation with pulse animation; client logos strip with infinite scroll animation."},
+        {"name": "page_features", "file": "features.html", "label": "Features",
+         "description": "Deep-dive features page; 6 alternating left/right sections; each text block slides in from the side "
+                        "while the corresponding diagram placeholder fades in; interactive-looking comparison table with hover row highlights."},
+        {"name": "page_pricing",  "file": "pricing.html",  "label": "Pricing",
+         "description": "3 pricing tiers (Starter, Pro, Enterprise); Pro tier card is highlighted and animates with a subtle "
+                        "scale-up and glowing blue border; FAQ section with animated expand/collapse arrows."},
+        {"name": "page_docs",     "file": "docs.html",     "label": "Documentation",
+         "description": "Documentation layout with left sidebar and right content area; sidebar links slide in from left; "
+                        "code snippet boxes with animated copy button tooltips; step-by-step quickstart guide with staggered fade-in."},
+        {"name": "page_contact",  "file": "contact.html",  "label": "Contact",
+         "description": "Contact sales form with smooth slide-up animation; office locations grid with bouncing pin icon placeholders; "
+                        "support ticket CTA banner with gradient background animation."}
+    ]
+    DESIGN_DIRECTIVES = (
+        "Clean modern SaaS light theme (#ffffff) with bright blue accent (#3b82f6). CRITICAL ANIMATION REQUIREMENT: "
+        "Implement sophisticated CSS animations for all page entrances. Use `@keyframes slideInLeft`, `@keyframes slideInRight`, "
+        "and `@keyframes fadeInUp`. Elements must be hidden initially (`opacity: 0`) and use `animation-fill-mode: forwards`. "
+        "For grid and list elements, apply staggered delays (`animation-delay: 0.1s`, `0.2s`, etc.) to create a dynamic, "
+        "premium feel. Use `cubic-bezier(0.22, 1, 0.36, 1)` for snappy, professional motion."
+    )
+
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# 13 · Creative Agency Animation · Prism Studio · Bold Gradient · Medium
+#     SLOW animations: 1.5–2.0s durations, large stagger delays (0.3–1.0s)
+#     to ensure t=500 and t=1200 look distinctly different.
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+@register_config("agency_animation_medium")
+class AgencyAnimationMediumConfig(_Base):
+    RECIPE_VERSION = "v2"
+    ARCHETYPE    = "agency_animation"
+    VISUAL_STYLE = "bold_gradient"
+    DIFFICULTY   = "medium"
+    BRAND_NAME   = "Prism Studio"
+    BRAND_TAGLINE = "Where ideas take shape"
+    ANIMATION_FRAMES_MS = [0, 500, 1200]
+    STATIC_WEIGHT = 0.6
+    ANIMATION_WEIGHT = 0.4
+    COLORS = {
+        "background":    "#0a0a0f",
+        "surface":       "#151520",
+        "border":        "#2a2a3a",
+        "primary":       "#ffffff",
+        "accent":        "#a855f7",
+        "accent_warm":   "#ec4899",
+        "text_primary":  "#f5f5ff",
+        "text_secondary":"#8888aa",
+        "cta":           "#a855f7",
+    }
+    FONTS = ["Outfit", "system-ui", "sans-serif"]
+    PAGES = [
+        {"name": "page_home",     "file": "index.html",    "label": "Home",
+         "description": "Hero with headline 'Where ideas take shape' — each word appears one at a time with a "
+                        "2.0s `@keyframes wordReveal` animation using `animation-delay: 0s, 0.4s, 0.8s, 1.2s` for each word. "
+                        "Words start invisible (`opacity: 0; transform: translateY(40px)`) and slide up. "
+                        "Below the hero: 3 large service cards (Strategy, Design, Build) that each have a 1.5s fade-in "
+                        "with stagger delays of `0.3s, 0.6s, 0.9s` — at t=500ms only the first card should be partially visible. "
+                        "Bottom: client logo bar with a slow 1.8s opacity fade."},
+        {"name": "page_work",     "file": "work.html",     "label": "Work",
+         "description": "Portfolio grid with 8 project cards arranged 2×4. Each card uses a 1.5s `@keyframes slideUp` "
+                        "with stagger delays of `0.15s` between cards (0.15s, 0.30s, 0.45s, ... 1.20s). "
+                        "At t=500ms, only the first 3 cards should be partially visible; at t=1200ms all 8 should be visible. "
+                        "Each card slides up from `translateY(60px)` with `opacity: 0`. Category filters at top with a "
+                        "separate 1.2s slide-down animation."},
+        {"name": "page_services", "file": "services.html", "label": "Services",
+         "description": "5 service sections stacked vertically, each with icon + title + description. "
+                        "Each section uses a 2.0s `@keyframes expandIn` (starts at `scale(0.8); opacity: 0;` → `scale(1); opacity: 1;`). "
+                        "Stagger delays: `0s, 0.5s, 1.0s, 1.5s, 2.0s`. At t=500ms only the first section is visible; "
+                        "at t=1200ms the first 3 are visible; the last 2 are still hidden. "
+                        "Purple-to-pink gradient accent line between sections with a 2.5s width animation from 0% to 100%."},
+        {"name": "page_about",    "file": "about.html",    "label": "About",
+         "description": "About page with a large team photo placeholder that uses a 2.0s `@keyframes clipReveal` — "
+                        "starts with `clip-path: inset(0 100% 0 0)` and reveals to `clip-path: inset(0 0 0 0)`. "
+                        "Below: 4 team member cards with 1.5s fade-in, staggered by 0.4s each (0.4s, 0.8s, 1.2s, 1.6s). "
+                        "Stats counter section (150+, 50+, 12) with a 1.8s scale-up animation starting at delay 0.6s."},
+        {"name": "page_contact",  "file": "contact.html",  "label": "Contact",
+         "description": "Contact form where each input field slides in from the left with a 1.5s animation, "
+                        "staggered by 0.3s per field (5 fields: 0.3s, 0.6s, 0.9s, 1.2s, 1.5s). "
+                        "Submit button fades in last with a 1.0s delay of 1.8s. Map placeholder on the right "
+                        "uses a 2.0s fade-in starting at 0.5s delay."}
+    ]
+    DESIGN_DIRECTIVES = (
+        "Dark theme (#0a0a0f) with purple-to-pink gradient accents. CRITICAL ANIMATION REQUIREMENT: "
+        "All animations MUST be SLOW — use durations of 1.5s to 2.5s (NOT 0.8s). This is essential. "
+        "Use large `animation-delay` values to create heavy staggering: first element at 0s, second at 0.3s-0.5s, "
+        "third at 0.6s-1.0s, etc. This ensures intermediate frames at t=500ms look VERY different from t=1200ms. "
+        "Keyframes should use smooth easing: `cubic-bezier(0.25, 0.1, 0.25, 1.0)` (ease). "
+        "All animated elements MUST start hidden (`opacity: 0; transform: translateY(40px);`) and MUST set "
+        "`animation-fill-mode: forwards`. DO NOT use fast animations under 1.0s duration."
+    )
+
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# 14 · Fintech Dashboard Animation · Vault · Dark Precision · Hard
+#     MULTI-PHASE animations: elements fade in, then slide, then glow.
+#     Extra capture at t=1800ms for very slow stagger.
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+@register_config("fintech_animation_hard")
+class FintechAnimationHardConfig(_Base):
+    RECIPE_VERSION = "v2"
+    ARCHETYPE    = "fintech_animation"
+    VISUAL_STYLE = "dark_precision"
+    DIFFICULTY   = "hard"
+    BRAND_NAME   = "Vault"
+    BRAND_TAGLINE = "Your wealth, engineered"
+    ANIMATION_FRAMES_MS = [0, 500, 1200, 1800]
+    STATIC_WEIGHT = 0.5
+    ANIMATION_WEIGHT = 0.5
+    COLORS = {
+        "background":    "#09090b",
+        "surface":       "#18181b",
+        "surface_alt":   "#27272a",
+        "border":        "#3f3f46",
+        "primary":       "#fafafa",
+        "accent":        "#10b981",
+        "accent_warm":   "#f59e0b",
+        "danger":        "#ef4444",
+        "text_primary":  "#fafafa",
+        "text_secondary":"#a1a1aa",
+        "cta":           "#10b981",
+    }
+    FONTS = ["Inter", "system-ui", "sans-serif"]
+    PAGES = [
+        {"name": "page_home",     "file": "index.html",    "label": "Home",
+         "description": "Fintech landing with headline 'Your wealth, engineered' using a 2.5s multi-phase keyframe: "
+                        "phase 1 (0%-40%): fade in from `opacity: 0` to `opacity: 1`; "
+                        "phase 2 (40%-70%): slide up from `translateY(20px)` to `translateY(0)`; "
+                        "phase 3 (70%-100%): text gets a subtle green glow `text-shadow: 0 0 20px #10b981`. "
+                        "3 stats cards (AUM $2.4B, Users 50K+, Uptime 99.99%) each with a 2.0s animation, "
+                        "staggered by 0.5s (delays: 0.5s, 1.0s, 1.5s). Dashboard preview mockup on right "
+                        "slides in from right with a 2.0s animation starting at delay 0.8s."},
+        {"name": "page_features", "file": "features.html", "label": "Features",
+         "description": "6 feature cards in a 2×3 grid. Each card has a 2.0s multi-phase animation: "
+                        "phase 1 (0%-50%): scale from `scale(0.85)` to `scale(1)` while fading in; "
+                        "phase 2 (50%-100%): border changes from transparent to green `border-color: #10b981`. "
+                        "Stagger delays: 0.2s, 0.4s, 0.6s, 0.8s, 1.0s, 1.2s — so at t=500ms only 2 cards are mid-animation, "
+                        "at t=1200ms all 6 are visible but only 4 have completed their border color change."},
+        {"name": "page_pricing",  "file": "pricing.html",  "label": "Pricing",
+         "description": "3 pricing tiers side by side. Each tier card uses a 1.8s `@keyframes slideUpFade` "
+                        "with delays of 0.3s, 0.7s, 1.1s. The middle 'Pro' card has an additional 2.5s "
+                        "`@keyframes glowPulse` that starts AFTER the slide (delay 1.5s): "
+                        "the border alternates between `#10b981` and `#10b981/50%` opacity. "
+                        "At t=500ms only the first card is visible; at t=1200ms all 3 visible but Pro hasn't started glowing yet; "
+                        "at t=1800ms the Pro card is actively glowing."},
+        {"name": "page_security", "file": "security.html", "label": "Security",
+         "description": "Security page with a large shield icon placeholder in the center that uses a 3.0s "
+                        "`@keyframes shieldReveal`: phase 1 (0%-30%): fade in; phase 2 (30%-60%): scale from 0.7 to 1.0; "
+                        "phase 3 (60%-100%): green glow appears around the shield. "
+                        "Below: 4 security feature rows that slide in from alternating left/right sides, "
+                        "each with 1.5s duration and stagger delays of 0.4s, 0.8s, 1.2s, 1.6s. "
+                        "Compliance badges at bottom fade in with 2.0s animation starting at delay 1.8s."},
+        {"name": "page_contact",  "file": "contact.html",  "label": "Contact",
+         "description": "Contact form with a 2-column layout. Left column (company info) slides in from left "
+                        "with 2.0s animation. Right column (form fields) — each of 6 fields slides up with 1.5s animation, "
+                        "staggered by 0.25s (delays: 0.3s, 0.55s, 0.80s, 1.05s, 1.30s, 1.55s). "
+                        "CTA button at bottom uses a 1.0s animation starting at delay 2.0s. "
+                        "At t=500ms only the left column and first 1-2 fields are visible; "
+                        "at t=1200ms most fields visible but button hidden; at t=1800ms everything visible."}
+    ]
+    DESIGN_DIRECTIVES = (
+        "Ultra-dark fintech theme (#09090b) with emerald green accent (#10b981) and amber warning (#f59e0b). "
+        "CRITICAL ANIMATION REQUIREMENT: Use MULTI-PHASE `@keyframes` with 3+ stages. Example: "
+        "`@keyframes cardReveal { 0% { opacity: 0; transform: scale(0.85); border-color: transparent; } "
+        "50% { opacity: 1; transform: scale(1); border-color: transparent; } "
+        "100% { opacity: 1; transform: scale(1); border-color: #10b981; } }`. "
+        "All durations MUST be 1.5s to 3.0s — NO fast animations under 1.0s. "
+        "Use LARGE stagger delays (0.3s to 0.5s between items) so that at t=500ms only 1-2 elements are visible, "
+        "at t=1200ms 4-5 elements are visible, and at t=1800ms everything is fully settled. "
+        "All animated elements start hidden (`opacity: 0`) with `animation-fill-mode: forwards`. "
+        "Use `cubic-bezier(0.33, 1, 0.68, 1)` for smooth deceleration."
+    )
+
