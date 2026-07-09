@@ -2,14 +2,14 @@
 """
 Comprehensive grading scheme analysis.
 
-Analyzes the 100-trial evaluation to understand:
+Analyzes the 140-trial evaluation (100 static/animation trials + 40 framework trials) to understand:
 1. Are SSIM, pHash, and ColorHist capturing different signals or redundant?
 2. Are the weights (50/30/20) optimal?
 3. Which metric drives score variance the most?
-4. Per-task metric behavior patterns
+4. Per-task metric behavior patterns across static, animation, and framework suites.
 
 Usage:
-    uv run python eval/grading_analysis.py --job jobs/2026-07-08__13-32-33
+    uv run python eval/grading_analysis.py --job jobs/2026-07-09__13-09-00
 """
 
 import argparse
@@ -19,20 +19,7 @@ import os
 import sys
 from pathlib import Path
 from collections import defaultdict
-
-
-ARCHETYPE_MAP = {
-    "v1-aistartupneonhardconfig-73475": "AI Startup",
-    "v1-architecturestudiomonohardcon": "Architecture Studio",
-    "v1-cryptoexchangecyberpunkhardco": "Crypto Exchange",
-    "v1-fooddeliveryplayfulmediumconf": "Food Delivery",
-    "v1-indiegameretromediumconfig-73": "Indie Game",
-    "v1-lawfirmcorporateeasyconfig-73": "Law Firm",
-    "v1-luxuryfashionserifmediumconfi": "Luxury Fashion",
-    "v1-musicstreaminggradientmediumc": "Music Streaming",
-    "v1-travelagencytropicalmediumcon": "Travel Agency",
-    "v1-wellnessspaorganiceasyconfig": "Wellness Spa",
-}
+from eval import get_task_display_name
 
 
 def pearson_r(xs, ys):
@@ -59,6 +46,7 @@ def load_all_page_metrics(job_dir: Path):
             continue
 
         task_key = entry.rsplit("__", 1)[0]
+        task_name = get_task_display_name(task_key)
         with open(reward_file) as f:
             data = json.load(f)
 
@@ -77,7 +65,7 @@ def load_all_page_metrics(job_dir: Path):
             score_final = data.get(f"{page}_score_final", 0)
 
             records.append({
-                "task": task_key,
+                "task": task_name,
                 "trial": entry,
                 "page": page,
                 "ssim": ssim,
@@ -152,7 +140,6 @@ def analyze_metric_distributions(records):
         for v in vals:
             if v < 0.50: buckets["<0.50"] += 1
             elif v < 0.60: buckets["0.50-0.60"] += 1
-            elif v < 0.60: buckets["0.60-0.70"] += 1
             elif v < 0.70: buckets["0.60-0.70"] += 1
             elif v < 0.80: buckets["0.70-0.80"] += 1
             elif v < 0.90: buckets["0.80-0.90"] += 1

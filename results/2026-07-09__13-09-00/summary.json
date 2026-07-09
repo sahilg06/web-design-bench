@@ -1,0 +1,60 @@
+{
+  "run_id": "2026-07-09__13-09-00",
+  "timestamp": "2026-07-09T13:09:00.910195",
+  "model": "claude-code",
+  "agent": "claude-code",
+  "env": "unknown",
+  "n_tasks": 4,
+  "n_trials": 40,
+  "n_errors": 0,
+  "mean_reward": 0.8848,
+  "min_reward": 0.7353,
+  "max_reward": 0.947,
+  "std_reward": 0.0449,
+  "pass_at_1_070": 1.0,
+  "pass_at_5_070": 1.0,
+  "pass_at_10_070": 1.0,
+  "job_path": "/usr/local/google/home/goyalsahil/web-design-bench/jobs/2026-07-09__13-09-00",
+  "per_task": {
+    "v3-reactcsseasyconfig-73475c": {
+      "mean": 0.9254,
+      "min": 0.9045,
+      "max": 0.947,
+      "n": 10,
+      "mean_ssim": 0.7985,
+      "mean_phash": 0.8112,
+      "mean_color_hist": 0.9831,
+      "mean_height_ratio": 0.9329
+    },
+    "v3-reacttailwindmediumconfig-734": {
+      "mean": 0.8624,
+      "min": 0.8361,
+      "max": 0.8899,
+      "n": 10,
+      "mean_ssim": 0.7518,
+      "mean_phash": 0.7481,
+      "mean_color_hist": 0.7899,
+      "mean_height_ratio": 0.9487
+    },
+    "v3-solidcssmediumconfig-73475c": {
+      "mean": 0.876,
+      "min": 0.7353,
+      "max": 0.9195,
+      "n": 10,
+      "mean_ssim": 0.7663,
+      "mean_phash": 0.7513,
+      "mean_color_hist": 0.9555,
+      "mean_height_ratio": 0.9192
+    },
+    "v3-solidtailwindhardconfig-73475": {
+      "mean": 0.8754,
+      "min": 0.8347,
+      "max": 0.9104,
+      "n": 10,
+      "mean_ssim": 0.7232,
+      "mean_phash": 0.7594,
+      "mean_color_hist": 0.9703,
+      "mean_height_ratio": 0.9412
+    }
+  }
+}

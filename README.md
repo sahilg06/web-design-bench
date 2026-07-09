@@ -119,7 +119,7 @@ Once running, open your web browser to [http://localhost:8080/](http://localhost
 Synthesize brand new, safety-validated tasks of custom visual styles and difficulty tiers at scale using the generation CLI:
 
 ```bash
-# List all available archetype configs (14 total: 10 Static v1, 4 Animation v2)
+# List all available archetype configs (18 total: 10 Static v1, 4 Animation v2, 4 Framework v3)
 uv run python -m recipe.generate --list
 
 # Generate a single AI Startup task (Seed 42)
@@ -127,7 +127,7 @@ uv run python -m recipe.generate --config ai_startup_neon_hard --seed 42
 ```
 
 ### 🎛️ Difficulty Tiers & Config Library
-The benchmark includes 14 distinct archetype configurations in `recipe/configs/library.py`, categorized into clear difficulty tiers based on design and layout complexity.
+The benchmark includes 18 distinct archetype configurations in `recipe/configs/library.py`, categorized into clear difficulty tiers based on design and layout complexity.
 
 > [!NOTE]
 > **Tiers reflect structural complexity, not empirical agent performance.** These difficulty labels (`easy`, `medium`, `hard`) categorize the density, advanced CSS styling, and animation choreography required by the design specification. They do not imply that agents will achieve higher rewards on "easy" tasks; state-of-the-art agents often excel at dense, structured layouts while struggling with specific subtle alignment or temporal constraints regardless of the nominal tier.
@@ -145,6 +145,16 @@ The benchmark includes 14 distinct archetype configurations in `recipe/configs/l
   * `portfolio_animation_medium`, `agency_animation_medium`
 * **Hard**: Multi-phase keyframes (e.g., fade → slide → glow/pulse) and complex choreography with large stagger delays (0.5s–1.5s+), requiring precise intermediate state matching across extended time windows (0–1800ms).
   * `saas_animation_hard`, `fintech_animation_hard`
+
+#### Part 3: Framework Tasks (v3)
+* **React JS + Vanilla CSS**: Single Page Application (SPA) using Vite and Vanilla CSS custom properties.
+  * `react_css_easy`
+* **React JS + Tailwind CSS**: SPA using Vite and Tailwind CSS utility classes.
+  * `react_tailwind_medium`
+* **Solid JS + Vanilla CSS**: SPA using Vite, Solid signals, and Vanilla CSS.
+  * `solid_css_medium`
+* **Solid JS + Tailwind CSS**: SPA using Vite, Solid signals, and Tailwind CSS (`class` attribute convention).
+  * `solid_tailwind_hard`
 
 ---
 

@@ -63,11 +63,25 @@ def _generate_task_toml(
     archetype = getattr(config, "ARCHETYPE", "generic")
     viewports_json = json.dumps(getattr(config, "VIEWPORTS", ["desktop"]))
 
+    fw = getattr(config, "FRAMEWORK", "html_css")
+    diff = getattr(config, "DIFFICULTY", "medium").capitalize()
+    if fw == "react_css":
+        display_name = f"React JS + Vanilla CSS ({diff})"
+    elif fw == "react_tailwind":
+        display_name = f"React JS + Tailwind CSS ({diff})"
+    elif fw == "solid_css":
+        display_name = f"Solid JS + Vanilla CSS ({diff})"
+    elif fw == "solid_tailwind":
+        display_name = f"Solid JS + Tailwind CSS ({diff})"
+    else:
+        display_name = f"{archetype.replace('_', ' ').title()} ({diff})"
+
     return f"""\
 schema_version = "1.1"
 
 [task]
 name = "web-design-bench/{tid}"
+display_name = "{display_name}"
 description = "Replicate a {archetype} website design from screenshots using HTML and CSS only."
 authors = [{{ name = "web-design-bench" }}]
 keywords = ["web-design", "html", "css", "replication", "visual", "{archetype}"]
@@ -112,6 +126,7 @@ def _generate_instruction_md(
         viewports[0] if viewports else "desktop", {}
     ).get("width", 1280)
     animation_frames_ms = getattr(config, "ANIMATION_FRAMES_MS", None)
+    fw = design_spec.get("framework", "html_css")
 
     fonts = design_spec.get("fonts", [])
     colors = design_spec.get("colors", {})
@@ -119,9 +134,26 @@ def _generate_instruction_md(
     lines: list[str] = []
     lines.append("# Website Design Replication Task")
     lines.append("")
-    lines.append("You are a Claude Code agent running inside a container. Your goal is to "
-                  "**replicate a multi-page website design as faithfully as possible** using "
-                  "**HTML and CSS only** — no JavaScript.")
+    if fw == "react_css":
+        lines.append("You are a Claude Code agent running inside a container. Your goal is to "
+                      "**replicate a multi-page website design as faithfully as possible** using "
+                      "**React JS and Vanilla CSS** via Vite.")
+    elif fw == "react_tailwind":
+        lines.append("You are a Claude Code agent running inside a container. Your goal is to "
+                      "**replicate a multi-page website design as faithfully as possible** using "
+                      "**React JS and Tailwind CSS** via Vite.")
+    elif fw == "solid_css":
+        lines.append("You are a Claude Code agent running inside a container. Your goal is to "
+                      "**replicate a multi-page website design as faithfully as possible** using "
+                      "**Solid JS and Vanilla CSS** via Vite.")
+    elif fw == "solid_tailwind":
+        lines.append("You are a Claude Code agent running inside a container. Your goal is to "
+                      "**replicate a multi-page website design as faithfully as possible** using "
+                      "**Solid JS and Tailwind CSS** via Vite.")
+    else:
+        lines.append("You are a Claude Code agent running inside a container. Your goal is to "
+                      "**replicate a multi-page website design as faithfully as possible** using "
+                      "**HTML and CSS only** — no JavaScript.")
     lines.append("")
 
     # Step 1: Screenshots and Videos
@@ -188,28 +220,60 @@ def _generate_instruction_md(
     lines.append("")
     lines.append("Create the following files in `/app/output/`:")
     lines.append("")
-    lines.append("```")
-    lines.append("/app/output/")
-    for page in pages:
-        lines.append(f"├── {page['file']}  ({page['label']})")
-    lines.append("└── style.css       (Shared stylesheet — all pages link to this)")
-    lines.append("```")
-    lines.append("")
-    lines.append("### Requirements")
-    lines.append("")
-    lines.append("1. **HTML and CSS only** — no JavaScript (`<script>` tags, `.js` files, "
-                  "`onclick` attributes are all forbidden)")
-    lines.append(f"2. **Single shared stylesheet** at `/app/output/style.css` — every HTML file "
-                  f"must include `<link rel=\"stylesheet\" href=\"style.css\">`")
-    lines.append(f"3. **Consistent navigation** on every page with relative links to all "
-                  f"{len(pages)} pages")
-    lines.append("4. **Match the visual design closely**: colors, fonts, spacing, section "
-                  "structure, decorative elements")
-    if animation_frames_ms:
-        lines.append("5. **Match the CSS animations**: ensure elements animate exactly as seen in the WebM videos (e.g. fade-in, slide-up, stagger). Elements must start in their correct initial state (e.g. opacity 0) before animating.")
-    lines.append("6. **Self-contained**: no external CDN links — embed all styles in `style.css`")
-    lines.append("7. **Do not modify any files in `/tests/`** — they are used to verify your output")
-    lines.append("8. Write files using the `Write` tool directly to `/app/output/<filename>`")
+
+    if fw != "html_css":
+        lines.append("```")
+        lines.append("/app/output/")
+        lines.append("├── package.json")
+        lines.append("├── vite.config.js")
+        if "tailwind" in fw:
+            lines.append("├── tailwind.config.js")
+            lines.append("├── postcss.config.js")
+        lines.append("├── index.html")
+        lines.append("└── src/")
+        lines.append("    ├── App.jsx")
+        lines.append("    ├── index.css")
+        lines.append("    └── pages/")
+        for page in pages:
+            comp_name = page["name"].replace("page_", "").capitalize()
+            lines.append(f"        ├── {comp_name}.jsx  ({page['label']})")
+        lines.append("```")
+        lines.append("")
+        lines.append("### Requirements")
+        lines.append("")
+        lines.append(f"1. **Scaffold a Vite {fw.replace('_', ' ').upper()} project** in `/app/output/`.")
+        lines.append("2. **`vite.config.js` MUST include `base: './'`** so the app builds with relative file paths.")
+        lines.append("3. **Consistent navigation** in `src/App.jsx` to switch between all page components.")
+        lines.append("4. **Match the visual design closely**: colors, fonts, spacing, section structure, decorative elements.")
+        if animation_frames_ms:
+            lines.append("5. **Match the CSS animations**: ensure elements animate exactly as seen in the WebM videos.")
+        lines.append("6. **Self-contained**: no external CDN links — embed all styles/configs locally.")
+        lines.append("7. **Do not modify any files in `/tests/`** — they are used to verify your output.")
+        lines.append("8. Write files using the `Write` tool directly to `/app/output/<filename>`.")
+    else:
+        lines.append("```")
+        lines.append("/app/output/")
+        for page in pages:
+            lines.append(f"├── {page['file']}  ({page['label']})")
+        lines.append("└── style.css       (Shared stylesheet — all pages link to this)")
+        lines.append("```")
+        lines.append("")
+        lines.append("### Requirements")
+        lines.append("")
+        lines.append("1. **HTML and CSS only** — no JavaScript (`<script>` tags, `.js` files, "
+                      "`onclick` attributes are all forbidden)")
+        lines.append(f"2. **Single shared stylesheet** at `/app/output/style.css` — every HTML file "
+                      f"must include `<link rel=\"stylesheet\" href=\"style.css\">`")
+        lines.append(f"3. **Consistent navigation** on every page with relative links to all "
+                      f"{len(pages)} pages")
+        lines.append("4. **Match the visual design closely**: colors, fonts, spacing, section "
+                      "structure, decorative elements")
+        if animation_frames_ms:
+            lines.append("5. **Match the CSS animations**: ensure elements animate exactly as seen in the WebM videos (e.g. fade-in, slide-up, stagger). Elements must start in their correct initial state (e.g. opacity 0) before animating.")
+        lines.append("6. **Self-contained**: no external CDN links — embed all styles in `style.css`")
+        lines.append("7. **Do not modify any files in `/tests/`** — they are used to verify your output")
+        lines.append("8. Write files using the `Write` tool directly to `/app/output/<filename>`")
+
     lines.append("")
     lines.append("### Validation")
     lines.append("")
@@ -220,22 +284,27 @@ def _generate_instruction_md(
     lines.append("The verifier will report which files are missing and display a reward score.")
     lines.append("Aim for a score as close to 1.0 as possible.")
     lines.append("")
-    lines.append("Start by reading all reference assets, then write `style.css`, "
-                  "then each HTML page.")
+    lines.append("Start by reading all reference assets, then write your configuration/styles, "
+                  "then each component/page.")
 
     return "\n".join(lines)
 
 
-def _generate_dockerfile() -> str:
+def _generate_dockerfile(config: Any) -> str:
     """Generate the Dockerfile for the task environment."""
-    return """\
+    fw = getattr(config, "FRAMEWORK", "html_css")
+    node_install = ""
+    if fw != "html_css":
+        node_install = "    nodejs \\\n    npm \\\n"
+
+    return f"""\
 FROM python:3.11-slim
 
 # Install system packages:
 #   - fonts-liberation: clean Latin fonts for consistent rendering
 #   - libglib2.0-0 etc: Chromium runtime deps needed by Playwright's bundled browser
 RUN apt-get update && apt-get install -y --no-install-recommends \\
-    fonts-liberation \\
+{node_install}    fonts-liberation \\
     libglib2.0-0 \\
     libnss3 \\
     libatk1.0-0 \\
@@ -354,7 +423,7 @@ def assemble(
     logger.info("  Copied environment/assets/")
 
     # ── environment/Dockerfile ───────────────────────────────────────────────
-    dockerfile_content = _generate_dockerfile()
+    dockerfile_content = _generate_dockerfile(config)
     (env_dir / "Dockerfile").write_text(dockerfile_content)
     logger.info("  Wrote Dockerfile")
 
@@ -365,6 +434,7 @@ def assemble(
     # Write pages.json
     pages_cfg = {
         "pages":            pages,
+        "framework":        getattr(config, "FRAMEWORK", "html_css"),
         "viewports":        getattr(config, "VIEWPORT_SIZES", {}),
         "active_viewports": getattr(config, "VIEWPORTS", ["desktop"]),
         "screenshot_fmt":   getattr(config, "SCREENSHOT_FMT", "png"),
@@ -372,6 +442,7 @@ def assemble(
         "phash_weight":     getattr(config, "PHASH_WEIGHT", 0.4),
         "dom_iou_weight":   getattr(config, "DOM_IOU_WEIGHT", 0.0),
     }
+
     if getattr(config, "ANIMATION_FRAMES_MS", None):
         pages_cfg["animation_frames_ms"] = config.ANIMATION_FRAMES_MS
         pages_cfg["static_weight"] = getattr(config, "STATIC_WEIGHT", 0.6)

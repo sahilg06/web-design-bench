@@ -27,17 +27,20 @@ def resolve_api_key() -> str:
     """Resolve the Anthropic API key from env var or macOS Keychain."""
     key = os.environ.get("ANTHROPIC_API_KEY", "").strip()
     if not key:
-        result = subprocess.run(
-            [
-                "security", "find-generic-password",
-                "-s", "anthropic-api-key",
-                "-a", os.environ.get("USER", ""),
-                "-w",
-            ],
-            capture_output=True,
-            text=True,
-        )
-        key = result.stdout.strip()
+        try:
+            result = subprocess.run(
+                [
+                    "security", "find-generic-password",
+                    "-s", "anthropic-api-key",
+                    "-a", os.environ.get("USER", ""),
+                    "-w",
+                ],
+                capture_output=True,
+                text=True,
+            )
+            key = result.stdout.strip()
+        except Exception:
+            pass
     if not key:
         sys.exit(
             "ERROR: ANTHROPIC_API_KEY not set and not found in macOS Keychain.\n"

@@ -1,5 +1,5 @@
 """
-14 diverse GenerationConfig classes for web-design-bench (10 Static v1, 4 Animation v2).
+18 diverse GenerationConfig classes for web-design-bench (10 Static v1, 4 Animation v2, 4 Framework v3).
 
 Each config encodes a complete, distinctive DesignSpec: specific brand identity,
 color palette, typography, page structure, and design directives. The generator
@@ -41,6 +41,7 @@ from recipe.configs import register_config
 
 class _Base:
     RECIPE_VERSION     = "v1"
+    FRAMEWORK          = "html_css"
     VIEWPORTS          = ["desktop"]
     VIEWPORT_SIZES     = {"desktop": {"width": 1280, "height": 800}}
     FULL_PAGE          = True
@@ -988,4 +989,166 @@ class FintechAnimationHardConfig(_Base):
         "All animated elements start hidden (`opacity: 0`) with `animation-fill-mode: forwards`. "
         "Use `cubic-bezier(0.33, 1, 0.68, 1)` for smooth deceleration."
     )
+
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# 15 · React JS + Vanilla CSS · Luminary AI · Clean Corporate · Easy
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+@register_config("react_css_easy")
+class ReactCSSEasyConfig(_Base):
+    RECIPE_VERSION = "v3"
+    FRAMEWORK    = "react_css"
+    ARCHETYPE    = "react_css_easy"
+    VISUAL_STYLE = "clean_corporate"
+    DIFFICULTY   = "easy"
+    BRAND_NAME   = "Luminary AI"
+    BRAND_TAGLINE = "Intelligence Simplified"
+    COLORS = {
+        "background":    "#f8fafc",
+        "surface":       "#ffffff",
+        "border":        "#e2e8f0",
+        "primary":       "#0f172a",
+        "accent":        "#2563eb",
+        "text_primary":  "#1e293b",
+        "text_secondary":"#64748b",
+        "cta":           "#2563eb",
+    }
+    FONTS = ["Inter", "system-ui", "sans-serif"]
+    PAGES = [
+        {"name": "page_home",     "file": "index.html", "label": "Home",     "description": "Clean corporate dashboard hero with headline 'Intelligence Simplified'; 3 value prop cards (Speed, Accuracy, Security); client logo strip."},
+        {"name": "page_features", "file": "index.html", "label": "Features", "description": "Features grid with 6 clean cards; interactive-looking toggle between 'Cloud' and 'On-Premise' features."},
+        {"name": "page_pricing",  "file": "index.html", "label": "Pricing",  "description": "3 simple pricing tiers (Basic, Professional, Enterprise); clean comparison table."},
+        {"name": "page_about",    "file": "index.html", "label": "About",    "description": "Company mission statement; leadership team grid of 3 profiles with placeholder images."},
+        {"name": "page_contact",  "file": "index.html", "label": "Contact",  "description": "Clean contact form with name, email, and message inputs; office location card."}
+    ]
+    DESIGN_DIRECTIVES = (
+        "Clean corporate light theme (#f8fafc) with royal blue accent (#2563eb). "
+        "Use Vanilla CSS custom properties in src/index.css for all styling. "
+        "Ensure clean flexbox/grid layouts with generous padding (2rem–4rem) and subtle box-shadows."
+    )
+
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# 16 · React JS + Tailwind CSS · Nexus SaaS · Modern Tech · Medium
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+@register_config("react_tailwind_medium")
+class ReactTailwindMediumConfig(_Base):
+    RECIPE_VERSION = "v3"
+    FRAMEWORK    = "react_tailwind"
+    ARCHETYPE    = "react_tailwind_medium"
+    VISUAL_STYLE = "modern_tech"
+    DIFFICULTY   = "medium"
+    BRAND_NAME   = "Nexus SaaS"
+    BRAND_TAGLINE = "Connect Everything"
+    COLORS = {
+        "background":    "#0f172a",
+        "surface":       "#1e293b",
+        "border":        "#334155",
+        "primary":       "#ffffff",
+        "accent":        "#38bdf8",
+        "accent_warm":   "#818cf8",
+        "text_primary":  "#f1f5f9",
+        "text_secondary":"#94a3b8",
+        "cta":           "#38bdf8",
+    }
+    FONTS = ["Roboto", "system-ui", "sans-serif"]
+    PAGES = [
+        {"name": "page_home",     "file": "index.html", "label": "Home",     "description": "Modern SaaS dark hero with headline 'Connect Everything'; large app mockup placeholder; 4 feature cards with gradient borders."},
+        {"name": "page_solutions","file": "index.html", "label": "Solutions","description": "Industry solutions page; alternating left/right layout for Healthcare, Finance, and Retail with placeholder illustrations."},
+        {"name": "page_pricing",  "file": "index.html", "label": "Pricing",  "description": "Pricing page with monthly/annual toggle visual; Pro tier highlighted with glowing cyan border."},
+        {"name": "page_docs",     "file": "index.html", "label": "Docs",     "description": "Documentation layout with left sidebar navigation and right content area with code snippet boxes."},
+        {"name": "page_contact",  "file": "index.html", "label": "Contact",  "description": "Contact sales form with 2-column layout; left has sales info, right has form inputs."}
+    ]
+    DESIGN_DIRECTIVES = (
+        "Modern SaaS dark theme (#0f172a) with cyan (#38bdf8) and indigo (#818cf8) accents. "
+        "Use Tailwind CSS utility classes exclusively (className='bg-slate-900 text-slate-100...'). "
+        "Leverage Tailwind's gradient text (`bg-clip-text bg-gradient-to-r...`) and backdrop-blur utilities."
+    )
+
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# 17 · Solid JS + Tailwind CSS · Cypher DEX · Cyberpunk Dark · Hard
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+@register_config("solid_tailwind_hard")
+class SolidTailwindHardConfig(_Base):
+    RECIPE_VERSION = "v3"
+    FRAMEWORK    = "solid_tailwind"
+    ARCHETYPE    = "solid_tailwind_hard"
+    VISUAL_STYLE = "cyberpunk_dark"
+    DIFFICULTY   = "hard"
+    BRAND_NAME   = "Cypher DEX"
+    BRAND_TAGLINE = "Trade at Light Speed"
+    COLORS = {
+        "background":    "#09090b",
+        "surface":       "#18181b",
+        "border":        "#27272a",
+        "primary":       "#ffffff",
+        "accent":        "#10b981",
+        "accent_warm":   "#f59e0b",
+        "danger":        "#ef4444",
+        "text_primary":  "#fafafa",
+        "text_secondary":"#a1a1aa",
+        "cta":           "#10b981",
+    }
+    FONTS = ["Outfit", "system-ui", "sans-serif"]
+    PAGES = [
+        {"name": "page_home",     "file": "index.html", "label": "Home",     "description": "Cyberpunk crypto trading hero with headline 'Trade at Light Speed'; real-time ticker bar simulation; 4 market summary cards (BTC, ETH, SOL, AVAX) with green/red percentage pills."},
+        {"name": "page_markets",  "file": "index.html", "label": "Markets",  "description": "Dense markets table with 15 rows showing Asset, Price, 24h Change, Volume, and Trade CTA button; filter tabs at top."},
+        {"name": "page_trade",    "file": "index.html", "label": "Trade",    "description": "Advanced trading interface layout; left chart placeholder, middle order book simulation (green buy rows, red sell rows), right order placement form (Buy/Sell tabs, limit price, amount, place order button)."},
+        {"name": "page_earn",     "file": "index.html", "label": "Earn",     "description": "Staking and yield farming page; 6 staking pool cards (APY 12%, 18%, 24%) with stake/unstake action buttons."},
+        {"name": "page_wallet",   "file": "index.html", "label": "Wallet",   "description": "User wallet dashboard simulation; total balance display ($45,210.80); asset allocation pie chart placeholder; recent transaction history list."}
+    ]
+    DESIGN_DIRECTIVES = (
+        "Ultra-dark cyberpunk crypto theme (#09090b) with emerald green (#10b981) and amber (#f59e0b) accents. "
+        "Use Tailwind CSS utility classes exclusively with Solid JS JSX conventions (`class`, NOT `className`). "
+        "Create dense, highly structured financial interfaces with monospace numbers, crisp borders (`border border-zinc-800`), and glowing hover states."
+    )
+
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# 18 · Solid JS + Vanilla CSS · Aura Creative · Portfolio Warm · Medium
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+@register_config("solid_css_medium")
+class SolidCSSMediumConfig(_Base):
+    RECIPE_VERSION = "v3"
+    FRAMEWORK    = "solid_css"
+    ARCHETYPE    = "solid_css_medium"
+    VISUAL_STYLE = "portfolio_warm"
+    DIFFICULTY   = "medium"
+    BRAND_NAME   = "Aura Creative"
+    BRAND_TAGLINE = "Design Without Boundaries"
+    COLORS = {
+        "background":    "#1a1a1a",
+        "surface":       "#242424",
+        "border":        "#3a3a3a",
+        "primary":       "#f5f5f5",
+        "accent":        "#ff6b35",
+        "accent_cool":   "#667eea",
+        "text_primary":  "#f0f0f0",
+        "text_secondary":"#999999",
+        "cta":           "#ff6b35",
+    }
+    FONTS = ["DM Sans", "system-ui", "sans-serif"]
+    PAGES = [
+        {"name": "page_home",      "file": "index.html", "label": "Home",      "description": "Bold dark hero with oversized headline 'Design Without Boundaries' in a warm sans-serif; vibrant orange accent CTA 'View Our Work'; featured projects showcase with 3 large project cards showing colored placeholder images, project title, and category tag; studio philosophy quote in large italic; client logos strip (6 brand names)."},
+        {"name": "page_work",      "file": "index.html", "label": "Work",      "description": "Portfolio grid: filter tabs (All, Branding, Web, Mobile, Print); 6 project cards in 2×3 grid, each with colored placeholder, hover overlay with project name and category, and 'View Case Study' link; featured case study spotlight with large description."},
+        {"name": "page_services",  "file": "index.html", "label": "Services",  "description": "Services page: 4 service cards (Brand Identity, Web Design, Mobile Apps, Print & Packaging) each with icon placeholder, title, description, and pricing hint; process timeline (Discovery, Design, Develop, Launch) in horizontal 4-step layout; technologies section."},
+        {"name": "page_about",     "file": "index.html", "label": "About",     "description": "About page: studio story with founding year (2018); team section with 4 member cards (circular placeholder, name, role); awards section (3 notable awards); studio values in 3 columns (Craft, Collaboration, Innovation)."},
+        {"name": "page_contact",   "file": "index.html", "label": "Contact",   "description": "Contact page: 2-column layout; left has contact form (name, email, project type dropdown, budget range, message, submit); right has studio info (email, phone, address in Brooklyn NY), office hours, and social media links."}
+    ]
+    DESIGN_DIRECTIVES = (
+        "Dark creative portfolio theme (#1a1a1a) with vibrant orange (#ff6b35) and cool indigo (#667eea) accents. "
+        "Use Vanilla CSS custom properties in src/index.css for all styling. "
+        "Solid JS uses `class`, NOT `className`. "
+        "Generous whitespace, smooth hover transitions (0.3s ease), and subtle box-shadows. "
+        "Portfolio cards: dark surface (#242424), 12px radius, image placeholder fills full width, hover overlay with orange accent. "
+        "Typography: DM Sans — clean, modern, slightly rounded. Large display text for heroes (clamp 2.5rem–4rem). "
+        "Buttons: orange fill with dark text primary, outlined secondary with orange border. "
+        "Footer: #111111 with orange accent line, 3-column layout."
+    )
+
 

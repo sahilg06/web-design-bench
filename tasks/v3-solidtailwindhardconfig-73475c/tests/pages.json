@@ -1,0 +1,55 @@
+{
+  "pages": [
+    {
+      "name": "page_home",
+      "file": "index.html",
+      "label": "Home",
+      "description": "Cyberpunk crypto trading hero with headline 'Trade at Light Speed'; real-time ticker bar simulation; 4 market summary cards (BTC, ETH, SOL, AVAX) with green/red percentage pills."
+    },
+    {
+      "name": "page_markets",
+      "file": "index.html",
+      "label": "Markets",
+      "description": "Dense markets table with 15 rows showing Asset, Price, 24h Change, Volume, and Trade CTA button; filter tabs at top."
+    },
+    {
+      "name": "page_trade",
+      "file": "index.html",
+      "label": "Trade",
+      "description": "Advanced trading interface layout; left chart placeholder, middle order book simulation (green buy rows, red sell rows), right order placement form (Buy/Sell tabs, limit price, amount, place order button)."
+    },
+    {
+      "name": "page_earn",
+      "file": "index.html",
+      "label": "Earn",
+      "description": "Staking and yield farming page; 6 staking pool cards (APY 12%, 18%, 24%) with stake/unstake action buttons."
+    },
+    {
+      "name": "page_wallet",
+      "file": "index.html",
+      "label": "Wallet",
+      "description": "User wallet dashboard simulation; total balance display ($45,210.80); asset allocation pie chart placeholder; recent transaction history list."
+    }
+  ],
+  "framework": "solid_tailwind",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800
+    }
+  },
+  "active_viewports": [
+    "desktop"
+  ],
+  "screenshot_fmt": "png",
+  "ssim_weight": 0.6,
+  "phash_weight": 0.4,
+  "dom_iou_weight": 0.0,
+  "scroll_heights": {
+    "page_home_desktop": 2507,
+    "page_markets_desktop": 1740,
+    "page_trade_desktop": 1295,
+    "page_earn_desktop": 1635,
+    "page_wallet_desktop": 1843
+  }
+}

@@ -2,6 +2,7 @@ schema_version = "1.1"
 
 [task]
 name = "web-design-bench/v1-fooddeliveryplayfulmediumconfig-73475c"
+display_name = "Food Delivery (Medium)"
 description = "Replicate a food_delivery website design from screenshots using HTML and CSS only."
 authors = [{ name = "web-design-bench" }]
 keywords = ["web-design", "html", "css", "replication", "visual", "food_delivery"]

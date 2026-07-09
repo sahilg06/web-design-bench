@@ -1,0 +1,55 @@
+{
+  "pages": [
+    {
+      "name": "page_home",
+      "file": "index.html",
+      "label": "Home",
+      "description": "Modern SaaS dark hero with headline 'Connect Everything'; large app mockup placeholder; 4 feature cards with gradient borders."
+    },
+    {
+      "name": "page_solutions",
+      "file": "index.html",
+      "label": "Solutions",
+      "description": "Industry solutions page; alternating left/right layout for Healthcare, Finance, and Retail with placeholder illustrations."
+    },
+    {
+      "name": "page_pricing",
+      "file": "index.html",
+      "label": "Pricing",
+      "description": "Pricing page with monthly/annual toggle visual; Pro tier highlighted with glowing cyan border."
+    },
+    {
+      "name": "page_docs",
+      "file": "index.html",
+      "label": "Docs",
+      "description": "Documentation layout with left sidebar navigation and right content area with code snippet boxes."
+    },
+    {
+      "name": "page_contact",
+      "file": "index.html",
+      "label": "Contact",
+      "description": "Contact sales form with 2-column layout; left has sales info, right has form inputs."
+    }
+  ],
+  "framework": "react_tailwind",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800
+    }
+  },
+  "active_viewports": [
+    "desktop"
+  ],
+  "screenshot_fmt": "png",
+  "ssim_weight": 0.6,
+  "phash_weight": 0.4,
+  "dom_iou_weight": 0.0,
+  "scroll_heights": {
+    "page_home_desktop": 3933,
+    "page_solutions_desktop": 3224,
+    "page_pricing_desktop": 3133,
+    "page_docs_desktop": 3029,
+    "page_contact_desktop": 1729
+  }
+}

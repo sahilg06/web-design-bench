@@ -220,18 +220,7 @@ def update_evaluation_report(summary: dict, task_scores: dict[str, list[float]])
     # 1. Build Aggregate Results Table
     per_task = json.loads(summary["per_task_json"])
     
-    archetype_map = {
-        "v1-fooddeliveryplayfulmediumconf": "Food Delivery (Playful)",
-        "v1-lawfirmcorporateeasyconfig-73": "Law Firm (Corporate Clean)",
-        "v1-cryptoexchangecyberpunkhardco": "Crypto Exchange (Cyberpunk)",
-        "v1-musicstreaminggradientmediumc": "Music Streaming (Gradient)",
-        "v1-wellnessspaorganiceasyconfig": "Wellness Spa (Organic Warm)",
-        "v1-aistartupneonhardconfig-73475": "AI Startup (Neon Dark)",
-        "v1-indiegameretromediumconfig-73": "Indie Game Studio (Retro)",
-        "v1-travelagencytropicalmediumcon": "Travel Agency (Tropical)",
-        "v1-architecturestudiomonohardcon": "Architecture Studio (Mono)",
-        "v1-luxuryfashionserifmediumconfi": "Luxury Fashion (Serif)",
-    }
+    from eval import get_task_display_name
 
     table_lines = [
         "<!-- RESULTS_TABLE_START -->",
@@ -240,7 +229,7 @@ def update_evaluation_report(summary: dict, task_scores: dict[str, list[float]])
     ]
 
     for task_key, stats in sorted(per_task.items(), key=lambda x: -x[1]["mean"]):
-        name = archetype_map.get(task_key, task_key.replace("v1-", "").replace("config-73475", ""))
+        name = get_task_display_name(task_key)
         scores = task_scores[task_key]
         mean = stats["mean"]
         std = (sum((s - mean) ** 2 for s in scores) / len(scores)) ** 0.5

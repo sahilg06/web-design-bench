@@ -2,6 +2,7 @@ schema_version = "1.1"
 
 [task]
 name = "web-design-bench/v2-saasanimationhardconfig-73475c"
+display_name = "SaaS Animation (Hard)"
 description = "Replicate a saas_animation website design from screenshots using HTML and CSS only."
 authors = [{ name = "web-design-bench" }]
 keywords = ["web-design", "html", "css", "replication", "visual", "saas_animation"]

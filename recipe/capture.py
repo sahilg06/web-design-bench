@@ -78,7 +78,12 @@ def capture(
     )
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(args=["--no-sandbox"])
+        browser = p.chromium.launch(args=[
+            "--no-sandbox",
+            "--allow-file-access-from-files",
+            "--disable-web-security",
+            "--disable-dev-shm-usage",
+        ])
 
         context_kwargs = {
             "viewport": {"width": viewport_width, "height": viewport_height},
@@ -92,7 +97,7 @@ def capture(
 
         context = browser.new_context(**context_kwargs)
 
-        for page_cfg in pages:
+        for idx, page_cfg in enumerate(pages):
             page_name = page_cfg["name"]
             html_file = page_cfg["file"]
             html_path = html_dir / html_file
@@ -111,6 +116,22 @@ def capture(
 
             pw_page = context.new_page()
             pw_page.goto(url, wait_until="networkidle")
+
+            # For SPA pages (all sharing index.html), click the nav tab
+            # to switch to the correct page view.
+            is_spa = all(p["file"] == pages[0]["file"] for p in pages)
+            if is_spa and idx > 0:
+                label = page_cfg["label"]
+                try:
+                    nav_btn = pw_page.get_by_role("button", name=label).or_(
+                        pw_page.get_by_role("link", name=label)
+                    ).or_(
+                        pw_page.locator(f"nav >> text='{label}'")
+                    )
+                    nav_btn.first.click()
+                    pw_page.wait_for_timeout(500)
+                except Exception as e:
+                    logger.warning("    Could not click nav tab '%s': %s", label, e)
 
             # Record scroll height
             scroll_h = pw_page.evaluate("document.documentElement.scrollHeight")

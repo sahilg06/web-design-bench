@@ -1,0 +1,55 @@
+{
+  "pages": [
+    {
+      "name": "page_home",
+      "file": "index.html",
+      "label": "Home",
+      "description": "Clean corporate dashboard hero with headline 'Intelligence Simplified'; 3 value prop cards (Speed, Accuracy, Security); client logo strip."
+    },
+    {
+      "name": "page_features",
+      "file": "index.html",
+      "label": "Features",
+      "description": "Features grid with 6 clean cards; interactive-looking toggle between 'Cloud' and 'On-Premise' features."
+    },
+    {
+      "name": "page_pricing",
+      "file": "index.html",
+      "label": "Pricing",
+      "description": "3 simple pricing tiers (Basic, Professional, Enterprise); clean comparison table."
+    },
+    {
+      "name": "page_about",
+      "file": "index.html",
+      "label": "About",
+      "description": "Company mission statement; leadership team grid of 3 profiles with placeholder images."
+    },
+    {
+      "name": "page_contact",
+      "file": "index.html",
+      "label": "Contact",
+      "description": "Clean contact form with name, email, and message inputs; office location card."
+    }
+  ],
+  "framework": "react_css",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800
+    }
+  },
+  "active_viewports": [
+    "desktop"
+  ],
+  "screenshot_fmt": "png",
+  "ssim_weight": 0.6,
+  "phash_weight": 0.4,
+  "dom_iou_weight": 0.0,
+  "scroll_heights": {
+    "page_home_desktop": 2352,
+    "page_features_desktop": 1407,
+    "page_pricing_desktop": 2073,
+    "page_about_desktop": 2269,
+    "page_contact_desktop": 1672
+  }
+}

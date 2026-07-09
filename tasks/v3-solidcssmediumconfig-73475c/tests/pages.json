@@ -1,0 +1,55 @@
+{
+  "pages": [
+    {
+      "name": "page_home",
+      "file": "index.html",
+      "label": "Home",
+      "description": "Bold dark hero with oversized headline 'Design Without Boundaries' in a warm sans-serif; vibrant orange accent CTA 'View Our Work'; featured projects showcase with 3 large project cards showing colored placeholder images, project title, and category tag; studio philosophy quote in large italic; client logos strip (6 brand names)."
+    },
+    {
+      "name": "page_work",
+      "file": "index.html",
+      "label": "Work",
+      "description": "Portfolio grid: filter tabs (All, Branding, Web, Mobile, Print); 6 project cards in 2\u00d73 grid, each with colored placeholder, hover overlay with project name and category, and 'View Case Study' link; featured case study spotlight with large description."
+    },
+    {
+      "name": "page_services",
+      "file": "index.html",
+      "label": "Services",
+      "description": "Services page: 4 service cards (Brand Identity, Web Design, Mobile Apps, Print & Packaging) each with icon placeholder, title, description, and pricing hint; process timeline (Discovery, Design, Develop, Launch) in horizontal 4-step layout; technologies section."
+    },
+    {
+      "name": "page_about",
+      "file": "index.html",
+      "label": "About",
+      "description": "About page: studio story with founding year (2018); team section with 4 member cards (circular placeholder, name, role); awards section (3 notable awards); studio values in 3 columns (Craft, Collaboration, Innovation)."
+    },
+    {
+      "name": "page_contact",
+      "file": "index.html",
+      "label": "Contact",
+      "description": "Contact page: 2-column layout; left has contact form (name, email, project type dropdown, budget range, message, submit); right has studio info (email, phone, address in Brooklyn NY), office hours, and social media links."
+    }
+  ],
+  "framework": "solid_css",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800
+    }
+  },
+  "active_viewports": [
+    "desktop"
+  ],
+  "screenshot_fmt": "png",
+  "ssim_weight": 0.6,
+  "phash_weight": 0.4,
+  "dom_iou_weight": 0.0,
+  "scroll_heights": {
+    "page_home_desktop": 2919,
+    "page_work_desktop": 2595,
+    "page_services_desktop": 2479,
+    "page_about_desktop": 3395,
+    "page_contact_desktop": 1832
+  }
+}

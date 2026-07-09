@@ -1,0 +1,33 @@
+schema_version = "1.1"
+
+[task]
+name = "web-design-bench/v3-solidcssmediumconfig-73475c"
+display_name = "Solid JS + Vanilla CSS (Medium)"
+description = "Replicate a solid_css_medium website design from screenshots using HTML and CSS only."
+authors = [{ name = "web-design-bench" }]
+keywords = ["web-design", "html", "css", "replication", "visual", "solid_css_medium"]
+
+[metadata]
+recipe_version = "v3"
+config_name    = "SolidCSSMediumConfig"
+seed           = 42
+difficulty     = "medium"
+archetype      = "solid_css_medium"
+visual_style   = "portfolio_warm"
+viewports      = ["desktop"]
+ssim_weight    = 0.6
+phash_weight   = 0.4
+
+[verifier]
+timeout_sec = 300.0
+
+[agent]
+timeout_sec = 900.0
+
+[environment]
+build_timeout_sec = 600.0
+os = "linux"
+cpus = 2
+memory_mb = 3072
+storage_mb = 10240
+allow_internet = true

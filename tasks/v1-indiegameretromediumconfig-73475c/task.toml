@@ -2,6 +2,7 @@ schema_version = "1.1"
 
 [task]
 name = "web-design-bench/v1-indiegameretromediumconfig-73475c"
+display_name = "Indie Game Studio (Medium)"
 description = "Replicate a indie_game_studio website design from screenshots using HTML and CSS only."
 authors = [{ name = "web-design-bench" }]
 keywords = ["web-design", "html", "css", "replication", "visual", "indie_game_studio"]

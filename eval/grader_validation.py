@@ -23,32 +23,16 @@ except ImportError:
     sys.exit(1)
 
 
-# ── Human-readable names ─────────────────────────────────────────────────────
-ARCHETYPE_MAP = {
-    "v1-aistartupneonhardconfig-73475": "AI Startup (Neon Dark)",
-    "v1-architecturestudiomonohardcon": "Architecture Studio (Mono)",
-    "v1-cryptoexchangecyberpunkhardco": "Crypto Exchange (Cyberpunk)",
-    "v1-fooddeliveryplayfulmediumconf": "Food Delivery (Playful)",
-    "v1-indiegameretromediumconfig-73": "Indie Game Studio (Retro)",
-    "v1-lawfirmcorporateeasyconfig-73": "Law Firm (Corporate Clean)",
-    "v1-luxuryfashionserifmediumconfi": "Luxury Fashion (Serif)",
-    "v1-musicstreaminggradientmediumc": "Music Streaming (Gradient)",
-    "v1-travelagencytropicalmediumcon": "Travel Agency (Tropical)",
-    "v1-wellnessspaorganiceasyconfig": "Wellness Spa (Organic Warm)",
-}
+from eval import get_task_display_name
 
-TASK_DIR_MAP = {
-    "v1-aistartupneonhardconfig-73475": "v1-aistartupneonhardconfig-73475c",
-    "v1-architecturestudiomonohardcon": "v1-architecturestudiomonohardconfig-73475c",
-    "v1-cryptoexchangecyberpunkhardco": "v1-cryptoexchangecyberpunkhardconfig-73475c",
-    "v1-fooddeliveryplayfulmediumconf": "v1-fooddeliveryplayfulmediumconfig-73475c",
-    "v1-indiegameretromediumconfig-73": "v1-indiegameretromediumconfig-73475c",
-    "v1-lawfirmcorporateeasyconfig-73": "v1-lawfirmcorporateeasyconfig-73475c",
-    "v1-luxuryfashionserifmediumconfi": "v1-luxuryfashionserifmediumconfig-73475c",
-    "v1-musicstreaminggradientmediumc": "v1-musicstreaminggradientmediumconfig-73475c",
-    "v1-travelagencytropicalmediumcon": "v1-travelagencytropicalmediumconfig-73475c",
-    "v1-wellnessspaorganiceasyconfig": "v1-wellnessspaorganiceasyconfig-73475c",
-}
+
+def get_task_dir_name(task_key: str, tasks_root: Path) -> str:
+    """Find the full task directory name matching a truncated task key."""
+    if tasks_root.exists():
+        for d in tasks_root.iterdir():
+            if d.is_dir() and d.name.startswith(task_key):
+                return d.name
+    return task_key + "c"
 
 
 def find_best_worst_trials(job_dir: Path) -> dict:
@@ -174,9 +158,9 @@ def generate_report(job_dir: Path, output_dir: Path, tasks_root: Path):
 
     for task_key in showcase_keys:
         info = results[task_key]
-        task_dir_name = TASK_DIR_MAP.get(task_key, task_key + "c")
+        task_dir_name = get_task_dir_name(task_key, tasks_root)
         ref_dir = tasks_root / task_dir_name / "environment" / "assets"
-        human_name = ARCHETYPE_MAP.get(task_key, task_key)
+        human_name = get_task_display_name(task_key)
 
         # Best trial comparison
         best_trial = info["best"]

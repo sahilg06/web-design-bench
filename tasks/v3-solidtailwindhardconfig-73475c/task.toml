@@ -1,0 +1,33 @@
+schema_version = "1.1"
+
+[task]
+name = "web-design-bench/v3-solidtailwindhardconfig-73475c"
+display_name = "Solid JS + Tailwind CSS (Hard)"
+description = "Replicate a solid_tailwind_hard website design from screenshots using HTML and CSS only."
+authors = [{ name = "web-design-bench" }]
+keywords = ["web-design", "html", "css", "replication", "visual", "solid_tailwind_hard"]
+
+[metadata]
+recipe_version = "v3"
+config_name    = "SolidTailwindHardConfig"
+seed           = 42
+difficulty     = "hard"
+archetype      = "solid_tailwind_hard"
+visual_style   = "cyberpunk_dark"
+viewports      = ["desktop"]
+ssim_weight    = 0.6
+phash_weight   = 0.4
+
+[verifier]
+timeout_sec = 300.0
+
+[agent]
+timeout_sec = 900.0
+
+[environment]
+build_timeout_sec = 600.0
+os = "linux"
+cpus = 2
+memory_mb = 3072
+storage_mb = 10240
+allow_internet = true

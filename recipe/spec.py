@@ -18,7 +18,6 @@ The returned dict is used by:
 from __future__ import annotations
 
 import hashlib
-import random
 from typing import Any
 
 
@@ -41,6 +40,7 @@ def generate(config: Any, seed: int | None = None) -> dict[str, Any]:
         "archetype":         getattr(config, "ARCHETYPE",         "generic"),
         "visual_style":      getattr(config, "VISUAL_STYLE",      "clean"),
         "difficulty":        getattr(config, "DIFFICULTY",         "medium"),
+        "framework":         getattr(config, "FRAMEWORK",         "html_css"),
         "seed":              effective_seed,
 
         # ── Brand ────────────────────────────────────────────────────────

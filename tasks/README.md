@@ -32,6 +32,7 @@ Task directories are named using the convention: `<recipe_version>-<config_slug>
 
 * **`v1-*` (Part 1: Static Tasks)**: Evaluates static web design replication across 10 diverse archetypes. Contains a single settled reference screenshot (`.png`) per page.
 * **`v2-*` (Part 2: Animation Tasks)**: Evaluates dynamic CSS animations and temporal state adherence across 4 archetypes. Contains a settled screenshot (`.png`), 3-4 frozen animation frames (`_t0.png`, `_t500.png`, `_t1200.png`, `_t1800.png`), and a 3-second video (`.webm`) per page.
+* **`v3-*` (Part 3: Framework Tasks)**: Evaluates multi-page Single Page Applications (SPAs) built with React JS or Solid JS and styled with Vanilla CSS or Tailwind CSS. Contains a complete Vite project structure (`package.json`, `vite.config.js`, `src/`) and evaluates SPA tab-switching navigation.
 
 ---
 

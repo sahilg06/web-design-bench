@@ -2,6 +2,7 @@ schema_version = "1.1"
 
 [task]
 name = "web-design-bench/v1-wellnessspaorganiceasyconfig-73475c"
+display_name = "Wellness Spa (Easy)"
 description = "Replicate a wellness_spa website design from screenshots using HTML and CSS only."
 authors = [{ name = "web-design-bench" }]
 keywords = ["web-design", "html", "css", "replication", "visual", "wellness_spa"]

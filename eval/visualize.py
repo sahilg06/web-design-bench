@@ -65,9 +65,10 @@ def generate_plots(job_dir: Path) -> None:
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
     # Clean up task names for display
+    from eval import get_task_display_name
     clean_scores = {}
     for full_name, scores in task_scores.items():
-        short = full_name.replace("v1-", "").replace("config-73475", "").replace("config", "")
+        short = get_task_display_name(full_name)
         clean_scores[short] = scores
 
     # Sort tasks by mean score descending

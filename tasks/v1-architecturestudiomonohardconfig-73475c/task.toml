@@ -2,6 +2,7 @@ schema_version = "1.1"
 
 [task]
 name = "web-design-bench/v1-architecturestudiomonohardconfig-73475c"
+display_name = "Architecture Studio (Hard)"
 description = "Replicate a architecture_studio website design from screenshots using HTML and CSS only."
 authors = [{ name = "web-design-bench" }]
 keywords = ["web-design", "html", "css", "replication", "visual", "architecture_studio"]

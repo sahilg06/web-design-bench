@@ -5,7 +5,7 @@ Generates Harbor framework tasks that evaluate AI agents on replicating
 website designs from screenshots using HTML + CSS only.
 
 Pipeline stages:
-  1. configs/   — Archetype configuration registry (10 unique website types)
+  1. configs/   — Archetype configuration registry (18 unique website types)
   2. spec.py    — Deterministic DesignSpec builder
   3. prompt.py  — Claude prompt renderer
   4. agent.py   — Claude API website generator

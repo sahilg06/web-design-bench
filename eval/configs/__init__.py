@@ -58,3 +58,29 @@ class V2AnimationsConfig:
 
     N_CONCURRENT = 1
     ENV_BUILD_TIMEOUT_MULTIPLIER = 5
+
+
+@register_config("v3_frameworks")
+class V3FrameworksConfig:
+    """Part 3: Multi-framework tasks (React/Solid JS + Vanilla/Tailwind CSS)."""
+
+    TASKS = [
+        "tasks/v3-reactcsseasyconfig-73475c",
+        "tasks/v3-reacttailwindmediumconfig-73475c",
+        "tasks/v3-solidcssmediumconfig-73475c",
+        "tasks/v3-solidtailwindhardconfig-73475c",
+    ]
+
+    MODEL = "anthropic/claude-opus-4-7"
+    AGENT = "claude-code"
+    ENV = os.environ.get("HARBOR_ENV", "docker")
+
+    if ENV == "modal":
+        N_CONCURRENT_TRIALS = 100
+        N_ATTEMPTS = 10
+    else:
+        N_CONCURRENT_TRIALS = 4
+        N_ATTEMPTS = 1
+
+    N_CONCURRENT = 1
+    ENV_BUILD_TIMEOUT_MULTIPLIER = 5

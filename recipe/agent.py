@@ -28,7 +28,7 @@ from claude_agent_sdk import (
     tool,
 )
 
-from recipe.prompt import build_user_prompt
+from recipe.prompt import build_prompts
 
 _GEN_DIR = Path(__file__).parent
 
@@ -40,15 +40,15 @@ _JS_FILE_RE  = re.compile(r'(src|href)\s*=\s*["\'][^"\']*\.js["\']', re.IGNORECA
 _CSS_LINK_RE = re.compile(r'<link[^>]+href=["\']style\.css["\']',     re.IGNORECASE)
 
 # ── Module-level slot used to bind the validator to the current run ────────
-_run_ctx: dict = {"workspace": None, "pages": []}
+_run_ctx: dict = {"workspace": None, "pages": [], "framework": "html_css"}
 
 
 @tool(
     name        = "validate_files",
     description = (
         "Validate the generated website files in the workspace. "
-        "Checks: required files exist, every HTML file links style.css, "
-        "no JavaScript (<script>, on* attributes, .js imports). "
+        "Checks that all required files exist and adhere to the requested framework rules "
+        "(e.g., pure HTML/CSS forbids JS/scripts; React/Solid requires package.json, vite.config.js, etc.). "
         "Call this after writing all files. Fix errors and call again until PASSED."
     ),
     input_schema = {},
@@ -56,54 +56,68 @@ _run_ctx: dict = {"workspace": None, "pages": []}
 async def _validate_files_tool(args: dict[str, Any]) -> dict[str, Any]:
     workspace: Path | None = _run_ctx["workspace"]
     pages: list[dict]      = _run_ctx["pages"]
+    fw: str                = _run_ctx.get("framework", "html_css")
 
     if workspace is None:
         return {"content": [{"type": "text", "text": "ERROR: validator not initialised"}]}
 
-    required_html = [p["file"] for p in pages]
     errors: list[str] = []
 
-    for fname in required_html + ["style.css"]:
-        if not (workspace / fname).exists():
-            errors.append(f"MISSING: {fname}")
+    if fw != "html_css":
+        # Framework validation (React / Solid JS via Vite)
+        required_files = ["package.json", "vite.config.js", "index.html", "src/App.jsx"]
+        for fname in required_files:
+            if not (workspace / fname).exists():
+                errors.append(f"MISSING: {fname}")
+        
+        # Verify package.json is valid JSON
+        pkg_path = workspace / "package.json"
+        if pkg_path.exists():
+            try:
+                json.loads(pkg_path.read_text(encoding="utf-8", errors="replace"))
+            except Exception as exc:
+                errors.append(f"package.json: invalid JSON — {exc}")
 
-    for fname in required_html:
-        fpath = workspace / fname
-        if not fpath.exists():
-            continue
-        try:
-            text = fpath.read_text(encoding="utf-8", errors="replace")
-        except Exception as exc:
-            errors.append(f"{fname}: cannot read — {exc}")
-            continue
-        if not _CSS_LINK_RE.search(text):
-            errors.append(f"{fname}: missing <link rel='stylesheet' href='style.css'>")
-        if _SCRIPT_RE.search(text):
-            errors.append(f"{fname}: <script> tag — FORBIDDEN")
-        if _ON_ATTR_RE.search(text):
-            errors.append(f"{fname}: on* event attribute — FORBIDDEN")
-        if _JS_URI_RE.search(text):
-            errors.append(f"{fname}: javascript: URI — FORBIDDEN")
-        if _JS_FILE_RE.search(text):
-            errors.append(f"{fname}: .js file reference — FORBIDDEN")
+        n = len(required_files)
+    else:
+        # Pure HTML + CSS validation
+        required_html = [p["file"] for p in pages]
+        for fname in required_html + ["style.css"]:
+            if not (workspace / fname).exists():
+                errors.append(f"MISSING: {fname}")
+
+        for fname in required_html:
+            fpath = workspace / fname
+            if not fpath.exists():
+                continue
+            try:
+                text = fpath.read_text(encoding="utf-8", errors="replace")
+            except Exception as exc:
+                errors.append(f"{fname}: cannot read — {exc}")
+                continue
+            if not _CSS_LINK_RE.search(text):
+                errors.append(f"{fname}: missing <link rel='stylesheet' href='style.css'>")
+            if _SCRIPT_RE.search(text):
+                errors.append(f"{fname}: <script> tag — FORBIDDEN")
+            if _ON_ATTR_RE.search(text):
+                errors.append(f"{fname}: on* event attribute — FORBIDDEN")
+            if _JS_URI_RE.search(text):
+                errors.append(f"{fname}: javascript: URI — FORBIDDEN")
+            if _JS_FILE_RE.search(text):
+                errors.append(f"{fname}: .js file reference — FORBIDDEN")
+        n = len(required_html) + 1
 
     if errors:
         msg = "VALIDATION FAILED — fix these issues and call validate_files again:\n"
         msg += "\n".join(f"  ✗  {e}" for e in errors)
     else:
-        n = len(required_html) + 1
         msg = f"VALIDATION PASSED ✓  ({n} files OK)"
     return {"content": [{"type": "text", "text": msg}]}
 
 
-_SYSTEM_PROMPT = (
-    "You are an expert web designer. Generate professional multi-page websites "
-    "using ONLY HTML and CSS — zero JavaScript.\n"
-    "RULES:\n"
-    "• No <script> tags, no on* event attributes, no .js file references.\n"
-    "• ALL styles go in style.css — never inside <style> tags in HTML.\n"
-    "• Every HTML file MUST contain: <link rel=\"stylesheet\" href=\"style.css\">\n"
-    "• After writing all files, call the validate_files tool "
+
+_VALIDATOR_SUFFIX = (
+    "\nAfter writing all files, call the validate_files tool "
     "(available as mcp__recipe-validator__validate_files). "
     "Fix any issues it reports, then call it again until it says VALIDATION PASSED. "
     "Do not finish until validation passes."
@@ -117,19 +131,22 @@ _MCP_TOOL_NAME   = f"mcp__{_MCP_SERVER_NAME}__validate_files"
 async def _run_agent(spec: dict, workspace: Path, model: str) -> None:
     _run_ctx["workspace"] = workspace
     _run_ctx["pages"]     = spec["pages"]
+    _run_ctx["framework"] = spec.get("framework", "html_css")
 
     mcp_server = create_sdk_mcp_server(_MCP_SERVER_NAME, tools=[_validate_files_tool])
+
+    system_prompt, user_prompt = build_prompts(spec)
 
     options = ClaudeAgentOptions(
         cwd             = str(workspace),
         permission_mode = "bypassPermissions",
         allowed_tools   = ["Read", "Write", _MCP_TOOL_NAME],
         mcp_servers     = {_MCP_SERVER_NAME: mcp_server},
-        system_prompt   = _SYSTEM_PROMPT,
+        system_prompt   = system_prompt + _VALIDATOR_SUFFIX,
         model           = model,
     )
 
-    async for message in query(prompt=build_user_prompt(spec), options=options):
+    async for message in query(prompt=user_prompt, options=options):
         if isinstance(message, AssistantMessage):
             for block in message.content:
                 if isinstance(block, TextBlock):
@@ -159,7 +176,11 @@ def generate_website(
     print(f"  Generating via claude-agent-sdk ({model}) …")
     anyio.run(_run_agent, spec, output_dir, model)
 
-    expected = ["style.css"] + [p["file"] for p in spec["pages"]]
+    fw = spec.get("framework", "html_css")
+    if fw != "html_css":
+        expected = ["package.json", "vite.config.js", "src/App.jsx"]
+    else:
+        expected = ["style.css"] + [p["file"] for p in spec["pages"]]
     missing  = [f for f in expected if not (output_dir / f).exists()]
     if missing:
         raise RuntimeError(f"Agent did not produce required files: {missing}")

@@ -202,31 +202,59 @@ def main(argv: list[str] | None = None) -> int:
                     shutil.rmtree(tmp_solution, ignore_errors=True)
                 continue
 
+        # ── Step 2b: Scaffold Vite project for frameworks ────────────────
+        if design_spec.get("framework", "html_css") != "html_css":
+            logger.info("Scaffolding Vite project (npm install && npm run build)...")
+            try:
+                nodeenv_dir = PROJECT_ROOT / ".nodeenv"
+                if not shutil.which("npm") and not (nodeenv_dir / "bin" / "npm").exists():
+                    logger.info("npm not found on host, installing local node environment via nodeenv...")
+                    subprocess.run(
+                        ["uv", "run", "--with", "nodeenv", "nodeenv", "--node=20.12.0", str(nodeenv_dir)],
+                        check=True, capture_output=True
+                    )
+                npm_path = shutil.which("npm") or str(nodeenv_dir / "bin" / "npm")
+                env = os.environ.copy()
+                if not shutil.which("npm"):
+                    env["PATH"] = f"{nodeenv_dir / 'bin'}:{env.get('PATH', '')}"
+
+                subprocess.run([npm_path, "install"], cwd=solution_dir, env=env, check=True, capture_output=True)
+                subprocess.run([npm_path, "run", "build"], cwd=solution_dir, env=env, check=True, capture_output=True)
+                logger.info("Vite build successful (dist/ created).")
+            except subprocess.CalledProcessError as e:
+                print(f"  ERROR: Vite build failed: {e.stderr.decode()}")
+                if not args.keep_tmp and tmp_solution:
+                    shutil.rmtree(tmp_solution, ignore_errors=True)
+                continue
+
         # ── Step 3: Validate ─────────────────────────────────────────────
         print("\n[1/3] Validating artifacts ...")
 
-        js_violations = js_val.validate(solution_dir, pages)
-        struct_violations = struct_val.validate(solution_dir, pages)
+        if design_spec.get("framework", "html_css") == "html_css":
+            js_violations = js_val.validate(solution_dir, pages)
+            struct_violations = struct_val.validate(solution_dir, pages)
 
-        all_violations = js_violations + struct_violations
-        if all_violations:
-            print(f"  FAIL: {len(all_violations)} violation(s):")
-            for v in all_violations:
-                print(f"    • {v}")
-            if not args.keep_tmp and tmp_solution:
-                shutil.rmtree(tmp_solution, ignore_errors=True)
-            continue
-        print("  OK: JS + structure validation passed")
+            all_violations = js_violations + struct_violations
+            if all_violations:
+                print(f"  FAIL: {len(all_violations)} violation(s):")
+                for v in all_violations:
+                    print(f"    • {v}")
+                if not args.keep_tmp and tmp_solution:
+                    shutil.rmtree(tmp_solution, ignore_errors=True)
+                continue
+            print("  OK: JS + structure validation passed")
 
-        cmp_diff = cmp_val.validate(
-            solution_dir, pages,
-            getattr(config, "DIFFICULTY", "medium"),
-        )
-        if cmp_diff:
-            print(f"  WARN: complexity check flagged metrics: {list(cmp_diff.keys())}")
-            for metric, info in cmp_diff.items():
-                print(f"    {metric}: actual={info['actual']} "
-                      f"(expected [{info['min']}, {info['max']}])")
+            cmp_diff = cmp_val.validate(
+                solution_dir, pages,
+                getattr(config, "DIFFICULTY", "medium"),
+            )
+            if cmp_diff:
+                print(f"  WARN: complexity check flagged metrics: {list(cmp_diff.keys())}")
+                for metric, info in cmp_diff.items():
+                    print(f"    {metric}: actual={info['actual']} "
+                          f"(expected [{info['min']}, {info['max']}])")
+        else:
+            print("  OK: Framework structure validated via Vite build")
 
         # ── Step 4: Screenshots ──────────────────────────────────────────
         scroll_heights: dict[str, int] = {}
@@ -234,10 +262,11 @@ def main(argv: list[str] | None = None) -> int:
 
         if not args.skip_screenshots:
             print("\n[2/3] Capturing reference screenshots ...")
+            capture_dir = solution_dir / "dist" if design_spec.get("framework", "html_css") != "html_css" else solution_dir
             try:
                 from recipe.capture import capture
                 scroll_heights = capture(
-                    html_dir=solution_dir,
+                    html_dir=capture_dir,
                     output_dir=tmp_screens / "assets",
                     pages=pages,
                     viewport_width=getattr(config, "VIEWPORT_SIZES", {}).get(
