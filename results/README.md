@@ -9,21 +9,26 @@ This directory stores the processed evaluation summaries, historical tracking da
 ```markdown
 results/
 ├── history.csv                     # Append-only CSV tracking all historical evaluation runs
-└── 2026-07-08__13-32-33/           # Matches the timestamp of the corresponding jobs/ folder
-    ├── summary.json                # Aggregated per-task means, min, max, & std dev
-    ├── task_variance_boxplot.png   # Box plot showing reward distribution & variance per task
-    └── task_means_barchart.png     # Bar chart comparing mean blended rewards across tasks
+├── part-1/                         # Part 1: Static HTML/CSS benchmark (10 archetypes, 100 trials)
+│   ├── summary.json                # Aggregated per-task means, min, max, & std dev
+│   ├── task_variance_boxplot.png   # Box plot showing reward distribution & variance per task
+│   └── task_means_barchart.png     # Bar chart comparing mean blended rewards across tasks
+├── part-2/                         # Part 2: Animation benchmark (reserved for future results)
+└── part-3/                         # Part 3: Multi-framework benchmark (4 configs, 40 trials)
+    ├── summary.json
+    ├── task_variance_boxplot.png
+    └── task_means_barchart.png
 ```
 
 ---
 
 ## 🚀 Generating Summaries & Plots
 
-Once an evaluation job completes in `jobs/<timestamp>/`, you can generate its corresponding summary and statistical plots in `results/<timestamp>/` by running:
+Once an evaluation job completes in `jobs/<part>/`, you can generate its corresponding summary and statistical plots in `results/<part>/` by running:
 
 ```bash
-uv run python -m eval.summarize --job-dir jobs/2026-07-08__13-32-33
-uv run python -m eval.visualize --job-dir jobs/2026-07-08__13-32-33
+uv run python -m eval.summarize --job-dir jobs/part-1
+uv run python -m eval.visualize --job-dir jobs/part-1
 ```
 
 *These plots and summaries are automatically referenced and embedded in the master **[Evaluation Report](../docs/evaluation_report.md)**.*

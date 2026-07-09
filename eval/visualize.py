@@ -4,7 +4,7 @@ Generate publication-quality visualizations from Harbor evaluation jobs.
 
 Usage:
     # Run with dynamically installed matplotlib & seaborn via uv
-    uv run --with matplotlib --with seaborn python -m eval.visualize --job jobs/2026-07-08__13-32-33
+    uv run --with matplotlib --with seaborn python -m eval.visualize --job jobs/part-1
 """
 
 import argparse

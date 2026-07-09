@@ -11,7 +11,7 @@ Usage:
     uv run python -m eval.summarize
 
     # Summarize a specific job
-    uv run python -m eval.summarize --job jobs/2026-07-08__13-32-33
+    uv run python -m eval.summarize --job jobs/part-1
 """
 
 import argparse

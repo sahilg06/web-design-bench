@@ -45,9 +45,9 @@ We evaluated Claude Code across 10 distinct static website archetypes, running *
 ### Benchmark Visualizations
 
 <!-- PLOTS_START -->
-![Task Variance Boxplot](../results/2026-07-08__13-32-33/task_variance_boxplot.png)
+![Task Variance Boxplot](../results/part-1/task_variance_boxplot.png)
 
-![Task Means Barchart](../results/2026-07-08__13-32-33/task_means_barchart.png)
+![Task Means Barchart](../results/part-1/task_means_barchart.png)
 <!-- PLOTS_END -->
 
 ---

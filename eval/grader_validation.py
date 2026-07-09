@@ -7,7 +7,7 @@ comparison images (reference vs agent), and generates a markdown report proving
 that higher scores correspond to visually better designs.
 
 Usage:
-    uv run python eval/grader_validation.py --job jobs/2026-07-08__13-32-33
+    uv run python eval/grader_validation.py --job jobs/part-1
 """
 
 import argparse

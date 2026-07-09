@@ -9,7 +9,7 @@ Analyzes the 140-trial evaluation (100 static/animation trials + 40 framework tr
 4. Per-task metric behavior patterns across static, animation, and framework suites.
 
 Usage:
-    uv run python eval/grading_analysis.py --job jobs/2026-07-09__13-09-00
+    uv run python eval/grading_analysis.py --job jobs/part-3
 """
 
 import argparse

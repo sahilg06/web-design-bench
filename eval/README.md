@@ -36,20 +36,20 @@ HARBOR_ENV=modal uv run python -m eval.run --config v2_animations
 ### 2. Summarize Results & Generate Plots
 Once a job completes, generate `summary.json`, create statistical plots (`task_variance_boxplot.png`, `task_means_barchart.png`), and automatically update `docs/evaluation_report.md`:
 ```bash
-uv run python -m eval.summarize --job-dir jobs/2026-07-08__13-32-33
-uv run python -m eval.visualize --job-dir jobs/2026-07-08__13-32-33
+uv run python -m eval.summarize --job-dir jobs/part-1
+uv run python -m eval.visualize --job-dir jobs/part-1
 ```
 *Processed summaries and plots are saved to `results/<same-timestamp>/`.*
 
 ### 3. Generate Side-by-Side Grader Validation Images
 To prove that higher reward scores correspond to better human-perceived designs, generate side-by-side composite images of the best and worst trials for each task:
 ```bash
-uv run python -m eval.grader_validation --job-dir jobs/2026-07-08__13-32-33
+uv run python -m eval.grader_validation --job-dir jobs/part-1
 ```
 *Composite images are saved to `docs/grader_validation/comparisons/` and embedded in `docs/grader_validation/grader_validation.md`.*
 
 ### 4. Run Advanced Grading Sensitivity Analysis
 To analyze metric independence (Pearson correlation between SSIM, pHash, and Color Hist) and identify primary scoring bottlenecks:
 ```bash
-uv run python -m eval.grading_analysis --job-dir jobs/2026-07-08__13-32-33
+uv run python -m eval.grading_analysis --job-dir jobs/part-1
 ```
