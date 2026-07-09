@@ -2,9 +2,10 @@
 
 This document provides a comprehensive analysis of **Claude Code (Opus 4.7)** evaluated across the Part 3 Multi-Framework Benchmark (`v3`). This suite introduces a rigorous **2×2 matrix** evaluating agent performance across two modern JavaScript frameworks (**React JS** vs. **Solid JS**) and two contrasting styling paradigms (**Vanilla CSS** vs. **Tailwind CSS**).
 
+### 📊 Framework & Styling Matrix Performance (Mean Reward)
+
 ```mermaid
 quadrantChart
-    title Framework & Styling Matrix Performance (Mean Reward)
     x-axis Vanilla CSS --> Tailwind CSS
     y-axis Solid JS --> React JS
     quadrant-1 React and Tailwind
