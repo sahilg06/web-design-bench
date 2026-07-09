@@ -15,11 +15,17 @@ We evaluated Claude Code across 10 distinct static website archetypes, running *
 <!-- RESULTS_TABLE_START -->
 | Archetype | Mean Blended Reward | Min | Max | Std Dev |
 | :--- | :---: | :---: | :---: | :---: |
-| **React JS + Vanilla CSS (Easy)** | **0.925** | 0.904 | 0.947 | 0.011 |
-| **Solid JS + Vanilla CSS (Medium)** | **0.876** | 0.735 | 0.919 | 0.068 |
-| **Solid JS + Tailwind CSS (Hard)** | **0.875** | 0.835 | 0.910 | 0.025 |
-| **React JS + Tailwind CSS (Medium)** | **0.862** | 0.836 | 0.890 | 0.019 |
-| **Overall Suite Average** | **0.885** | **0.735** | **0.947** | **0.045** |
+| **Food Delivery (Playful Medium)** | **0.775** | 0.723 | 0.803 | 0.025 |
+| **Law Firm (Corporate Easy)** | **0.760** | 0.736 | 0.791 | 0.016 |
+| **Crypto Exchange (Cyberpunk Hard)** | **0.755** | 0.726 | 0.773 | 0.016 |
+| **Music Streaming (Gradient Medium)** | **0.703** | 0.628 | 0.775 | 0.053 |
+| **Wellness Spa (Organic Easy)** | **0.697** | 0.640 | 0.735 | 0.029 |
+| **AI Startup (Neon Hard)** | **0.693** | 0.637 | 0.735 | 0.028 |
+| **Indie Game Studio (Retro Medium)** | **0.676** | 0.632 | 0.719 | 0.025 |
+| **Travel Agency (Tropical Medium)** | **0.643** | 0.608 | 0.727 | 0.033 |
+| **Architecture Studio (Mono Hard)** | **0.606** | 0.544 | 0.786 | 0.069 |
+| **Luxury Fashion (Serif Medium)** | **0.571** | 0.511 | 0.611 | 0.028 |
+| **Overall Suite Average** | **0.688** | **0.511** | **0.803** | **0.073** |
 <!-- RESULTS_TABLE_END -->
 
 ### Pass@K Results (averaged across all 10 tasks)
@@ -28,10 +34,10 @@ We evaluated Claude Code across 10 distinct static website archetypes, running *
 | Threshold | Pass@1 | Pass@2 | Pass@5 | Pass@10 |
 | :---: | :---: | :---: | :---: | :---: |
 | ≥ 0.50 | 100% | 100% | 100% | 100% |
-| ≥ 0.60 | 100% | 100% | 100% | 100% |
-| ≥ 0.70 | 100% | 100% | 100% | 100% |
-| ≥ 0.75 | 95% | 99% | 100% | 100% |
-| ≥ 0.80 | 95% | 99% | 100% | 100% |
+| ≥ 0.60 | 87% | 92% | 98% | 100% |
+| ≥ 0.70 | 48% | 59% | 75% | 90% |
+| ≥ 0.75 | 25% | 35% | 44% | 50% |
+| ≥ 0.80 | 1% | 2% | 5% | 10% |
 <!-- PASS_AT_K_END -->
 
 > **Note**: Harbor's built-in Pass@K uses a default threshold of 1.0 (exact match), which is unrealistic for visual similarity. The table above uses custom thresholds computed from the raw trial rewards.
@@ -39,9 +45,9 @@ We evaluated Claude Code across 10 distinct static website archetypes, running *
 ### Benchmark Visualizations
 
 <!-- PLOTS_START -->
-![Task Variance Boxplot](../results/2026-07-09__13-09-00/task_variance_boxplot.png)
+![Task Variance Boxplot](../results/2026-07-08__13-32-33/task_variance_boxplot.png)
 
-![Task Means Barchart](../results/2026-07-09__13-09-00/task_means_barchart.png)
+![Task Means Barchart](../results/2026-07-08__13-32-33/task_means_barchart.png)
 <!-- PLOTS_END -->
 
 ---
