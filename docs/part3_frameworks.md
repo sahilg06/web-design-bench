@@ -7,14 +7,14 @@ quadrantChart
     title Framework & Styling Matrix Performance (Mean Reward)
     x-axis Vanilla CSS --> Tailwind CSS
     y-axis Solid JS --> React JS
-    quadrant-1 React + Tailwind (0.862)
-    quadrant-2 React + Vanilla CSS (0.925)
-    quadrant-3 Solid + Vanilla CSS (0.876)
-    quadrant-4 Solid + Tailwind (0.875)
-    "Luminary AI": [0.25, 0.75]
-    "Nexus SaaS": [0.75, 0.75]
-    "Aura Creative": [0.25, 0.25]
-    "Cypher DEX": [0.75, 0.25]
+    quadrant-1 React and Tailwind
+    quadrant-2 React and Vanilla CSS
+    quadrant-3 Solid and Vanilla CSS
+    quadrant-4 Solid and Tailwind
+    "Luminary AI (0.925)": [0.25, 0.75]
+    "Nexus SaaS (0.862)": [0.75, 0.75]
+    "Aura Creative (0.876)": [0.25, 0.25]
+    "Cypher DEX (0.875)": [0.75, 0.25]
 ```
 
 ---
