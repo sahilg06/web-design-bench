@@ -9,7 +9,7 @@ This document outlines the core research philosophy, engineering decisions, and 
 The problem statement explicitly warns: *"The model will learn your grading logic, so if your grading is bad, you're just introducing noise to the model and making it worse."*
 
 ### The Flaw in Pure SSIM / pHash
-Many existing benchmarks and computer vision evaluation frameworks rely on a combination of Structural Similarity (SSIM) [1] and Perceptual Hashing (pHash) [2], or use them as foundational baselines for evaluating multimodal web agents (e.g., Design2Code [3], VisualWebArena [4]). While effective for layout geometry, we observed a critical failure mode during early testing: **Color Palette Hallucination**.
+Many existing benchmarks and computer vision evaluation frameworks rely on a combination of Structural Similarity (SSIM) [[1]](#ref-1) and Perceptual Hashing (pHash) [[2]](#ref-2), or use them as foundational baselines for evaluating multimodal web agents (e.g., Design2Code [[3]](#ref-3), VisualWebArena [[4]](#ref-4)). While effective for layout geometry, we observed a critical failure mode during early testing: **Color Palette Hallucination**.
 * If an agent generates a beautifully aligned SaaS website but uses a **light theme (`#ffffff`)** instead of the requested **dark theme (`#0a0a0f`)**, SSIM and pHash still score the layout surprisingly high (often >0.70) because the structural edges and text bounding boxes match perfectly.
 * In a real-world product environment, generating a light theme when a dark theme was requested is a catastrophic failure.
 
@@ -143,7 +143,7 @@ By ensuring pure numeric reward schemas (`{"reward": 0.0, "blended_reward": 0.0}
 During the design of the grader, we explored incorporating explicit design principle metrics to evaluate the aesthetic quality of the generated websites.
 
 ### Considered but Rejected for V1: Static Heuristic Metrics (Ngo's Aesthetic Measures)
-We evaluated traditional mathematical models of aesthetics, such as **Ngo's 14 Aesthetic Measures** ([Ngo et al., 2000](https://www.mi.sanu.ac.rs/vismath/ngo/index.html)), which quantify principles like Balance, Equilibrium, Symmetry, Sequence, Proportion, and Regularity using bounding box geometry.
+We evaluated traditional mathematical models of aesthetics, such as **Ngo's 14 Aesthetic Measures** ([[6]](#ref-6), [Ngo et al., 2000](https://www.mi.sanu.ac.rs/vismath/ngo/index.html)), which quantify principles like Balance, Equilibrium, Symmetry, Sequence, Proportion, and Regularity using bounding box geometry.
 
 We ultimately chose **not** to include these in the V1 grader for three reasons:
 a. **Replication vs. Absolute Aesthetics**: V1 is fundamentally a *replication fidelity* benchmark. A reference design might intentionally feature asymmetric layouts (e.g., our Architecture Studio) or extreme whitespace (e.g., Luxury Fashion). An absolute symmetry or balance metric would incorrectly penalize faithful replications of intentional asymmetry.
@@ -153,7 +153,7 @@ c. **DOM Dependency**: Ngo's formulas require segmenting individual UI objects a
 ### Future Work: Learned Multimodal Evaluation (Design-o-meter)
 For future iterations of `web-design-bench` (particularly for open-ended generation tasks where there is no ground-truth screenshot), we plan to move beyond static heuristics to learned, VLM-based design evaluators.
 
-Specifically, we propose integrating **Design-o-meter: Towards Evaluating and Refining Graphic Designs** ([Goyal et al., 2024, arXiv:2411.14959](https://arxiv.org/abs/2411.14959)).
+Specifically, we propose integrating **Design-o-meter: Towards Evaluating and Refining Graphic Designs** ([[5]](#ref-5), [Goyal et al., 2024](https://arxiv.org/abs/2411.14959)).
 * **Human-Aligned Evaluation**: Unlike rigid geometric formulas, Design-o-meter leverages advanced vision-language modeling to evaluate graphic design principles (alignment, hierarchy, typography, clutter, and visual balance) in a manner that aligns with professional human designers.
 * **Iterative Self-Refinement**: Design-o-meter not only scores designs but provides actionable natural language critique and refinement suggestions. In a V2 pipeline, this could be used both as a dense reward signal for RLHF/RLAIF and as an in-context critique loop for agent self-correction.
 
@@ -172,9 +172,14 @@ Explore the complete documentation suite to understand the full lifecycle of `we
 
 ## 📖 References & Citations
 
-1. **Wang, Z., Bovik, A. C., Sheikh, H. R., & Simoncelli, E. P.** (2004). *Image quality assessment: from error visibility to structural similarity*. IEEE Transactions on Image Processing, 13(4), 600-612.
-2. **Zauner, C.** (2010). *Implementation and Benchmarking of Perceptual Image Hash Functions*. Master's thesis, Upper Austria University of Applied Sciences.
-3. **Cheng, S., et al.** (2024). *Design2Code: How Far Are We From Automating Front-End Engineering?* arXiv preprint arXiv:2403.03163.
-4. **Koh, J. Y., et al.** (2024). *VisualWebArena: Evaluating Multimodal Agents on Realistic Visual Web Tasks*. arXiv preprint arXiv:2401.13649.
-5. **Goyal, S., et al.** (2024). *Design-o-meter: Towards Evaluating and Refining Graphic Designs*. arXiv preprint arXiv:2411.14959.
-6. **Ngo, D. C. L., et al.** (2000). *Aesthetic Measures for Assessing Graphic Screens*. Journal of Information Science and Engineering, 16(1), 97-116.
+<a name="ref-1"></a> **[1]** Wang, Z., Bovik, A. C., Sheikh, H. R., & Simoncelli, E. P. (2004). *Image quality assessment: from error visibility to structural similarity*. IEEE Transactions on Image Processing, 13(4), 600-612.
+
+<a name="ref-2"></a> **[2]** Zauner, C. (2010). *Implementation and Benchmarking of Perceptual Image Hash Functions*. Master's thesis, Upper Austria University of Applied Sciences.
+
+<a name="ref-3"></a> **[3]** Cheng, S., et al. (2024). *Design2Code: How Far Are We From Automating Front-End Engineering?* [arXiv:2403.03163](https://arxiv.org/abs/2403.03163).
+
+<a name="ref-4"></a> **[4]** Koh, J. Y., et al. (2024). *VisualWebArena: Evaluating Multimodal Agents on Realistic Visual Web Tasks*. [arXiv:2401.13649](https://arxiv.org/abs/2401.13649).
+
+<a name="ref-5"></a> **[5]** Goyal, S., et al. (2024). *Design-o-meter: Towards Evaluating and Refining Graphic Designs*. [arXiv:2411.14959](https://arxiv.org/abs/2411.14959).
+
+<a name="ref-6"></a> **[6]** Ngo, D. C. L., et al. (2000). *Aesthetic Measures for Assessing Graphic Screens*. Journal of Information Science and Engineering, 16(1), 97-116.
