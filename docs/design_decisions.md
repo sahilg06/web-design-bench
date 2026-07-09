@@ -100,9 +100,9 @@ Before scoring, the verifier checks if the ground-truth reference page *itself* 
 To render agent HTML into full-page screenshots, we selected **Playwright (Async Python API)** over Selenium or Puppeteer.
 
 ### Engineering Rationale
-1. **Async Concurrency**: Rendering 5 pages across 10 tasks requires 50 browser sessions. Using `asyncio` with Playwright allows us to render multiple pages concurrently within the verifier container, reducing grading overhead by 70% compared to synchronous Selenium.
-2. **Network-Idle Guarantees**: A common failure in automated screenshot capture is taking the screenshot before web fonts or external assets finish loading. We utilize `page.goto(url, wait_until="networkidle")` followed by a `500ms` animation settling timeout to ensure the DOM is fully rendered.
-3. **Strict Pixel Scaling**: We force `device_scale_factor=1` in the browser context. This guarantees that screenshot dimensions match the reference assets pixel-for-pixel, preventing retina display scaling discrepancies across different execution environments.
+a. **Async Concurrency**: Rendering 5 pages across 10 tasks requires 50 browser sessions. Using `asyncio` with Playwright allows us to render multiple pages concurrently within the verifier container, reducing grading overhead by 70% compared to synchronous Selenium.
+b. **Network-Idle Guarantees**: A common failure in automated screenshot capture is taking the screenshot before web fonts or external assets finish loading. We utilize `page.goto(url, wait_until="networkidle")` followed by a `500ms` animation settling timeout to ensure the DOM is fully rendered.
+c. **Strict Pixel Scaling**: We force `device_scale_factor=1` in the browser context. This guarantees that screenshot dimensions match the reference assets pixel-for-pixel, preventing retina display scaling discrepancies across different execution environments.
 
 ---
 
@@ -122,16 +122,16 @@ The work trial explicitly requires *"a recipe that is stable."* A benchmark is o
 
 Our recipe achieves a **mean Coefficient of Variation (CV) of 4.8%** across all 10 tasks, with **7/10 tasks under 5% CV** and a **0% error rate** across 100 trials. This stability is the direct result of four deliberate architectural choices:
 
-### 1. Deterministic Rendering Environment
+### a. Deterministic Rendering Environment
 Both the ground-truth reference screenshots and the agent's screenshots are rendered inside the **same Dockerfile** — using the same Playwright version (`1.44.0`), the same bundled Chromium, the same `fonts-liberation` package, and the same `device_scale_factor=1`. This eliminates cross-environment rendering drift (font substitution, subpixel antialiasing, retina scaling) that plagues many visual benchmarks.
 
-### 2. Multi-Metric Smoothing
+### b. Multi-Metric Smoothing
 By blending three orthogonal metrics (`SSIM`, `pHash`, `ColorHistogram`) across five pages per task, we average out per-page noise. A single page that renders slightly differently contributes only `1/15th` (1 page × 1 metric out of 5 pages × 3 metrics) of the final visual reward, dramatically reducing score volatility.
 
-### 3. `max(cropped, padded)` Alignment
+### c. `max(cropped, padded)` Alignment
 Rather than committing to a single comparison mode (which can be unfairly sensitive to minor height differences), we compute both cropped and padded scores and take the maximum. This ensures the grader always finds the fairest geometric alignment, reducing noise from minor font-rendering height variations.
 
-### 4. Zero-Crash Verifier Design
+### d. Zero-Crash Verifier Design
 By ensuring pure numeric reward schemas (`{"reward": 0.0, "blended_reward": 0.0}`) and installing all system dependencies deterministically in the Dockerfile, we achieved a **0% error rate** — no trial was ever lost to an infrastructure crash, timeout, or dependency mismatch.
 
 > See the full empirical stability breakdown (per-task CV table) in [Evaluation Report → Recipe Stability](evaluation_report.md).
@@ -146,9 +146,9 @@ During the design of the grader, we explored incorporating explicit design princ
 We evaluated traditional mathematical models of aesthetics, such as **Ngo's 14 Aesthetic Measures** ([Ngo et al., 2000](https://www.mi.sanu.ac.rs/vismath/ngo/index.html)), which quantify principles like Balance, Equilibrium, Symmetry, Sequence, Proportion, and Regularity using bounding box geometry.
 
 We ultimately chose **not** to include these in the V1 grader for three reasons:
-1. **Replication vs. Absolute Aesthetics**: V1 is fundamentally a *replication fidelity* benchmark. A reference design might intentionally feature asymmetric layouts (e.g., our Architecture Studio) or extreme whitespace (e.g., Luxury Fashion). An absolute symmetry or balance metric would incorrectly penalize faithful replications of intentional asymmetry.
-2. **RL Gaming Risks**: Static mathematical formulas are highly susceptible to reward hacking by RL agents. An agent could optimize for Ngo's Symmetry and Balance by outputting a perfectly centered grid of identical grey boxes—scoring perfectly on the heuristic while failing the design brief.
-3. **DOM Dependency**: Ngo's formulas require segmenting individual UI objects and calculating their optical weight and coordinates, which would require complex DOM parsing or object detection, making the grader brittle.
+a. **Replication vs. Absolute Aesthetics**: V1 is fundamentally a *replication fidelity* benchmark. A reference design might intentionally feature asymmetric layouts (e.g., our Architecture Studio) or extreme whitespace (e.g., Luxury Fashion). An absolute symmetry or balance metric would incorrectly penalize faithful replications of intentional asymmetry.
+b. **RL Gaming Risks**: Static mathematical formulas are highly susceptible to reward hacking by RL agents. An agent could optimize for Ngo's Symmetry and Balance by outputting a perfectly centered grid of identical grey boxes—scoring perfectly on the heuristic while failing the design brief.
+c. **DOM Dependency**: Ngo's formulas require segmenting individual UI objects and calculating their optical weight and coordinates, which would require complex DOM parsing or object detection, making the grader brittle.
 
 ### Future Work: Learned Multimodal Evaluation (Design-o-meter)
 For future iterations of `web-design-bench` (particularly for open-ended generation tasks where there is no ground-truth screenshot), we plan to move beyond static heuristics to learned, VLM-based design evaluators.

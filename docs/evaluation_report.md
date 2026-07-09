@@ -64,29 +64,29 @@ graph TD
     C --> C3[Severe Truncation on Hard Tasks >4000px]
 ```
 ### 🟢 Where Claude Code Excels
-1. **Semantic Structure & Layout Grids**: Claude is exceptionally good at identifying standard section layouts (Hero, Features grid, Testimonials, Footer) from screenshots and structuring them cleanly using CSS `display: flex` and `display: grid`.
-2. **Color Palette Adherence**: Thanks to the explicit color token hints in `instruction.md`, Claude almost never hallucinates random colors. It consistently applies `--background`, `--primary`, and `--surface` variables correctly across the stylesheet.
-3. **Consistent Multi-Page Output**: Across all 100 trials, Claude successfully produced all 5 HTML pages + `style.css` for every task — achieving a 100% structural completeness rate with 0 errors.
+a. **Semantic Structure & Layout Grids**: Claude is exceptionally good at identifying standard section layouts (Hero, Features grid, Testimonials, Footer) from screenshots and structuring them cleanly using CSS `display: flex` and `display: grid`.
+b. **Color Palette Adherence**: Thanks to the explicit color token hints in `instruction.md`, Claude almost never hallucinates random colors. It consistently applies `--background`, `--primary`, and `--surface` variables correctly across the stylesheet.
+c. **Consistent Multi-Page Output**: Across all 100 trials, Claude successfully produced all 5 HTML pages + `style.css` for every task — achieving a 100% structural completeness rate with 0 errors.
 
 ---
 
 ### 🔴 Common Failure Patterns (What the Model Struggles With)
 
-#### 1. Typography Scale & Line-Height Overshoot
+#### a. Typography Scale & Line-Height Overshoot
 * **Observation**: Claude frequently struggles to estimate exact pixel font sizes (`font-size`) and line heights (`line-height`) from screenshots. It tends to make heading fonts (`<h1>`, `<h2>`) 10-20% larger than the reference design.
 * **Impact on Grader**: This causes text blocks to wrap differently or push subsequent sections down the page. While pHash remains stable, the **SSIM score degrades significantly** due to the vertical offset of all downstream elements.
 
-#### 2. Complex Gradients & Glassmorphism
+#### b. Complex Gradients & Glassmorphism
 * **Observation**: On Hard archetypes like *AI Startup* and *Crypto Exchange*, the reference designs feature complex background gradients (`radial-gradient`, `conic-gradient`) and glassmorphism effects (`backdrop-filter: blur(12px)`).
 * **Impact on Grader**: Claude often simplifies these into solid background colors or basic linear gradients. Our **Color Histogram metric catches this discrepancy** effectively.
 
-#### 3. Page Height Truncation (Luxury Fashion: 0.57–0.65 height ratios)
+#### c. Page Height Truncation (Luxury Fashion: 0.57–0.65 height ratios)
 * **Observation**: The worst-performing task (Luxury Fashion, mean 0.571) suffered from severe height truncation. Claude produced pages at only 57-67% of the reference height, indicating it stopped generating content prematurely for the serif-heavy, image-intensive design.
 * **Impact on Grader**: Our height penalty correctly amplified these truncation errors — pages with `height_ratio < 0.80` receive a proportional multiplier penalty, dropping rewards below 0.55.
 
 ---
 
-#### 4. The Whitespace Paradox: Why "Simple" Minimalist Designs Score Lowest
+#### d. The Whitespace Paradox: Why "Simple" Minimalist Designs Score Lowest
 
 A natural question arises: *Why does Luxury Fashion (a "simple" minimalist serif design) score only 0.611 at its best, while the visually complex Food Delivery (cards, grids, icons) hits 0.803?*
 
@@ -208,15 +208,15 @@ We evaluated Claude Code across 4 distinct animation archetype configurations (2
 
 ## 2.3 Key Temporal Insights & Model Behaviors
 
-### 1. Solving the `t500` ≈ `t1200` Problem (Prism Studio Agency)
+### a. Solving the `t500` ≈ `t1200` Problem (Prism Studio Agency)
 * **Observation**: In our initial animation configs (`portfolio_animation`, `saas_animation`), animations were fast (`0.8s`–`1.2s`) with short stagger delays (`0.1s`), causing `t500`, `t1200`, and `settled` scores to be nearly identical.
 * **Impact of New Configs**: By introducing `agency_animation_medium` with slower durations (`1.5s`–`2.5s`) and large stagger delays (`0.3s`–`1.0s`), we successfully forced significant visual separation between intermediate frames. For example, `page_work` drops from `0.8119` at `t0` down to `0.6848` at `t500` and `0.6564` at `t1200`.
 
-### 2. The "Uncanny Valley" of Intermediate Animation States
+### b. The "Uncanny Valley" of Intermediate Animation States
 * **Observation**: Across both new configs (`agency` and `fintech`), we observe a distinct "U-shaped" score trajectory. Agents achieve high scores at `t0` (initial hidden state, e.g., `0.7752`) and `settled` (final layout, e.g., `0.7558`), but experience a noticeable dip at `t500` (`0.7296`) and `t1200` (`0.7274`).
 * **Model Limitation**: This proves that while Claude Code understands *start* (`opacity: 0`) and *end* (`opacity: 1`) states perfectly, it struggles to match the precise non-linear easing curves (`cubic-bezier`) and stagger choreography during mid-flight.
 
-### 3. Multi-Phase Choreography & `t1800` Recovery (Vault Fintech)
+### c. Multi-Phase Choreography & `t1800` Recovery (Vault Fintech)
 * **Observation**: `fintech_animation_hard` implements complex multi-phase keyframes (fade → slide → glow pulse) with an extended `t1800` capture point.
 * **Impact on Grader**: On `page_pricing`, the score bottoms out at `t1200` (`0.7274`) during the active glow pulse transition, before recovering at `t1800` (`0.7553`) as the elements settle into their final resting positions. This confirms the grader's extreme sensitivity to micro-animation states.
 
@@ -251,9 +251,9 @@ We evaluated Claude Code across the Part 3 Multi-Framework Benchmark (`v3`). Thi
 └─────────────────────────────┴─────────────────────────────────────────────┘
 ```
 
-1. **Flawless Build & SPA Execution (0 Errors)**: Across all 40 trials, Claude Code achieved a **100% success rate** in scaffolding valid Vite projects (`package.json`, `vite.config.js`), installing dependencies, and building `dist/` without a single compilation or bundling error.
-2. **The Vanilla CSS Advantage (`0.901` vs `0.869`)**: The agent achieved its highest visual similarity scores when using Vanilla CSS custom properties (`0.925` and `0.876`) compared to Tailwind CSS (`0.862` and `0.875`). Tailwind forces the AI to quantize visual dimensions into pre-defined utility scales (`p-4` for `1rem`), creating minor padding/typography approximation gaps. Vanilla CSS allows the agent to micro-tune exact pixel values (`padding: 18px 24px`), leading to higher SSIM alignment.
-3. **Flawless Solid JS Adherence**: Despite Solid JS's unique reactivity model (`createSignal`, function-call getters `activeTab()`, and `class` instead of `className`), Claude Code maintained 100% compliance with Solid conventions across all 20 Solid trials without accidentally reverting to React idioms.
+a. **Flawless Build & SPA Execution (0 Errors)**: Across all 40 trials, Claude Code achieved a **100% success rate** in scaffolding valid Vite projects (`package.json`, `vite.config.js`), installing dependencies, and building `dist/` without a single compilation or bundling error.
+b. **The Vanilla CSS Advantage (`0.901` vs `0.869`)**: The agent achieved its highest visual similarity scores when using Vanilla CSS custom properties (`0.925` and `0.876`) compared to Tailwind CSS (`0.862` and `0.875`). Tailwind forces the AI to quantize visual dimensions into pre-defined utility scales (`p-4` for `1rem`), creating minor padding/typography approximation gaps. Vanilla CSS allows the agent to micro-tune exact pixel values (`padding: 18px 24px`), leading to higher SSIM alignment.
+c. **Flawless Solid JS Adherence**: Despite Solid JS's unique reactivity model (`createSignal`, function-call getters `activeTab()`, and `class` instead of `className`), Claude Code maintained 100% compliance with Solid conventions across all 20 Solid trials without accidentally reverting to React idioms.
 
 > **Full Framework Report**: See [Part 3: Multi-Framework Benchmark Report](part3_frameworks.md) for complete quadrant charts and per-task submetric breakdowns (SSIM, pHash, Color Hist).
 
