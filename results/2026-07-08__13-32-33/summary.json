@@ -1,0 +1,120 @@
+{
+  "run_id": "2026-07-08__13-32-33",
+  "timestamp": "2026-07-08T13:32:33.573699",
+  "model": "claude-code",
+  "agent": "claude-code",
+  "env": "unknown",
+  "n_tasks": 10,
+  "n_trials": 100,
+  "n_errors": 0,
+  "mean_reward": 0.6879,
+  "min_reward": 0.511,
+  "max_reward": 0.8032,
+  "std_reward": 0.0729,
+  "pass_at_1_070": 0.48,
+  "pass_at_5_070": 0.7472,
+  "pass_at_10_070": 0.9,
+  "job_path": "/usr/local/google/home/goyalsahil/web-design-bench/jobs/2026-07-08__13-32-33",
+  "per_task": {
+    "v1-aistartupneonhardconfig-73475": {
+      "mean": 0.6928,
+      "min": 0.637,
+      "max": 0.7351,
+      "n": 10,
+      "mean_ssim": 0.6884,
+      "mean_phash": 0.7187,
+      "mean_color_hist": 0.8619,
+      "mean_height_ratio": 0.9448
+    },
+    "v1-architecturestudiomonohardcon": {
+      "mean": 0.6057,
+      "min": 0.5443,
+      "max": 0.7864,
+      "n": 10,
+      "mean_ssim": 0.7467,
+      "mean_phash": 0.5787,
+      "mean_color_hist": 0.9944,
+      "mean_height_ratio": 0.7893
+    },
+    "v1-cryptoexchangecyberpunkhardco": {
+      "mean": 0.7549,
+      "min": 0.7262,
+      "max": 0.7732,
+      "n": 10,
+      "mean_ssim": 0.7561,
+      "mean_phash": 0.7481,
+      "mean_color_hist": 0.9537,
+      "mean_height_ratio": 0.951
+    },
+    "v1-fooddeliveryplayfulmediumconf": {
+      "mean": 0.7751,
+      "min": 0.7225,
+      "max": 0.8032,
+      "n": 10,
+      "mean_ssim": 0.7781,
+      "mean_phash": 0.7812,
+      "mean_color_hist": 0.9864,
+      "mean_height_ratio": 0.9324
+    },
+    "v1-indiegameretromediumconfig-73": {
+      "mean": 0.6763,
+      "min": 0.6324,
+      "max": 0.7189,
+      "n": 10,
+      "mean_ssim": 0.7583,
+      "mean_phash": 0.6675,
+      "mean_color_hist": 0.9571,
+      "mean_height_ratio": 0.8767
+    },
+    "v1-lawfirmcorporateeasyconfig-73": {
+      "mean": 0.7604,
+      "min": 0.7355,
+      "max": 0.7909,
+      "n": 10,
+      "mean_ssim": 0.7357,
+      "mean_phash": 0.8075,
+      "mean_color_hist": 0.9259,
+      "mean_height_ratio": 0.9511
+    },
+    "v1-luxuryfashionserifmediumconfi": {
+      "mean": 0.5708,
+      "min": 0.511,
+      "max": 0.6108,
+      "n": 10,
+      "mean_ssim": 0.8624,
+      "mean_phash": 0.5931,
+      "mean_color_hist": 0.9849,
+      "mean_height_ratio": 0.6979
+    },
+    "v1-musicstreaminggradientmediumc": {
+      "mean": 0.703,
+      "min": 0.6284,
+      "max": 0.7746,
+      "n": 10,
+      "mean_ssim": 0.6667,
+      "mean_phash": 0.7581,
+      "mean_color_hist": 0.9279,
+      "mean_height_ratio": 0.9394
+    },
+    "v1-travelagencytropicalmediumcon": {
+      "mean": 0.6429,
+      "min": 0.6076,
+      "max": 0.7266,
+      "n": 10,
+      "mean_ssim": 0.7047,
+      "mean_phash": 0.6481,
+      "mean_color_hist": 0.9795,
+      "mean_height_ratio": 0.8605
+    },
+    "v1-wellnessspaorganiceasyconfig": {
+      "mean": 0.6973,
+      "min": 0.6397,
+      "max": 0.7353,
+      "n": 10,
+      "mean_ssim": 0.8237,
+      "mean_phash": 0.6756,
+      "mean_color_hist": 0.9684,
+      "mean_height_ratio": 0.8588
+    }
+  }
+}

@@ -60,16 +60,21 @@ graph TD
 │   ├── agent.py                # Claude API caller for website generation
 │   ├── capture.py              # Playwright screenshot capture
 │   └── packager.py             # Assemble into Harbor task directory
-├── eval/                       # Evaluation orchestration runner config registry
-│   ├── run.py                  # CLI orchestrator to launch harbor runs
-│   └── configs/                # Version-controlled job configuration suites
 ├── grader/                     # Shared grading logic (copied into tasks/tests/)
 │   ├── grade.py                # Visual similarity scorer (SSIM + pHash + Color Histogram)
 │   ├── render.py               # Playwright screenshot renderer
 │   └── text_recall.py          # Token-level content recall
+├── eval/                       # Evaluation orchestration & post-processing
+│   ├── run.py                  # CLI orchestrator to launch harbor runs
+│   ├── summarize.py            # Auto-generates summary.json & updates evaluation_report.md
+│   ├── visualize.py            # Static chart generation (box plots, bar charts)
+│   └── configs/                # Version-controlled job configuration suites
 ├── jobs/                       # Evaluation output directory (trajectories, logs, rewards)
+├── results/                    # Per-job summaries, plots, and historical tracking
+│   ├── history.csv             # Append-only CSV tracking all evaluation runs
+│   └── <job-id>/               # Per-job summary.json & generated plots
 └── docs/                       # Structured documentation and research reports
-    ├── design_decisions.md     # Thought process & trade-offs
+    ├── design_decisions.md     # Thought process & trade-offs (9 sections)
     └── evaluation_report.md    # Results, analysis, model failure patterns
 ```
 
@@ -159,9 +164,10 @@ Blended Reward = (0.75 * Visual Reward) + (0.25 * Mean Text Recall)
 
 ---
 
-## 📚 Documentation Index
+## 📚 Documentation Navigation
 
-Discover deep architectural notes, engineering trade-offs, and research findings in the polished documentation suite:
-
-1. **[Design Decisions & Trade-offs](docs/design_decisions.md)**: Details of the 3-metric grading formula, DesignSpec schema, and safety validators.
-2. **[Evaluation Report & Model Behavior](docs/evaluation_report.md)**: Deep dive into visual similarity mechanics, aggregate grading, and extensive results analysis showing how high rewards align with high-taste UI elements.
+Explore the complete documentation suite to understand the full lifecycle of `web-design-bench`:
+1. **[Main README & Quick-Start](README.md)**: Repository overview, architecture diagrams, and execution instructions.
+2. **[Design Decisions & Trade-offs](docs/design_decisions.md)**: Architectural thought process, grader mechanics, and framework integrations.
+3. **[Evaluation Report & Model Behavior](docs/evaluation_report.md)**: Comprehensive analysis of the 100-trial benchmark run, `Pass@K` metrics, and deep dives into AI model failure patterns.
+4. **[Visual Grader Validation](docs/grader_validation/grader_validation.md)**: Side-by-side reference vs. agent screenshot comparisons proving higher scores = better designs.

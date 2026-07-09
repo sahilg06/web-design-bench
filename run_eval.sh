@@ -23,4 +23,13 @@ if ! command -v uv &>/dev/null; then
     exit 1
 fi
 
-exec uv --directory "$SCRIPT_DIR" run python -m eval.run "$@"
+uv --directory "$SCRIPT_DIR" run python -m eval.run "$@"
+
+# Automatically summarize results after the eval completes
+echo ""
+echo "Summarizing results..."
+uv --directory "$SCRIPT_DIR" run python -m eval.summarize
+
+echo ""
+echo "Generating visualization plots..."
+uv --directory "$SCRIPT_DIR" run --with matplotlib --with seaborn python -m eval.visualize

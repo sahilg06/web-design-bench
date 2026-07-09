@@ -88,8 +88,9 @@ def summarize_job(job_dir: Path) -> dict:
         with open(config_file) as f:
             config = json.load(f)
 
-    # Collect per-trial rewards grouped by task
+    # Collect per-trial rewards and individual metrics grouped by task
     task_scores: dict[str, list[float]] = {}
+    task_metrics: dict[str, dict[str, list[float]]] = {}
     all_scores: list[float] = []
 
     for entry in sorted(os.listdir(job_dir)):
@@ -103,19 +104,36 @@ def summarize_job(job_dir: Path) -> dict:
         task_scores.setdefault(task_name, []).append(score)
         all_scores.append(score)
 
+        # Collect individual metrics across all pages in this trial
+        tm = task_metrics.setdefault(task_name, {"ssim": [], "phash": [], "color_hist": [], "height_ratio": []})
+        ssim_vals = [v for k, v in r.items() if "ssim_cropped" in k]
+        phash_vals = [v for k, v in r.items() if "phash_cropped" in k]
+        color_vals = [v for k, v in r.items() if "color_hist_cropped" in k]
+        height_vals = [v for k, v in r.items() if "height_ratio" in k]
+
+        if ssim_vals: tm["ssim"].append(sum(ssim_vals) / len(ssim_vals))
+        if phash_vals: tm["phash"].append(sum(phash_vals) / len(phash_vals))
+        if color_vals: tm["color_hist"].append(sum(color_vals) / len(color_vals))
+        if height_vals: tm["height_ratio"].append(sum(height_vals) / len(height_vals))
+
     if not all_scores:
         print("WARNING: No trial rewards found", file=sys.stderr)
         all_scores = [0.0]
 
-    # Per-task summary
+    # Per-task summary with individual metric averages
     per_task = {}
     for task_name, scores in sorted(task_scores.items()):
         mean = sum(scores) / len(scores)
+        tm = task_metrics.get(task_name, {})
         per_task[task_name] = {
             "mean": round(mean, 4),
             "min": round(min(scores), 4),
             "max": round(max(scores), 4),
             "n": len(scores),
+            "mean_ssim": round(sum(tm["ssim"]) / len(tm["ssim"]), 4) if tm.get("ssim") else 0.0,
+            "mean_phash": round(sum(tm["phash"]) / len(tm["phash"]), 4) if tm.get("phash") else 0.0,
+            "mean_color_hist": round(sum(tm["color_hist"]) / len(tm["color_hist"]), 4) if tm.get("color_hist") else 0.0,
+            "mean_height_ratio": round(sum(tm["height_ratio"]) / len(tm["height_ratio"]), 4) if tm.get("height_ratio") else 0.0,
         }
 
     stats = data.get("stats", {})
@@ -145,7 +163,7 @@ def summarize_job(job_dir: Path) -> dict:
         "pass_at_10_070": round(_compute_pass_at_k(task_scores, 0.70, 10), 4),
         "per_task_json": json.dumps(per_task),
         "job_path": str(job_dir),
-    }
+    }, task_scores
 
 
 def find_latest_job() -> Path:
@@ -167,15 +185,120 @@ def find_latest_job() -> Path:
 
 
 def append_to_history(summary: dict) -> None:
-    """Append a summary row to the history CSV."""
+    """Append to history CSV and save a dedicated job summary JSON."""
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
+    # 1. Append to global history CSV
     file_exists = HISTORY_CSV.exists()
     with open(HISTORY_CSV, "a", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=CSV_COLUMNS)
         if not file_exists:
             writer.writeheader()
         writer.writerow(summary)
+
+    # 2. Save dedicated job summary JSON in results/<job_id>/
+    job_results_dir = RESULTS_DIR / summary["run_id"]
+    job_results_dir.mkdir(parents=True, exist_ok=True)
+    
+    summary_json_path = job_results_dir / "summary.json"
+    # Unpack per_task_json for cleaner reading in the standalone file
+    standalone_summary = dict(summary)
+    standalone_summary["per_task"] = json.loads(standalone_summary.pop("per_task_json"))
+    
+    with open(summary_json_path, "w") as f:
+        json.dump(standalone_summary, f, indent=2)
+
+
+def update_evaluation_report(summary: dict, task_scores: dict[str, list[float]]) -> None:
+    """Update the tables in docs/evaluation_report.md with fresh numbers."""
+    report_path = Path(__file__).resolve().parent.parent / "docs" / "evaluation_report.md"
+    if not report_path.exists():
+        return
+
+    content = report_path.read_text()
+
+    # 1. Build Aggregate Results Table
+    per_task = json.loads(summary["per_task_json"])
+    
+    archetype_map = {
+        "v1-fooddeliveryplayfulmediumconf": "Food Delivery (Playful)",
+        "v1-lawfirmcorporateeasyconfig-73": "Law Firm (Corporate Clean)",
+        "v1-cryptoexchangecyberpunkhardco": "Crypto Exchange (Cyberpunk)",
+        "v1-musicstreaminggradientmediumc": "Music Streaming (Gradient)",
+        "v1-wellnessspaorganiceasyconfig": "Wellness Spa (Organic Warm)",
+        "v1-aistartupneonhardconfig-73475": "AI Startup (Neon Dark)",
+        "v1-indiegameretromediumconfig-73": "Indie Game Studio (Retro)",
+        "v1-travelagencytropicalmediumcon": "Travel Agency (Tropical)",
+        "v1-architecturestudiomonohardcon": "Architecture Studio (Mono)",
+        "v1-luxuryfashionserifmediumconfi": "Luxury Fashion (Serif)",
+    }
+
+    table_lines = [
+        "<!-- RESULTS_TABLE_START -->",
+        "| Archetype | Mean Blended Reward | Min | Max | Std Dev |",
+        "| :--- | :---: | :---: | :---: | :---: |"
+    ]
+
+    for task_key, stats in sorted(per_task.items(), key=lambda x: -x[1]["mean"]):
+        name = archetype_map.get(task_key, task_key.replace("v1-", "").replace("config-73475", ""))
+        scores = task_scores[task_key]
+        mean = stats["mean"]
+        std = (sum((s - mean) ** 2 for s in scores) / len(scores)) ** 0.5
+        table_lines.append(f"| **{name}** | **{mean:.3f}** | {stats['min']:.3f} | {stats['max']:.3f} | {std:.3f} |")
+
+    table_lines.append(f"| **Overall Suite Average** | **{summary['mean_reward']:.3f}** | **{summary['min_reward']:.3f}** | **{summary['max_reward']:.3f}** | **{summary['std_reward']:.3f}** |")
+    table_lines.append("<!-- RESULTS_TABLE_END -->")
+
+    # Replace RESULTS_TABLE
+    start_tag = "<!-- RESULTS_TABLE_START -->"
+    end_tag = "<!-- RESULTS_TABLE_END -->"
+    if start_tag in content and end_tag in content:
+        before = content.split(start_tag)[0]
+        after = content.split(end_tag)[1]
+        content = before + "\n".join(table_lines) + after
+
+    # 2. Build Pass@K Table
+    pass_lines = [
+        "<!-- PASS_AT_K_START -->",
+        "| Threshold | Pass@1 | Pass@2 | Pass@5 | Pass@10 |",
+        "| :---: | :---: | :---: | :---: | :---: |"
+    ]
+    
+    thresholds = [0.50, 0.60, 0.70, 0.75, 0.80]
+    for thresh in thresholds:
+        p1 = _compute_pass_at_k(task_scores, thresh, 1)
+        p2 = _compute_pass_at_k(task_scores, thresh, 2)
+        p5 = _compute_pass_at_k(task_scores, thresh, 5)
+        p10 = _compute_pass_at_k(task_scores, thresh, 10)
+        pass_lines.append(f"| ≥ {thresh:.2f} | {p1:.0%} | {p2:.0%} | {p5:.0%} | {p10:.0%} |")
+    pass_lines.append("<!-- PASS_AT_K_END -->")
+
+    # Replace PASS_AT_K
+    p_start_tag = "<!-- PASS_AT_K_START -->"
+    p_end_tag = "<!-- PASS_AT_K_END -->"
+    if p_start_tag in content and p_end_tag in content:
+        before = content.split(p_start_tag)[0]
+        after = content.split(p_end_tag)[1]
+        content = before + "\n".join(pass_lines) + after
+
+    # 3. Update Plot Paths
+    plot_lines = [
+        "<!-- PLOTS_START -->",
+        f"![Task Variance Boxplot](../results/{summary['run_id']}/task_variance_boxplot.png)",
+        "",
+        f"![Task Means Barchart](../results/{summary['run_id']}/task_means_barchart.png)",
+        "<!-- PLOTS_END -->"
+    ]
+    
+    pl_start_tag = "<!-- PLOTS_START -->"
+    pl_end_tag = "<!-- PLOTS_END -->"
+    if pl_start_tag in content and pl_end_tag in content:
+        before = content.split(pl_start_tag)[0]
+        after = content.split(pl_end_tag)[1]
+        content = before + "\n".join(plot_lines) + after
+
+    report_path.write_text(content)
+    print(f"  Updated docs/evaluation_report.md with latest metrics and plot paths.")
 
 
 def print_summary(summary: dict) -> None:
@@ -228,8 +351,9 @@ def main() -> None:
     if not job_dir.is_absolute():
         job_dir = Path.cwd() / job_dir
 
-    summary = summarize_job(job_dir)
+    summary, task_scores = summarize_job(job_dir)
     print_summary(summary)
+    update_evaluation_report(summary, task_scores)
 
     if not args.no_save:
         append_to_history(summary)
