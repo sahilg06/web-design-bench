@@ -142,11 +142,11 @@ By ensuring pure numeric reward schemas (`{"reward": 0.0, "blended_reward": 0.0}
 
 During the design of the grader, we explored incorporating explicit design principle metrics to evaluate the aesthetic quality of the generated websites.
 
-### Considered but Rejected for V1: Static Heuristic Metrics (Ngo's Aesthetic Measures)
+### Considered but Rejected: Static Heuristic Metrics (Ngo's Aesthetic Measures)
 We evaluated traditional mathematical models of aesthetics, such as **Ngo's 14 Aesthetic Measures** ([[6]](#ref-6), [Ngo et al., 2000](https://www.mi.sanu.ac.rs/vismath/ngo/index.html)), which quantify principles like Balance, Equilibrium, Symmetry, Sequence, Proportion, and Regularity using bounding box geometry.
 
-We ultimately chose **not** to include these in the V1 grader for three reasons:
-a. **Replication vs. Absolute Aesthetics**: V1 is fundamentally a *replication fidelity* benchmark. A reference design might intentionally feature asymmetric layouts (e.g., our Architecture Studio) or extreme whitespace (e.g., Luxury Fashion). An absolute symmetry or balance metric would incorrectly penalize faithful replications of intentional asymmetry.
+We ultimately chose **not** to include these in the current grader for three reasons:
+a. **Replication vs. Absolute Aesthetics**: Our benchmark is fundamentally a *replication fidelity* benchmark. A reference design might intentionally feature asymmetric layouts (e.g., our Architecture Studio) or extreme whitespace (e.g., Luxury Fashion). An absolute symmetry or balance metric would incorrectly penalize faithful replications of intentional asymmetry.
 b. **RL Gaming Risks**: Static mathematical formulas are highly susceptible to reward hacking by RL agents. An agent could optimize for Ngo's Symmetry and Balance by outputting a perfectly centered grid of identical grey boxes—scoring perfectly on the heuristic while failing the design brief.
 c. **DOM Dependency**: Ngo's formulas require segmenting individual UI objects and calculating their optical weight and coordinates, which would require complex DOM parsing or object detection, making the grader brittle.
 
@@ -155,7 +155,7 @@ For future iterations of `web-design-bench` (particularly for open-ended generat
 
 Specifically, we propose integrating **Design-o-meter: Towards Evaluating and Refining Graphic Designs** ([[5]](#ref-5), [Goyal et al., 2024](https://arxiv.org/abs/2411.14959)).
 * **Human-Aligned Evaluation**: Unlike rigid geometric formulas, Design-o-meter leverages advanced vision-language modeling to evaluate graphic design principles (alignment, hierarchy, typography, clutter, and visual balance) in a manner that aligns with professional human designers.
-* **Iterative Self-Refinement**: Design-o-meter not only scores designs but provides actionable natural language critique and refinement suggestions. In a V2 pipeline, this could be used both as a dense reward signal for RLHF/RLAIF and as an in-context critique loop for agent self-correction.
+* **Iterative Self-Refinement**: Design-o-meter not only scores designs but provides actionable natural language critique and refinement suggestions. In a future pipeline iteration, this could be used both as a dense reward signal for RLHF/RLAIF and as an in-context critique loop for agent self-correction.
 
 ---
 
