@@ -127,7 +127,7 @@ The generated tasks will automatically include the WebM videos, frozen frames, a
 
 ## 7. Grader Validation & Comparative Proof
 
-> **Side-by-Side Visual Proofs**: For complete, full-viewport composite verification comparisons across best vs. worst scoring animation trials (`0.854 vs 0.595` on SaaS FlowSync, `0.801 vs 0.690` on Portfolio Studio, and `0.811 vs 0.604` on Fintech Vault), refer directly to **[Part 2: Visual Validation Report](grader_validation/grader_validation_part-2.md)**.
+> **Side-by-Side Visual Proofs & Quantitative Scores**: For complete, full-viewport composite verification comparisons across best vs. worst scoring animation trials and temporal score breakdowns across all four archetypes, refer directly to **[Part 2: Visual Validation Report](grader_validation/grader_validation_part-2.md)** and **[Section 2 in the Master Evaluation Report](evaluation_report.md#part-2-animation-benchmark-results--temporal-analysis-v2)**.
 
 ---
 

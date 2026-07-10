@@ -2,7 +2,7 @@
 
 This document details the architectural design decisions, grading mechanics, and multi-framework execution pipelines implemented for **Part 3 (Multi-Framework Single Page Applications)** across `web-design-bench`.
 
-> **Empirical Benchmark Results & Statistical Charts**: For full quantitative scores (`mean_reward=0.744`), Pass@1 statistics (`85%`), statistical variance box plots, and exact performance breakdowns of Claude Code across all 40 Part 3 trials, refer directly to **[Section 3 in the Master Evaluation Report](evaluation_report.md#part-3-multi-framework-benchmark-results--architectural-analysis-v3)**.
+> **Empirical Benchmark Results & Statistical Charts**: For full quantitative scores, `Pass@1` statistics, statistical variance box plots, and exact performance breakdowns across all Part 3 multi-framework SPAs, refer directly to **[Section 3 in the Master Evaluation Report](evaluation_report.md#part-3-multi-framework-benchmark-results--architectural-analysis-v3)**.
 
 ---
 
