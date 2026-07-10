@@ -41,7 +41,7 @@ d. **Settled State (`t=2000ms`)**: Evaluates the final static layout fidelity.
 
 ## 3. WebM Video Recording for Agent Context
 
-While we avoid video for *grading*, vision-equipped agents (like Claude 3.5 Sonnet / Opus) need to see the reference animations in motion to perceive easing, duration, and stagger.
+While we avoid video for *grading*, vision-equipped agents (such as **Claude Code with Opus 4.7**) need to see the reference animations in motion to perceive easing, duration, and stagger.
 
 During task generation (`recipe/capture.py`), we use Playwright's built-in `record_video_dir` context option to record a high-resolution **3-second WebM video** for each page/viewport.
 

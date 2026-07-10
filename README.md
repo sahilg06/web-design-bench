@@ -2,7 +2,7 @@
 
 [![Harbor Framework](https://img.shields.io/badge/Harbor-Framework-blueviolet.svg?style=flat-square)](https://harborframework.com/)
 [![Python 3.13+](https://img.shields.io/badge/Python-3.13%2B-blue.svg?style=flat-square)](https://www.python.org/)
-[![Model: Claude 3.5 Sonnet / Opus 4.7](https://img.shields.io/badge/Model-Claude--3.5--Sonnet%20%7C%20Opus--4.7-orange.svg?style=flat-square)](https://anthropic.com/)
+[![Model: Claude Code (Opus 4.7)](https://img.shields.io/badge/Model-Claude%20Code%20(Opus%204.7)-orange.svg?style=flat-square)](https://anthropic.com/)
 
 > A highly scalable, production-grade Reinforcement Learning (RL) environment recipe and evaluation pipeline for benchmarking AI coding agents on high-fidelity, multi-page website replication.
 
