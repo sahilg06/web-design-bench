@@ -125,21 +125,9 @@ python -m eval.run --config v2_animations
 
 The generated tasks will automatically include the WebM videos, frozen frames, and updated `pages.json` configuration for the verifier.
 
----
+## 7. Grader Validation & Comparative Proof
 
-## 7. Grader Validation: Best vs. Worst Animation Trials
-
-To verify that the temporal grader correctly penalizes animation failures, we compared the best and worst trials for `saas_animation_hard`.
-
-#### ✅ SaaS Animation — Best Trial
-The agent successfully implemented the `@keyframes` entrances and correct easing curves, maintaining high alignment across all frozen frames (`t0`, `t500`, `t1200`).
-
-![SaaS Animation Best Trial](grader_validation/comparisons/v2-saasanimationhardconfig-73475__best.png)
-
-#### ❌ SaaS Animation — Worst Trial
-The agent failed to include the initial hidden states (`opacity: 0`), triggering the anti-gaming penalty at `t=0ms` and causing severe layout mismatches during mid-flight.
-
-![SaaS Animation Worst Trial](grader_validation/comparisons/v2-saasanimationhardconfig-73475__worst.png)
+> **Side-by-Side Visual Proofs**: For complete, full-viewport composite verification comparisons across best vs. worst scoring animation trials (`0.854 vs 0.595` on SaaS FlowSync, `0.801 vs 0.690` on Portfolio Studio, and `0.811 vs 0.604` on Fintech Vault), refer directly to **[Part 2: Visual Validation Report](grader_validation/grader_validation_part-2.md)**.
 
 ---
 

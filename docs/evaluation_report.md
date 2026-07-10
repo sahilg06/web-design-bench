@@ -238,7 +238,7 @@ We evaluated Claude Code across 4 distinct animation archetype configurations (2
 * **Observation**: `fintech_animation_hard` implements complex multi-phase keyframes (fade → slide → glow pulse) with an extended `t1800` capture point.
 * **Impact on Grader**: On `page_pricing`, the score bottoms out at `t1200` (`0.7274`) during the active glow pulse transition, before recovering at `t1800` (`0.7553`) as the elements settle into their final resting positions. This confirms the grader's extreme sensitivity to micro-animation states.
 
-> **Deep-Dive Visualizations**: See [Part 2: Animations & Temporal State Freezing](part2_animations.md#7-grader-validation-best-vs-worst-animation-trials) for side-by-side composite comparisons of the best and worst animation trials.
+> **Deep-Dive Visualizations & Side-by-Side Proofs**: See **[Part 2: Animation Benchmark Visual Validation Report](grader_validation/grader_validation_part-2.md)** for side-by-side composite comparisons across best vs. worst animation trials.
 
 ---
 
