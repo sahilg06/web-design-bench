@@ -10,21 +10,24 @@
 Each benchmark part has its own dedicated validation report:
 
 * **[Part 1: Static Benchmark Validation Report (v1)](grader_validation_part-1.md)** — Showcases Food Delivery, Luxury Fashion, Architecture Studio, and Wellness Spa.
-* **[Part 2: Animation Benchmark Validation Report (v2)](../part2_animations.md#7-grader-validation-best-vs-worst-animation-trials)** — Showcases temporal frame comparisons (`t0`, `t500`, `t1200`) for SaaS Animation.
-* **[Part 3: Multi-Framework Benchmark Validation Report (v3)](grader_validation_part-3.md)** — *(Generated dynamically when running `grader_validation.py` against `jobs/part-3`)*.
+* **[Part 2: Animation Benchmark Validation Report (v2)](grader_validation_part-2.md)** — Showcases side-by-side composite visual proof across settled animation layouts (`t=2000ms`) for SaaS, Portfolio, and Fintech tasks.
+* **[Part 3: Multi-Framework Benchmark Validation Report (v3)](grader_validation_part-3.md)** — Showcases side-by-side composite visual proof across React JS vs. Solid JS and Vanilla CSS vs. Tailwind CSS Single Page Applications.
 
 ---
 
 ## 🚀 Generating Validation Reports
 
-You can generate or update the validation report for any static or framework job directory by running:
+You can generate or update the validation report across any benchmark suite directory right from the terminal by running:
 
 ```bash
 # Generate for Part 1 (Static HTML/CSS)
 uv run python eval/grader_validation.py --job jobs/part-1
 
+# Generate for Part 2 (Animation Benchmarks — evaluates & generates composites across settled animation layouts)
+uv run python eval/grader_validation.py --job jobs/part-2
+
 # Generate for Part 3 (Multi-Framework SPAs)
 uv run python eval/grader_validation.py --job jobs/part-3
 ```
 
-*The script will automatically create `grader_validation_<job_name>.md` and populate the `comparisons/` directory with side-by-side composite images.*
+*The script automatically creates `grader_validation_<job_name>.md` and populates the `comparisons/` directory with high-resolution side-by-side composite verification imagery.*
