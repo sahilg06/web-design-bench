@@ -1,4 +1,4 @@
-# 🏆 `web-design-bench`: Complete Work Trial & Evaluation Submission Summary
+# `web-design-bench`: Complete Work Trial & Evaluation Submission Summary
 
 > **Submitted by**: Sahil Goyal  
 > **Repository**: [https://github.com/sahilg06/web-design-bench](https://github.com/sahilg06/web-design-bench)  

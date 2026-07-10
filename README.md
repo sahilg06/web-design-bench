@@ -12,7 +12,7 @@
 
 Explore our comprehensive documentation suite covering architectural theory, empirical benchmark data, and visual verification proofs across all three evaluation tiers:
 
-* **[🏆 Submission Summary & Team Presentation Guide](docs/submission_summary.md)**: Master presentation synthesis addressing all core evaluation parameters, work trial deliverables, exact `[0, 1]` dense CV grading math, and empirical architectural findings across **Parts 1, 2, and 3**.
+* **[Submission Summary & Team Presentation Guide](docs/submission_summary.md)**: Master presentation synthesis addressing all core evaluation parameters, work trial deliverables, exact `[0, 1]` dense CV grading math, and empirical architectural findings across **Parts 1, 2, and 3**.
 * **[Evaluation Report & Model Behavior Ledger](docs/evaluation_report.md)**: Master quantitative evaluation report containing empirical numbers, `Pass@K` rates, submetric distributions, and model failure analysis across **Part 1 (Static `v1`)**, **Part 2 (Animation `v2`)**, and **Part 3 (Multi-Framework `v3`)**.
 * **[Part 2: Animations & Temporal State Freezing](docs/part2_animations.md)**: Architectural specifications for non-lossy CSS animation verification via Playwright temporal freezing (`t0`, `t500`, `t1200`) and 3-second WebM video rendering.
 * **[Part 3: Multi-Framework Architecture & SPA Verification](docs/part3_frameworks.md)**: Engineering deep-dive into our 2×2 framework evaluation matrix (`React JS` vs. `Solid JS`, `Vanilla CSS` vs. `Tailwind CSS`), Vite compilation checks, and automated in-memory navigation (`#nav-<tab_id>`).
