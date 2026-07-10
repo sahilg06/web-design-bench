@@ -47,9 +47,9 @@ class _Base:
     FULL_PAGE          = True
     DEVICE_PIXEL_RATIO = 1
     SCREENSHOT_FMT     = "png"
-    SSIM_WEIGHT        = 0.6
-    PHASH_WEIGHT       = 0.4
-    DOM_IOU_WEIGHT     = 0.0
+    SSIM_WEIGHT        = 0.50
+    PHASH_WEIGHT       = 0.30
+    COLOR_HIST_WEIGHT  = 0.20
     MAX_RETRIES        = 3
     SEED               = 42
     HINT_SCROLL_HEIGHT = True

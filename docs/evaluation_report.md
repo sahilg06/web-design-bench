@@ -201,16 +201,19 @@ We evaluated Claude Code across 4 distinct animation archetype configurations (2
 
 ## 2.1 Per-Task Rigorous Breakdown
 
+<!-- PART2_RESULTS_TABLE_START -->
 | Task Archetype | Mean Blended Reward | Static Score | Animation Score |
 | :--- | :---: | :---: | :---: |
-| **Fintech Dashboard (`fintech_animation_hard`)** | **0.7457** | 0.7457 | 0.7456 |
-| **Portfolio Studio (`portfolio_animation_medium`)** | **0.7428** | 0.7377 | 0.7504 |
-| **Creative Agency (`agency_animation_medium`)** | **0.7221** | 0.7158 | 0.7314 |
-| **SaaS FlowSync (`saas_animation_hard`)** | **0.6587** | 0.6540 | 0.6658 |
+| **Fintech Animation (Hard) (`fintechanimationhardconfig`)** | **0.7457** | 0.7457 | 0.7456 |
+| **Portfolio Animation (Medium) (`portfolioanimationmediumconfi`)** | **0.7428** | 0.7377 | 0.7504 |
+| **Agency Animation (Medium) (`agencyanimationmediumconfig`)** | **0.7221** | 0.7158 | 0.7314 |
+| **SaaS Animation (Hard) (`saasanimationhardconfig`)** | **0.6587** | 0.6540 | 0.6658 |
 | **Part 2 Suite Average** | **0.7173** | **0.7133** | **0.7233** |
+<!-- PART2_RESULTS_TABLE_END -->
 
 ## 2.2 Per-Frame Temporal Trajectories (Key Pages)
 
+<!-- PART2_TEMPORAL_TABLE_START -->
 | Page | t0 | t500 | t1200 | t1800 | settled |
 | :--- | :---: | :---: | :---: | :---: | :---: |
 | agency: page_work | 0.8119 | 0.6848 | 0.6564 | — | 0.6707 |
@@ -219,6 +222,7 @@ We evaluated Claude Code across 4 distinct animation archetype configurations (2
 | fintech: page_security | 0.7437 | 0.7064 | 0.6991 | 0.7069 | 0.7045 |
 | saas: page_home | 0.7066 | 0.6836 | 0.6778 | — | 0.6780 |
 | portfolio: page_home | 0.7617 | 0.7329 | 0.7301 | — | 0.7337 |
+<!-- PART2_TEMPORAL_TABLE_END -->
 
 ## 2.3 Key Temporal Insights & Model Behaviors
 
@@ -244,30 +248,42 @@ We evaluated Claude Code across the Part 3 Multi-Framework Benchmark (`v3`). Thi
 
 ## 3.1 2×2 Matrix Results Table
 
+<!-- PART3_RESULTS_TABLE_START -->
 | Framework & Styling Paradigm | Task Archetype | Mean Reward | Min | Max | Std Dev | Pass@1 (≥0.70) |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
-| **React JS + Vanilla CSS** | `react_css_easy` (Luminary AI) | **0.925** | 0.904 | 0.947 | 0.011 | 100% |
-| **Solid JS + Vanilla CSS** | `solid_css_medium` (Aura Creative) | **0.876** | 0.735 | 0.919 | 0.068 | 100% |
-| **Solid JS + Tailwind CSS** | `solid_tailwind_hard` (Cypher DEX) | **0.875** | 0.835 | 0.910 | 0.025 | 100% |
-| **React JS + Tailwind CSS** | `react_tailwind_medium` (Nexus SaaS) | **0.862** | 0.836 | 0.890 | 0.019 | 100% |
-| **Overall Suite Average** | **4 Tasks (40 Trials)** | **0.885** | **0.735** | **0.947** | **0.045** | **100%** |
+| **React JS + Vanilla CSS** | `react_css_easy` (Luminary AI) | **0.786** | 0.750 | 0.816 | 0.019 | 100% |
+| **Solid JS + Vanilla CSS** | `solid_css_medium` (Aura Creative) | **0.759** | 0.632 | 0.802 | 0.045 | 90% |
+| **React JS + Tailwind CSS** | `react_tailwind_medium` (Nexus SaaS) | **0.719** | 0.666 | 0.764 | 0.025 | 70% |
+| **Solid JS + Tailwind CSS** | `solid_tailwind_hard` (Cypher DEX) | **0.711** | 0.502 | 0.770 | 0.076 | 80% |
+| **Overall Suite Average** | **4 Tasks (40 Trials)** | **0.744** | **0.502** | **0.816** | **0.056** | **85%** |
+<!-- PART3_RESULTS_TABLE_END -->
 
 ## 3.2 Key Architectural Insights
 
+<!-- PART3_INSIGHTS_TABLE_START -->
 | | Vanilla CSS (`src/index.css`) | Tailwind CSS (Utility Classes) |
 | :--- | :--- | :--- |
-| **Mean Reward** | 0.901 | 0.869 |
+| **Mean Reward** | **0.773** | **0.715** |
 | **SSIM & pHash** | Higher — exact pixel micro-tuning | Lower — utility approximation gaps |
 | **Styling Approach** | Global custom properties | Pre-defined spacing/color scales |
 | **Markup Impact** | Clean, semantic HTML | Highly verbose JSX markup |
+<!-- PART3_INSIGHTS_TABLE_END -->
 
 a. **Flawless Build & SPA Execution (0 Errors)**: Across all 40 trials, Claude Code achieved a **100% success rate** in scaffolding valid Vite projects (`package.json`, `vite.config.js`), installing dependencies, and building `dist/` without a single compilation or bundling error.
 
-b. **The Vanilla CSS Advantage (`0.901` vs `0.869`)**: The agent achieved its highest visual similarity scores when using Vanilla CSS custom properties (`0.925` and `0.876`) compared to Tailwind CSS (`0.862` and `0.875`). Tailwind forces the AI to quantize visual dimensions into pre-defined utility scales (`p-4` for `1rem`), creating minor padding/typography approximation gaps. Vanilla CSS allows the agent to micro-tune exact pixel values (`padding: 18px 24px`), leading to higher SSIM alignment.
+b. **The Vanilla CSS Advantage (`0.773` vs `0.715`)**: The agent achieved markedly higher visual similarity scores when using Vanilla CSS custom properties (`0.786` and `0.760`) compared to Tailwind CSS (`0.719` and `0.711`). Tailwind forces the AI to quantize visual dimensions into pre-defined utility scales (`p-4` for `1rem`), creating minor padding/typography approximation gaps. Vanilla CSS allows the agent to micro-tune exact pixel values (`padding: 18px 24px`), leading to higher structural alignment.
 
-c. **Flawless Solid JS Adherence**: Despite Solid JS's unique reactivity model (`createSignal`, function-call getters `activeTab()`, and `class` instead of `className`), Claude Code maintained 100% compliance with Solid conventions across all 20 Solid trials without accidentally reverting to React idioms.
+c. **High Pass@1 Rate (`85%`) & Solid JS Adherence**: Despite Solid JS's unique reactivity model (`createSignal`, function-call getters `activeTab()`, and `class` instead of `className`), Claude Code maintained 100% compliance with Solid syntax across all 20 Solid trials without reverting to React idioms, yielding an 85% overall Pass@1 rate across the multi-framework matrix.
 
-> **Deep-Dive Visualizations**: See [Part 3: Multi-Framework Benchmark Report](part3_frameworks.md#benchmark-visualizations) for complete statistical plots (boxplots & barcharts), quadrant charts, and per-task submetric breakdowns.
+## 3.3 Part 3 Suite Visualizations
+
+<!-- PART3_PLOTS_START -->
+![Task Variance Boxplot](../results/part-3/task_variance_boxplot.png)
+
+![Task Means Barchart](../results/part-3/task_means_barchart.png)
+<!-- PART3_PLOTS_END -->
+
+> **Architectural Design Reference**: See **[Part 3: Multi-Framework Architecture & SPA Verification](part3_frameworks.md)** for detailed insights into our Vite build verification, Playwright navigation mechanisms (`#nav-<id>`), and JSX / reactivity design patterns.
 
 ---
 

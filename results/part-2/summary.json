@@ -1,0 +1,60 @@
+{
+  "run_id": "part-2",
+  "timestamp": "2026-07-09T07:26:14.623047",
+  "model": "claude-code",
+  "agent": "claude-code",
+  "env": "unknown",
+  "n_tasks": 4,
+  "n_trials": 40,
+  "n_errors": 2,
+  "mean_reward": 0.7173,
+  "min_reward": 0.5948,
+  "max_reward": 0.8542,
+  "std_reward": 0.0714,
+  "pass_at_1_070": 0.65,
+  "pass_at_5_070": 0.9444,
+  "pass_at_10_070": 1.0,
+  "job_path": "/usr/local/google/home/goyalsahil/web-design-bench/jobs/part-2",
+  "per_task": {
+    "v2-agencyanimationmediumconfig-7": {
+      "mean": 0.7221,
+      "min": 0.6572,
+      "max": 0.8121,
+      "n": 10,
+      "mean_ssim": 0.7982,
+      "mean_phash": 0.6981,
+      "mean_color_hist": 0.9371,
+      "mean_height_ratio": 0.9127
+    },
+    "v2-fintechanimationhardconfig-73": {
+      "mean": 0.7457,
+      "min": 0.604,
+      "max": 0.8109,
+      "n": 10,
+      "mean_ssim": 0.7589,
+      "mean_phash": 0.7208,
+      "mean_color_hist": 0.9094,
+      "mean_height_ratio": 0.9554
+    },
+    "v2-portfolioanimationmediumconfi": {
+      "mean": 0.7428,
+      "min": 0.6895,
+      "max": 0.8008,
+      "n": 10,
+      "mean_ssim": 0.8013,
+      "mean_phash": 0.6816,
+      "mean_color_hist": 0.9875,
+      "mean_height_ratio": 0.9299
+    },
+    "v2-saasanimationhardconfig-73475": {
+      "mean": 0.6587,
+      "min": 0.5948,
+      "max": 0.8542,
+      "n": 10,
+      "mean_ssim": 0.7648,
+      "mean_phash": 0.7384,
+      "mean_color_hist": 0.9635,
+      "mean_height_ratio": 0.8228
+    }
+  }
+}

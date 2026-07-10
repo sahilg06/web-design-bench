@@ -61,9 +61,9 @@ def generate(config: Any, seed: int | None = None) -> dict[str, Any]:
         "screenshot_fmt":    getattr(config, "SCREENSHOT_FMT",    "png"),
 
         # ── Scoring weights ──────────────────────────────────────────────
-        "ssim_weight":       getattr(config, "SSIM_WEIGHT",       0.6),
-        "phash_weight":      getattr(config, "PHASH_WEIGHT",      0.4),
-        "dom_iou_weight":    getattr(config, "DOM_IOU_WEIGHT",    0.0),
+        "ssim_weight":       getattr(config, "SSIM_WEIGHT",       0.50),
+        "phash_weight":      getattr(config, "PHASH_WEIGHT",      0.30),
+        "color_hist_weight": getattr(config, "COLOR_HIST_WEIGHT", 0.20),
     }
     return spec
 

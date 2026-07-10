@@ -27,8 +27,8 @@ results/
 Once an evaluation job completes in `jobs/<part>/`, you can generate its corresponding summary and statistical plots in `results/<part>/` by running:
 
 ```bash
-uv run python -m eval.summarize --job-dir jobs/part-1
-uv run python -m eval.visualize --job-dir jobs/part-1
+uv run python -m eval.summarize --job jobs/part-1
+uv run python -m eval.visualize --job jobs/part-1
 ```
 
 *These plots and summaries are automatically referenced and embedded in the master **[Evaluation Report](../docs/evaluation_report.md)**.*

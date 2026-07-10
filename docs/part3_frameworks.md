@@ -1,8 +1,14 @@
-# Part 3: Multi-Framework Benchmark Report & Architectural Analysis
+# Part 3: Multi-Framework Architecture & SPA Verification (v3)
 
-This document provides a comprehensive analysis of **Claude Code (Opus 4.7)** evaluated across the Part 3 Multi-Framework Benchmark (`v3`). This suite introduces a rigorous **2×2 matrix** evaluating agent performance across two modern JavaScript frameworks (**React JS** vs. **Solid JS**) and two contrasting styling paradigms (**Vanilla CSS** vs. **Tailwind CSS**).
+This document details the architectural design decisions, grading mechanics, and multi-framework execution pipelines implemented for **Part 3 (Multi-Framework Single Page Applications)** across `web-design-bench`.
 
-### 📊 Framework & Styling Matrix Performance (Mean Reward)
+> **Empirical Benchmark Results & Statistical Charts**: For full quantitative scores (`mean_reward=0.744`), Pass@1 statistics (`85%`), statistical variance box plots, and exact performance breakdowns of Claude Code across all 40 Part 3 trials, refer directly to **[Section 3 in the Master Evaluation Report](evaluation_report.md#part-3-multi-framework-benchmark-results--architectural-analysis-v3)**.
+
+---
+
+## 1. The 2×2 Evaluation Matrix
+
+To rigorously assess AI coding agents beyond basic HTML/CSS files, Part 3 introduces a multi-dimensional matrix comparing two leading modern component frameworks alongside two contrasting styling paradigms:
 
 ```mermaid
 quadrantChart
@@ -12,46 +18,32 @@ quadrantChart
     quadrant-2 React and Vanilla CSS
     quadrant-3 Solid and Vanilla CSS
     quadrant-4 Solid and Tailwind
-    "Luminary AI (0.925)": [0.25, 0.75]
-    "Nexus SaaS (0.862)": [0.75, 0.75]
-    "Aura Creative (0.876)": [0.25, 0.25]
-    "Cypher DEX (0.875)": [0.75, 0.25]
+    "Luminary AI": [0.25, 0.75]
+    "Nexus SaaS": [0.75, 0.75]
+    "Aura Creative": [0.25, 0.25]
+    "Cypher DEX": [0.75, 0.25]
 ```
 
 ---
 
-## 1. Executive Summary & Aggregate Performance
+## 2. Framework Navigation & SPA Rendering Architecture
 
-We ran **10 trials per task** (40 total trials) on Modal's serverless infrastructure. Every trial evaluated the agent's ability to scaffold a complete Vite Single Page Application (SPA), implement in-memory tab switching, and replicate complex visual designs from reference screenshots.
+Evaluating multi-page Single Page Applications (`Vite + React/Solid`) inside an isolated verification container requires distinct execution choreography compared to static multi-file HTML packages:
 
-### 📊 2×2 Matrix Results Table
+### a. Automated Build Verification (`_validate_files_tool`)
+Unlike static HTML evaluations where browser instances open local files directly (`file:///app/index.html`), multi-framework tasks require compilation before rendering. Our validation and grading pipeline:
+1. Verifies structural package composition (`package.json`, `vite.config.js` or `.ts`).
+2. Executes a containerized package build sequence (`npm run build`) via NodeJS inside our customized runtime.
+3. Targets the compiled bundled structure (`dist/`) directly when running headless chromium capture procedures.
 
-| Framework & Styling Paradigm | Task Archetype | Mean Reward | Min | Max | Std Dev | Pass@1 (≥0.70) |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
-| **React JS + Vanilla CSS** | `react_css_easy` (Luminary AI) | **0.925** | 0.904 | 0.947 | 0.011 | 100% |
-| **Solid JS + Vanilla CSS** | `solid_css_medium` (Aura Creative) | **0.876** | 0.735 | 0.919 | 0.068 | 100% |
-| **Solid JS + Tailwind CSS** | `solid_tailwind_hard` (Cypher DEX) | **0.875** | 0.835 | 0.910 | 0.025 | 100% |
-| **React JS + Tailwind CSS** | `react_tailwind_medium` (Nexus SaaS) | **0.862** | 0.836 | 0.890 | 0.019 | 100% |
-| **Overall Suite Average** | **4 Tasks (40 Trials)** | **0.885** | **0.735** | **0.947** | **0.045** | **100%** |
+### b. In-Memory Tab Switching via Playwright (`render.py`)
+Because SPAs manage multi-view navigation without full browser page reloads, each task instruction specifies explicit semantic element IDs corresponding to logical tabs (`id="nav-page_home"`, `id="nav-page_features"`). 
 
-### 🏆 Key Takeaways
-a. **Flawless Build & SPA Execution (0 Errors)**: Across all 40 trials, Claude Code achieved a **100% success rate** in scaffolding valid Vite projects (`package.json`, `vite.config.js`), installing dependencies, and building `dist/` without a single compilation or bundling error.
-
-b. **Perfect Pass@1 Rate**: Every single trial exceeded the `0.70` visual similarity threshold, proving that modern agentic coding models can maintain high visual fidelity regardless of the underlying component framework.
-
-c. **The Vanilla CSS Advantage**: The agent achieved its highest scores when using Vanilla CSS custom properties (`0.925` and `0.876`) compared to Tailwind CSS (`0.862` and `0.875`).
-
-### 📈 Benchmark Visualizations
-
-<!-- PLOTS_START -->
-![Task Variance Boxplot](../results/part-3/task_variance_boxplot.png)
-
-![Task Means Barchart](../results/part-3/task_means_barchart.png)
-<!-- PLOTS_END -->
+Our automated headless browser (`recipe/render.py`) simulates interactive human navigation by locating and clicking each specific navigation button ID (`#nav-<tab_key>`), allowing custom transitions and virtual DOM updates to complete before snapping high-resolution PNG evaluations across each requested viewport.
 
 ---
 
-## 2. Deep-Dive: Framework & Styling Comparisons
+## 3. Deep-Dive: Framework & Styling Trade-offs
 
 ### ⚛️ React JS vs. ⚡ Solid JS
 ```mermaid
@@ -68,46 +60,22 @@ graph TD
     C --> C3[Syntax: class]
 ```
 
-* **React JS (`0.894` combined average)**: Claude Code shows deep familiarity with React idioms. It consistently implements clean `useState` hooks for tab switching in `src/App.jsx`. However, in `react_tailwind_medium`, the density of Tailwind classes in JSX slightly increased token usage, leading to minor layout compression.
-* **Solid JS (`0.876` combined average)**: Solid JS represents a stricter test of agent instruction following due to its unique reactivity model (`createSignal`, function-call getters `activeTab()`, and `class` instead of `className`). 
-  * **Observation**: Claude Code adapted to Solid JS flawlessly. It correctly used `class` attributes in JSX and successfully invoked signal getters (`activeTab() === 'page_home'`) across all 20 Solid trials.
+* **React JS**: Evaluates the agent's mastery of widely distributed virtual DOM conventions, functional reactivity, and component decoupling (`useState`, `useEffect`, and standard `className` declarations).
+* **Solid JS**: Serves as a definitive test of targeted instruction-following capability. Solid JS differs heavily from standard React idioms (`createSignal`, explicit function invocations for getters such as `activeTab() === 'home'`, and standard HTML `class` attribute syntax inside JSX).
 
 ---
 
-### 🎨 Vanilla CSS vs. 💨 Tailwind CSS
+### 🎨 Vanilla CSS vs. 💨 Tailwind CSS Utility Scales
 
-| | Vanilla CSS (`src/index.css`) | Tailwind CSS (Utility Classes) |
-| :--- | :--- | :--- |
-| **Mean Reward** | 0.901 | 0.869 |
-| **SSIM & pHash** | Higher — exact pixel micro-tuning | Lower — utility approximation gaps |
-| **Styling Approach** | Global custom properties | Pre-defined spacing/color scales |
-| **Markup Impact** | Clean, semantic HTML | Highly verbose JSX markup |
-
-* **The Tailwind Approximation Gap**: While Tailwind CSS accelerates human development, it forces the AI agent to quantize visual dimensions into pre-defined utility scales (e.g., `p-4` for `1rem`, `text-2xl` for `1.5rem`). When replicating arbitrary pixel layouts from screenshots, this quantization creates minor padding and typography mismatches, explaining why `react_tailwind` (`0.862`) scored lower than `react_css` (`0.925`).
-* **Vanilla CSS Precision**: With Vanilla CSS, the agent writes exact pixel values (`padding: 18px 24px; font-size: 28px;`) directly into `src/index.css`, allowing it to achieve significantly higher structural alignment (SSIM `0.798` vs `0.751`).
+* **The Tailwind Approximation Gap**: While Tailwind CSS simplifies developer workflows via high-velocity utility scaling (`p-4`, `text-xl`, `space-y-6`), it mathematically quantizes exact visual padding, color stops, and layout geometries into rigid pre-defined bucket steps (`1rem`, `1.25rem`, etc.). When evaluating structural image alignment against exact reference designs (`SSIM` + `pHash`), the agent's forced quantization slightly compresses total structural accuracy compared to unconstrained exact CSS.
+* **Vanilla CSS Micro-Tuning**: Using standard global stylesheets (`src/index.css` with CSS variables), agents can directly declare precise fractional design dimensions (`padding: 18px 24px; font-size: 27px;`), yielding higher overall visual similarity alignment.
 
 ---
 
-## 3. Submetric Breakdown & Failure Modes
+## 4. Key Failure Modes & Edge Cases
 
-### Per-Task Metric Breakdown
-
-| Task Archetype | SSIM | pHash | Color Hist | Height Ratio | Primary Challenge |
-| :--- | :---: | :---: | :---: | :---: | :--- |
-| `react_css_easy` | **0.799** | **0.811** | **0.983** | 0.933 | Clean corporate layout; excellent alignment |
-| `solid_css_medium` | 0.766 | 0.751 | 0.955 | 0.919 | Portfolio grid spacing & dark theme contrast |
-| `solid_tailwind_hard` | 0.723 | 0.759 | 0.970 | 0.941 | Dense crypto DEX order book & monospace tables |
-| `react_tailwind_medium`| 0.752 | 0.748 | 0.790 | **0.949** | 🔴 Color Hist drop due to complex gradient approximations |
-
-### 🔍 Key Behavioral Observations
-
-#### 1. The `react_tailwind_medium` Color Histogram Drop (`0.790`)
-* **Observation**: The *Nexus SaaS* archetype features complex dark-mode backdrop blurs and glowing gradient orbs (`bg-gradient-to-r from-cyan-500 to-indigo-500`). 
-* **Model Behavior**: Claude Code occasionally omitted the underlying glowing blur circles (`filter blur-3xl`) or simplified the multi-stop gradients into solid background colors (`bg-slate-900`), causing a noticeable drop in Color Histogram correlation compared to the other tasks (`>0.95`).
-
-#### 2. Solid JS Signal & JSX Attribute Adherence
-* **Observation**: A common failure mode for LLMs generating Solid JS is accidentally reverting to React idioms (`className`, `activeTab` without parentheses, or `useState`).
-* **Model Behavior**: Thanks to the explicit technical guardrails in `prompt.py`, Claude Code maintained 100% compliance with Solid JS conventions across all trials, proving the effectiveness of targeted prompt engineering for niche frameworks.
+1. **Complex Tailwind Gradient Approximations**: Multi-stop radial gradients (`bg-gradient-to-tr from-purple-900/40 via-transparent to-blue-900/30`) or overlapping blurred backdrop filters (`filter blur-3xl`) are frequently over-simplified by models into solid color blocks (`bg-slate-950`), impacting Color Histogram correlation.
+2. **Reversed Framework Idioms**: When building fine-grained Solid JS codebases without proper technical prompting guardrails, models occasionally hallucinate React equivalents (`useState` or passing signal getters as uncalled properties inside JSX logic conditionals). Our instruction templates explicitly isolate these framework guardrails inside `prompt.py` to preserve near-perfect compilation adherence.
 
 ---
 

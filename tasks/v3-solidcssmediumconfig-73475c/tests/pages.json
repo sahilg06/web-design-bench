@@ -42,14 +42,14 @@
     "desktop"
   ],
   "screenshot_fmt": "png",
-  "ssim_weight": 0.6,
-  "phash_weight": 0.4,
-  "dom_iou_weight": 0.0,
+  "ssim_weight": 0.5,
+  "phash_weight": 0.3,
   "scroll_heights": {
     "page_home_desktop": 2919,
     "page_work_desktop": 2595,
     "page_services_desktop": 2479,
     "page_about_desktop": 3395,
     "page_contact_desktop": 1832
-  }
+  },
+  "color_hist_weight": 0.2
 }

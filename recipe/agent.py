@@ -13,6 +13,7 @@ Flow:
   6. recipe/generate.py retrieves files from the workspace (= output_dir)
 """
 
+import json
 import os
 import re
 from pathlib import Path

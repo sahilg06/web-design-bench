@@ -179,7 +179,7 @@ def analyze_weight_sensitivity(records):
 
     header = f"{'Scheme':<25}"
     for task in sorted(task_pages.keys()):
-        short = ARCHETYPE_MAP.get(task, task)[:12]
+        short = task[:12]
         header += f" {short:>12}"
     header += f" {'Spread':>8}"
     print(header)
@@ -235,7 +235,7 @@ def analyze_per_task_metric_behavior(records):
         metrics = {"pHash": phash_mean, "HeightRatio": hr_mean, "SSIM": ssim_mean, "ColorHist": color_mean}
         bottleneck = min(metrics, key=metrics.get)
 
-        name = ARCHETYPE_MAP.get(task, task)[:24]
+        name = task[:24]
         print(f"  {name:<25} {ssim_mean:>8.3f} {phash_mean:>8.3f} {color_mean:>8.3f} {hr_mean:>8.3f} {bottleneck:<15}")
 
 
@@ -263,7 +263,7 @@ def analyze_discriminative_power(records):
         median = scores[n // 2]
         q3 = scores[3 * n // 4]
         iqr = q3 - q1
-        name = ARCHETYPE_MAP.get(task, task)[:24]
+        name = task[:24]
         print(f"  {name:<25} {scores[0]:>8.3f} {q1:>8.3f} {median:>8.3f} {q3:>8.3f} {scores[-1]:>8.3f} {iqr:>8.3f}")
 
 

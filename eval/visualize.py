@@ -24,14 +24,14 @@ JOBS_DIR = Path(__file__).resolve().parent.parent / "jobs"
 
 
 def find_latest_job() -> Path:
-    """Find the most recent job directory."""
+    """Find the most recent job directory by modification time."""
     if not JOBS_DIR.exists():
         print("ERROR: jobs/ directory not found", file=sys.stderr)
         sys.exit(1)
 
     job_dirs = sorted(
         [d for d in JOBS_DIR.iterdir() if d.is_dir()],
-        key=lambda d: d.name,
+        key=lambda d: d.stat().st_mtime,
         reverse=True,
     )
     if not job_dirs:

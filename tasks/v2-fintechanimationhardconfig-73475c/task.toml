@@ -15,8 +15,9 @@ difficulty     = "hard"
 archetype      = "fintech_animation"
 visual_style   = "dark_precision"
 viewports      = ["desktop"]
-ssim_weight    = 0.6
-phash_weight   = 0.4
+ssim_weight    = 0.50
+phash_weight   = 0.30
+color_hist_weight = 0.20
 
 [verifier]
 timeout_sec = 300.0

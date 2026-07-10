@@ -42,14 +42,14 @@
     "desktop"
   ],
   "screenshot_fmt": "png",
-  "ssim_weight": 0.6,
-  "phash_weight": 0.4,
-  "dom_iou_weight": 0.0,
+  "ssim_weight": 0.5,
+  "phash_weight": 0.3,
   "scroll_heights": {
     "page_home_desktop": 2507,
     "page_markets_desktop": 1740,
     "page_trade_desktop": 1295,
     "page_earn_desktop": 1635,
     "page_wallet_desktop": 1843
-  }
+  },
+  "color_hist_weight": 0.2
 }

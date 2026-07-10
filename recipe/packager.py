@@ -438,9 +438,9 @@ def assemble(
         "viewports":        getattr(config, "VIEWPORT_SIZES", {}),
         "active_viewports": getattr(config, "VIEWPORTS", ["desktop"]),
         "screenshot_fmt":   getattr(config, "SCREENSHOT_FMT", "png"),
-        "ssim_weight":      getattr(config, "SSIM_WEIGHT", 0.6),
-        "phash_weight":     getattr(config, "PHASH_WEIGHT", 0.4),
-        "dom_iou_weight":   getattr(config, "DOM_IOU_WEIGHT", 0.0),
+        "ssim_weight":      getattr(config, "SSIM_WEIGHT", 0.50),
+        "phash_weight":     getattr(config, "PHASH_WEIGHT", 0.30),
+        "color_hist_weight": getattr(config, "COLOR_HIST_WEIGHT", 0.20),
     }
 
     if getattr(config, "ANIMATION_FRAMES_MS", None):

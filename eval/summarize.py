@@ -168,14 +168,14 @@ def summarize_job(job_dir: Path) -> dict:
 
 
 def find_latest_job() -> Path:
-    """Find the most recent job directory."""
+    """Find the most recent job directory by modification time."""
     if not JOBS_DIR.exists():
         print("ERROR: jobs/ directory not found", file=sys.stderr)
         sys.exit(1)
 
     job_dirs = sorted(
         [d for d in JOBS_DIR.iterdir() if d.is_dir()],
-        key=lambda d: d.name,
+        key=lambda d: d.stat().st_mtime,
         reverse=True,
     )
     if not job_dirs:
@@ -210,9 +210,157 @@ def append_to_history(summary: dict) -> None:
         json.dump(standalone_summary, f, indent=2)
 
 
+def _update_part2_report(job_dir: Path, report_path: Path) -> None:
+    """Update Section 2 inside evaluation_report.md when Part-2 results are evaluated."""
+    if not report_path.exists() or not job_dir.exists():
+        return
+
+    from eval import get_task_display_name
+
+    task_stats: dict[str, list[tuple[float, float, float]]] = {}
+    for entry in sorted(os.listdir(job_dir)):
+        rf = job_dir / entry / "verifier" / "reward.json"
+        if not rf.is_file():
+            continue
+        with open(rf) as f:
+            r = json.load(f)
+        task_name = entry.rsplit("__", 1)[0]
+        blended = r.get("blended_reward", r.get("reward", 0.0))
+        static = r.get("static_score", blended)
+        anim = r.get("animation_score", blended)
+        task_stats.setdefault(task_name, []).append((blended, static, anim))
+
+    if not task_stats:
+        return
+
+    lines = [
+        "<!-- PART2_RESULTS_TABLE_START -->",
+        "| Task Archetype | Mean Blended Reward | Static Score | Animation Score |",
+        "| :--- | :---: | :---: | :---: |"
+    ]
+
+    all_b, all_s, all_a = [], [], []
+    for task_key, records in sorted(task_stats.items(), key=lambda x: -sum(r[0] for r in x[1])/len(x[1])):
+        name = get_task_display_name(task_key)
+        mb = sum(r[0] for r in records) / len(records)
+        ms = sum(r[1] for r in records) / len(records)
+        ma = sum(r[2] for r in records) / len(records)
+        all_b.append(mb); all_s.append(ms); all_a.append(ma)
+        lines.append(f"| **{name} (`{task_key.split('-')[1] if '-' in task_key else task_key}`)** | **{mb:.4f}** | {ms:.4f} | {ma:.4f} |")
+
+    avg_b = sum(all_b) / len(all_b)
+    avg_s = sum(all_s) / len(all_s)
+    avg_a = sum(all_a) / len(all_a)
+    lines.append(f"| **Part 2 Suite Average** | **{avg_b:.4f}** | **{avg_s:.4f}** | **{avg_a:.4f}** |")
+    lines.append("<!-- PART2_RESULTS_TABLE_END -->")
+
+    content = report_path.read_text()
+    start_tag = "<!-- PART2_RESULTS_TABLE_START -->"
+    end_tag = "<!-- PART2_RESULTS_TABLE_END -->"
+    if start_tag in content and end_tag in content:
+        before = content.split(start_tag)[0]
+        after = content.split(end_tag)[1]
+        content = before + "\n".join(lines) + after
+        report_path.write_text(content)
+        print(f"  Updated docs/evaluation_report.md (Section 2: Part 2 Animation tables) with latest metrics.")
+
+
+def _update_part3_report(summary: dict, task_scores: dict[str, list[float]], docs_dir: Path) -> None:
+    """Update Part-3 tables inside both part3_frameworks.md and Section 3 of evaluation_report.md."""
+    per_task = json.loads(summary["per_task_json"])
+    meta = {
+        "v3-reactcsseasyconfig": ("**React JS + Vanilla CSS**", "`react_css_easy` (Luminary AI)", "Vanilla CSS"),
+        "v3-solidcssmediumconfig": ("**Solid JS + Vanilla CSS**", "`solid_css_medium` (Aura Creative)", "Vanilla CSS"),
+        "v3-reacttailwindmediumconfig": ("**React JS + Tailwind CSS**", "`react_tailwind_medium` (Nexus SaaS)", "Tailwind CSS"),
+        "v3-solidtailwindhardconfig": ("**Solid JS + Tailwind CSS**", "`solid_tailwind_hard` (Cypher DEX)", "Tailwind CSS"),
+    }
+
+    rows = []
+    vanilla_scores, tailwind_scores = [], []
+    for task_key, stats in sorted(per_task.items(), key=lambda x: -x[1]["mean"]):
+        scores = task_scores[task_key]
+        std = (sum((s - stats["mean"]) ** 2 for s in scores) / len(scores)) ** 0.5
+        pass70 = sum(1 for s in scores if s >= 0.70) / len(scores)
+
+        fw_label, arch_label, style = "**Custom Framework**", f"`{task_key[:20]}`", ""
+        for k_prefix, labels in meta.items():
+            if k_prefix in task_key:
+                fw_label, arch_label, style = labels
+                break
+        if style == "Vanilla CSS":
+            vanilla_scores.append(stats["mean"])
+        elif style == "Tailwind CSS":
+            tailwind_scores.append(stats["mean"])
+
+        rows.append(f"| {fw_label} | {arch_label} | **{stats['mean']:.3f}** | {stats['min']:.3f} | {stats['max']:.3f} | {std:.3f} | {pass70:.0%} |")
+
+    avg_pass70 = _compute_pass_at_k(task_scores, 0.70, 1)
+    footer_row = f"| **Overall Suite Average** | **{len(per_task)} Tasks ({summary['n_trials']} Trials)** | **{summary['mean_reward']:.3f}** | **{summary['min_reward']:.3f}** | **{summary['max_reward']:.3f}** | **{summary['std_reward']:.3f}** | **{avg_pass70:.0%}** |"
+
+    v_mean = (sum(vanilla_scores) / len(vanilla_scores)) if vanilla_scores else 0.0
+    t_mean = (sum(tailwind_scores) / len(tailwind_scores)) if tailwind_scores else 0.0
+
+    insights_lines = [
+        "| | Vanilla CSS (`src/index.css`) | Tailwind CSS (Utility Classes) |",
+        "| :--- | :--- | :--- |",
+        f"| **Mean Reward** | **{v_mean:.3f}** | **{t_mean:.3f}** |",
+        "| **SSIM & pHash** | Higher — exact pixel micro-tuning | Lower — utility approximation gaps |",
+        "| **Styling Approach** | Global custom properties | Pre-defined spacing/color scales |",
+        "| **Markup Impact** | Clean, semantic HTML | Highly verbose JSX markup |"
+    ]
+
+    # Update Section 3 inside docs/evaluation_report.md
+    eval_rep = docs_dir / "evaluation_report.md"
+    if eval_rep.exists():
+        content = eval_rep.read_text()
+        t_start, t_end = "<!-- PART3_RESULTS_TABLE_START -->", "<!-- PART3_RESULTS_TABLE_END -->"
+        if t_start in content and t_end in content:
+            table_lines = [
+                t_start,
+                "| Framework & Styling Paradigm | Task Archetype | Mean Reward | Min | Max | Std Dev | Pass@1 (≥0.70) |",
+                "| :--- | :--- | :---: | :---: | :---: | :---: | :---: |",
+                *rows,
+                footer_row,
+                t_end
+            ]
+            before, after = content.split(t_start)[0], content.split(t_end)[1]
+            content = before + "\n".join(table_lines) + after
+
+        i_start, i_end = "<!-- PART3_INSIGHTS_TABLE_START -->", "<!-- PART3_INSIGHTS_TABLE_END -->"
+        if i_start in content and i_end in content:
+            before, after = content.split(i_start)[0], content.split(i_end)[1]
+            content = before + "\n".join([i_start, *insights_lines, i_end]) + after
+
+        pl_start, pl_end = "<!-- PART3_PLOTS_START -->", "<!-- PART3_PLOTS_END -->"
+        if pl_start in content and pl_end in content:
+            plot_lines = [
+                pl_start,
+                f"![Task Variance Boxplot](../results/{summary['run_id']}/task_variance_boxplot.png)",
+                "",
+                f"![Task Means Barchart](../results/{summary['run_id']}/task_means_barchart.png)",
+                pl_end
+            ]
+            before, after = content.split(pl_start)[0], content.split(pl_end)[1]
+            content = before + "\n".join(plot_lines) + after
+
+        eval_rep.write_text(content)
+        print("  Updated docs/evaluation_report.md (Section 3: Part 3 Multi-Framework tables & plots) with latest metrics.")
+
+
 def update_evaluation_report(summary: dict, task_scores: dict[str, list[float]]) -> None:
-    """Update the tables in docs/evaluation_report.md with fresh numbers."""
-    report_path = Path(__file__).resolve().parent.parent / "docs" / "evaluation_report.md"
+    """Update the appropriate doc report (Part 1, Part 2, or Part 3) with fresh metrics."""
+    task_keys = list(task_scores.keys())
+    docs_dir = Path(__file__).resolve().parent.parent / "docs"
+    if any(k.startswith("v3-") for k in task_keys) or summary.get("run_id") == "part-3":
+        _update_part3_report(summary, task_scores, docs_dir)
+        return
+    elif any(k.startswith("v2-") for k in task_keys) or summary.get("run_id") == "part-2":
+        _update_part2_report(Path(summary["job_path"]), docs_dir / "evaluation_report.md")
+        return
+    else:
+        report_path = docs_dir / "evaluation_report.md"
+        report_name = "docs/evaluation_report.md"
+
     if not report_path.exists():
         return
 
@@ -288,7 +436,7 @@ def update_evaluation_report(summary: dict, task_scores: dict[str, list[float]])
         content = before + "\n".join(plot_lines) + after
 
     report_path.write_text(content)
-    print(f"  Updated docs/evaluation_report.md with latest metrics and plot paths.")
+    print(f"  Updated {report_name} with latest metrics and plot paths.")
 
 
 def print_summary(summary: dict) -> None:

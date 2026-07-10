@@ -41,9 +41,8 @@
     "desktop"
   ],
   "screenshot_fmt": "png",
-  "ssim_weight": 0.6,
-  "phash_weight": 0.4,
-  "dom_iou_weight": 0.0,
+  "ssim_weight": 0.5,
+  "phash_weight": 0.3,
   "animation_frames_ms": [
     0,
     500,
@@ -57,5 +56,6 @@
     "page_process_desktop": 3877,
     "page_about_desktop": 3972,
     "page_contact_desktop": 2319
-  }
+  },
+  "color_hist_weight": 0.2
 }

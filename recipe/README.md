@@ -14,9 +14,9 @@ recipe/
 ├── agent.py                # Handles Anthropic API communication & file extraction
 ├── capture.py              # Playwright orchestration for screenshots, videos, & frame freezing
 ├── packager.py             # Assembles generated assets into Harbor task directories
-├── configs/                # Website archetype definitions (14 unique brand configs)
+├── configs/                # Website archetype definitions (18 unique configs: 10 v1 + 4 v2 + 4 v3)
 │   ├── __init__.py         # Config registry decorator & loader
-│   └── library.py          # 10 Static (v1) and 4 Animation (v2) archetype classes
+│   └── library.py          # 10 Static (v1), 4 Animation (v2), and 4 Framework (v3) configs
 └── validators/             # Safety & structural integrity checks
     ├── __init__.py         # Combined validation runner (`validate_all`)
     ├── javascript.py       # Enforces No-JS policy (forbids <script>, .js, onclick)
@@ -29,7 +29,7 @@ recipe/
 ## 🚀 CLI Usage & Examples
 
 ### 1. List Available Archetype Configurations
-To view all 14 registered website configurations (10 Static `v1`, 4 Animation `v2`) along with their difficulty tiers and archetypes:
+To view all 18 registered website configurations (10 Static `v1`, 4 Animation `v2`, 4 Framework `v3`) along with their difficulty tiers and archetypes:
 ```bash
 uv run python -m recipe.generate --list
 ```

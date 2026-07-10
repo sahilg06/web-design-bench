@@ -41,14 +41,14 @@
     "desktop"
   ],
   "screenshot_fmt": "png",
-  "ssim_weight": 0.6,
-  "phash_weight": 0.4,
-  "dom_iou_weight": 0.0,
+  "ssim_weight": 0.5,
+  "phash_weight": 0.3,
   "scroll_heights": {
     "page_home_desktop": 3600,
     "page_restaurants_desktop": 2600,
     "page_deals_desktop": 3618,
     "page_partner_desktop": 3722,
     "page_contact_desktop": 4223
-  }
+  },
+  "color_hist_weight": 0.2
 }

@@ -53,7 +53,7 @@ graph TD
 │   └── v1-aistartupneon...     # Configured task environment (instruction, assets, verifier tests)
 ├── recipe/                     # Automated task generation pipeline codebase
 │   ├── generate.py             # Main CLI entrance for at-scale task synthesis
-│   ├── configs/                # Website archetype definitions (10 unique brands)
+│   ├── configs/                # Website archetype definitions (18 configs across 3 parts)
 │   ├── validators/             # Safety & structure checks (javascript, structure, complexity)
 │   ├── spec.py                 # DesignSpec builder
 │   ├── prompt.py               # Agent prompt renderer
@@ -68,6 +68,8 @@ graph TD
 │   ├── run.py                  # CLI orchestrator to launch harbor runs
 │   ├── summarize.py            # Auto-generates summary.json & updates evaluation_report.md
 │   ├── visualize.py            # Static chart generation (box plots, bar charts)
+│   ├── grader_validation.py    # Side-by-side best/worst trial comparisons
+│   ├── grading_analysis.py     # Metric correlation & sensitivity analysis
 │   └── configs/                # Version-controlled job configuration suites
 ├── jobs/                       # Evaluation output directory (trajectories, logs, rewards)
 ├── results/                    # Per-job summaries, plots, and historical tracking
