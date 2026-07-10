@@ -8,6 +8,18 @@
 
 ---
 
+## 📚 Documentation Navigation
+
+Explore our comprehensive documentation suite covering architectural theory, empirical benchmark data, and visual verification proofs across all three evaluation tiers:
+
+* **[Evaluation Report & Model Behavior Ledger](docs/evaluation_report.md)**: Master quantitative evaluation report containing empirical numbers, `Pass@K` rates, submetric distributions, and model failure analysis across **Part 1 (Static `v1`)**, **Part 2 (Animation `v2`)**, and **Part 3 (Multi-Framework `v3`)**.
+* **[Part 2: Animations & Temporal State Freezing](docs/part2_animations.md)**: Architectural specifications for non-lossy CSS animation verification via Playwright temporal freezing (`t0`, `t500`, `t1200`) and 3-second WebM video rendering.
+* **[Part 3: Multi-Framework Architecture & SPA Verification](docs/part3_frameworks.md)**: Engineering deep-dive into our 2×2 framework evaluation matrix (`React JS` vs. `Solid JS`, `Vanilla CSS` vs. `Tailwind CSS`), Vite compilation checks, and automated in-memory navigation (`#nav-<tab_id>`).
+* **[Visual Grader Validation Reports](docs/grader_validation/grader_validation.md)**: Side-by-side comparative visual proof across Parts 1, 2, and 3 (`best` vs. `worst` agent trials vs. reference designs), demonstrating that higher continuous computer vision scores objectively equal higher design quality.
+* **[Design Decisions & Trade-offs](docs/design_decisions.md)**: Underlying architectural rationale covering our continuous visual grader over brittle tree-diffing, containerized safety policies (`No-JS`), and aesthetic synthesis judges.
+
+---
+
 ## 🚀 Executive Summary & Architecture
 
 This repository hosts a robust **RL Environment Recipe** built on top of the **Harbor Framework** to assess state-of-the-art coding agents (e.g., Claude Code with Opus 4.7) on their ability to translate design requirements and screenshots into production-quality front-end code.
@@ -197,15 +209,3 @@ To guide RL agent alignment across both design and content requirements, we blen
 ```
 Blended Reward = (0.75 * Visual Reward) + (0.25 * Mean Text Recall)
 ```
-
----
-
-## 📚 Documentation Navigation
-
-Explore the complete documentation suite to understand the full lifecycle of `web-design-bench`:
-1. **[Main README & Quick-Start](README.md)**: Repository overview, architecture diagrams, and execution instructions.
-2. **[Design Decisions & Trade-offs](docs/design_decisions.md)**: Architectural thought process, grader mechanics, and framework integrations.
-3. **[Evaluation Report & Model Behavior](docs/evaluation_report.md)**: Comprehensive analysis of the 100-trial benchmark run, `Pass@K` metrics, and deep dives into AI model failure patterns.
-4. **[Visual Grader Validation](docs/grader_validation/grader_validation.md)**: Side-by-side reference vs. agent screenshot comparisons proving higher scores = better designs.
-5. **[Part 2: Animations & Temporal State Freezing](docs/part2_animations.md)**: Architecture for grading CSS animations via Playwright frame freezing (`t0`, `t500`, `t1200`) and WebM video generation.
-6. **[Part 3: Multi-Framework Benchmark Report](docs/part3_frameworks.md)**: Architectural and empirical analysis of the 2×2 framework matrix (React vs. Solid JS, Vanilla vs. Tailwind CSS).
